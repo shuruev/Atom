@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Atom.CheckType</id>
+    <version>1.0.0</version>
+    <releaseNotes>Initial release.</releaseNotes>
+    <tags>atom, util, check, type, nullable, enum</tags>
+    <description>Checks multiple criteria for built-in .NET types (is nullable, is enum, etc.)
+
+Add this package to your core library, so it would get the source code of this module without installing a binary dependency. Then proceed with using corresponding functionality from Atom.Util namespace, like if it was installed using binary assembly.
+
+Check out GitHub for more docs and usage examples.</description>
+    <authors>Oleg Shuruev</authors>
+    <projectUrl>https://github.com/shuruev/Atom</projectUrl>
+    <icon>images/icon.png</icon>
+    <license type="expression">MIT</license>
+    <contentFiles>
+      <files include="any/any/CheckType.cs" buildAction="Compile" copyToOutput="false" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="../../../icon.png" target="images/" />
+    <file src="CheckType.cs" target="contentFiles/any/any/Atom/Util/" />
+  </files>
+</package>

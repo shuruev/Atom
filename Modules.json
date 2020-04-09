@@ -1,0 +1,29 @@
+{
+  "Base64Url": {
+    "Category": "Util",
+    "Description": "Implements Base-64 encoding with URL and filename safe alphabet.",
+    "Tags": "base64, base64url, rfc4648",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "d99f8d34-07a7-13a1-b70f-0cbc83bf4267",
+    "DependsOn": [
+      "Atom.CheckType 1.0.0"
+    ]
+  },
+  "CheckType": {
+    "Category": "Util",
+    "Description": "Checks multiple criteria for built-in .NET types (is nullable, is enum, etc.)",
+    "Tags": "check, type, nullable, enum",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "5e7f8a34-0d7d-cefb-e11d-24f846367c23"
+  },
+  "Parse": {
+    "Category": "Util",
+    "Description": "Parses any string into different .NET built-in types using As<T> syntax.",
+    "Tags": "string, parse, as, convert",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "78cc7808-1da9-2627-c943-3fd78681ea85"
+  }
+}
