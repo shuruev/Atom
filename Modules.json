@@ -14,9 +14,9 @@
     "Category": "Util",
     "Description": "Checks multiple criteria for built-in .NET types (is nullable, is enum, etc.)",
     "Tags": "check, type, nullable, enum",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "5e7f8a34-0d7d-cefb-e11d-24f846367c23"
+    "Version": "1.1.0",
+    "ReleaseNotes": "New method CheckType.GetKeyword<T>() for getting built-in C# keywords.",
+    "SourceHash": "ea577fc5-22ed-5ac4-00b3-f33ad5c54c12"
   },
   "Parse": {
     "Category": "Util",

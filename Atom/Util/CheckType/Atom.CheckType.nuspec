@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.CheckType</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <version>1.1.0</version>
+    <releaseNotes>New method CheckType.GetKeyword&lt;T&gt;() for getting built-in C# keywords.</releaseNotes>
     <tags>atom, util, check, type, nullable, enum</tags>
     <description>Checks multiple criteria for built-in .NET types (is nullable, is enum, etc.)
 

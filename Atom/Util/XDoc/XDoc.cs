@@ -55,7 +55,7 @@ namespace Atom.Util
                     break;
 
                 default:
-                    throw new InvalidOperationException($"Unknown declaration type '{declaration}'");
+                    throw new ArgumentException($"Unknown declaration type '{declaration}'");
             }
 
             var doc = new XDocument(xd);
