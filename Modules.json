@@ -22,8 +22,8 @@
     "Category": "Util",
     "Description": "Parses any string into different .NET built-in types using As<T> syntax.",
     "Tags": "string, parse, as, convert",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "78cc7808-1da9-2627-c943-3fd78681ea85"
+    "Version": "1.0.1",
+    "ReleaseNotes": "Updated exception messages.",
+    "SourceHash": "4dab639e-47d2-e91b-8a5d-1c7c2cf2c5df"
   }
 }

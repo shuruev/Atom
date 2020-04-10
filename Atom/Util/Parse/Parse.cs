@@ -49,10 +49,10 @@ namespace Atom.Util
             }
             catch (Exception e)
             {
-                throw new ArgumentException($"Cannot parse {GetTypeName<T>()} value from string '{value}'.", e);
+                throw new ArgumentException($"Cannot parse value of type <{GetTypeName<T>()}> from string '{value}'.", e);
             }
 
-            throw new InvalidOperationException($"Parsing as {GetTypeName<T>()} is not supported.");
+            throw new InvalidOperationException($"Parsing as type <{GetTypeName<T>()}> is not supported.");
         }
 
         /// <summary>
@@ -92,10 +92,14 @@ namespace Atom.Util
         {
             var type = typeof(T);
 
+            var keyword = CheckType.GetKeyword(type);
+            if (keyword != null)
+                return keyword;
+
             var nullable = Nullable.GetUnderlyingType(type);
             if (nullable != null)
             {
-                return $"Nullable<{nullable.Name}>";
+                return $"{nullable.Name}?";
             }
 
             return type.Name;

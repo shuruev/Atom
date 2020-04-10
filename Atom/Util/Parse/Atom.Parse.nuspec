@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.Parse</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <version>1.0.1</version>
+    <releaseNotes>Updated exception messages.</releaseNotes>
     <tags>atom, util, string, parse, as, convert</tags>
     <description>Parses any string into different .NET built-in types using As&lt;T&gt; syntax.
 
