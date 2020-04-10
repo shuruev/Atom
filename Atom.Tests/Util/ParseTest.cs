@@ -49,19 +49,19 @@ namespace Atom.Tests.Util
             "   false".As<bool>().Should().BeFalse();
 
             "yes".Invoking(s => s.As<bool>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Boolean value from string 'yes'.");
 
             String.Empty.Invoking(s => s.As<bool>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Boolean value from string ''.");
 
             "   ".Invoking(s => s.As<bool>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Boolean value from string '   '.");
 
             ((string)null).Invoking(s => s.As<bool>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Boolean value from string ''.");
         }
 
@@ -81,7 +81,7 @@ namespace Atom.Tests.Util
             "   false".As<bool?>().Should().BeFalse();
 
             "yes".Invoking(s => s.As<bool?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Boolean> value from string 'yes'.");
 
             String.Empty.As<bool?>().Should().BeNull();
@@ -96,31 +96,31 @@ namespace Atom.Tests.Util
             "   25   ".As<byte>().Should().Be(25);
 
             "-38".Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string '-38'.");
 
             "1000".Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string '1000'.");
 
             "1e2".Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string 'NaN'.");
 
             String.Empty.Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string ''.");
 
             "   ".Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string '   '.");
 
             ((string)null).Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string ''.");
         }
 
@@ -131,19 +131,19 @@ namespace Atom.Tests.Util
             "   25   ".As<byte?>().Should().Be(25);
 
             "-38".Invoking(s => s.As<byte?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Byte> value from string '-38'.");
 
             "1000".Invoking(s => s.As<byte?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Byte> value from string '1000'.");
 
             "1e2".Invoking(s => s.As<byte>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Byte value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<byte?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Byte> value from string 'NaN'.");
 
             String.Empty.As<byte?>().Should().BeNull();
@@ -160,27 +160,27 @@ namespace Atom.Tests.Util
             "1000".As<short>().Should().Be(1000);
 
             "100000".Invoking(s => s.As<short>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int16 value from string '100000'.");
 
             "1e2".Invoking(s => s.As<short>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int16 value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<short>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int16 value from string 'NaN'.");
 
             String.Empty.Invoking(s => s.As<short>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int16 value from string ''.");
 
             "   ".Invoking(s => s.As<short>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int16 value from string '   '.");
 
             ((string)null).Invoking(s => s.As<short>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int16 value from string ''.");
         }
 
@@ -193,15 +193,15 @@ namespace Atom.Tests.Util
             "1000".As<short?>().Should().Be(1000);
 
             "100000".Invoking(s => s.As<short?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int16> value from string '100000'.");
 
             "1e2".Invoking(s => s.As<short?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int16> value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<short?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int16> value from string 'NaN'.");
 
             String.Empty.As<short?>().Should().BeNull();
@@ -219,27 +219,27 @@ namespace Atom.Tests.Util
             "100000".As<int>().Should().Be(100000);
 
             "10000000000".Invoking(s => s.As<int>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int32 value from string '10000000000'.");
 
             "1e2".Invoking(s => s.As<int>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int32 value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<int>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int32 value from string 'NaN'.");
 
             String.Empty.Invoking(s => s.As<int>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int32 value from string ''.");
 
             "   ".Invoking(s => s.As<int>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int32 value from string '   '.");
 
             ((string)null).Invoking(s => s.As<int>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int32 value from string ''.");
         }
 
@@ -253,15 +253,15 @@ namespace Atom.Tests.Util
             "100000".As<int?>().Should().Be(100000);
 
             "10000000000".Invoking(s => s.As<int?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int32> value from string '10000000000'.");
 
             "1e2".Invoking(s => s.As<int?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int32> value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<int?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int32> value from string 'NaN'.");
 
             String.Empty.As<int?>().Should().BeNull();
@@ -280,27 +280,27 @@ namespace Atom.Tests.Util
             "10000000000".As<long>().Should().Be(10000000000);
 
             "10000000000000000000".Invoking(s => s.As<long>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int64 value from string '10000000000000000000'.");
 
             "1e2".Invoking(s => s.As<long>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int64 value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<long>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int64 value from string 'NaN'.");
 
             String.Empty.Invoking(s => s.As<long>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int64 value from string ''.");
 
             "   ".Invoking(s => s.As<long>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int64 value from string '   '.");
 
             ((string)null).Invoking(s => s.As<long>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Int64 value from string ''.");
         }
 
@@ -315,15 +315,15 @@ namespace Atom.Tests.Util
             "10000000000".As<long?>().Should().Be(10000000000);
 
             "10000000000000000000".Invoking(s => s.As<long?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int64> value from string '10000000000000000000'.");
 
             "1e2".Invoking(s => s.As<long?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int64> value from string '1e2'.");
 
             "NaN".Invoking(s => s.As<long?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Int64> value from string 'NaN'.");
 
             String.Empty.As<long?>().Should().BeNull();
@@ -352,19 +352,19 @@ namespace Atom.Tests.Util
             "1e39".As<float>().Should().Be(Single.PositiveInfinity);
 
             "2,5".Invoking(s => s.As<float>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Single value from string '2,5'.");
 
             String.Empty.Invoking(s => s.As<float>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Single value from string ''.");
 
             "   ".Invoking(s => s.As<float>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Single value from string '   '.");
 
             ((string)null).Invoking(s => s.As<float>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Single value from string ''.");
         }
 
@@ -389,7 +389,7 @@ namespace Atom.Tests.Util
             "1e39".As<float?>().Should().Be(Single.PositiveInfinity);
 
             "2,5".Invoking(s => s.As<float?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Single> value from string '2,5'.");
 
             String.Empty.As<float?>().Should().BeNull();
@@ -420,19 +420,19 @@ namespace Atom.Tests.Util
             "1e309".As<double>().Should().Be(Double.PositiveInfinity);
 
             "2,5".Invoking(s => s.As<double>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Double value from string '2,5'.");
 
             String.Empty.Invoking(s => s.As<double>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Double value from string ''.");
 
             "   ".Invoking(s => s.As<double>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Double value from string '   '.");
 
             ((string)null).Invoking(s => s.As<double>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Double value from string ''.");
         }
 
@@ -458,7 +458,7 @@ namespace Atom.Tests.Util
             "1e309".As<double?>().Should().Be(Double.PositiveInfinity);
 
             "2,5".Invoking(s => s.As<double?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Double> value from string '2,5'.");
 
             String.Empty.As<double?>().Should().BeNull();
@@ -482,31 +482,31 @@ namespace Atom.Tests.Util
             "-0".As<decimal>().Should().Be(0m);
 
             "NaN".Invoking(s => s.As<decimal>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Decimal value from string 'NaN'.");
 
             "Infinity".Invoking(s => s.As<decimal>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Decimal value from string 'Infinity'.");
 
             "2,5".Invoking(s => s.As<decimal>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Decimal value from string '2,5'.");
 
             "100000000000000000000000000000".Invoking(s => s.As<decimal>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Decimal value from string '100000000000000000000000000000'.");
 
             String.Empty.Invoking(s => s.As<decimal>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Decimal value from string ''.");
 
             "   ".Invoking(s => s.As<decimal>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Decimal value from string '   '.");
 
             ((string)null).Invoking(s => s.As<decimal>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Decimal value from string ''.");
         }
 
@@ -526,19 +526,19 @@ namespace Atom.Tests.Util
             "-0".As<decimal?>().Should().Be(0m);
 
             "NaN".Invoking(s => s.As<decimal?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Decimal> value from string 'NaN'.");
 
             "Infinity".Invoking(s => s.As<decimal?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Decimal> value from string 'Infinity'.");
 
             "2,5".Invoking(s => s.As<decimal?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Decimal> value from string '2,5'.");
 
             "100000000000000000000000000000".Invoking(s => s.As<decimal?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Decimal> value from string '100000000000000000000000000000'.");
 
             String.Empty.As<decimal?>().Should().BeNull();
@@ -556,19 +556,19 @@ namespace Atom.Tests.Util
             "1:15:20:57".As<TimeSpan>().Should().Be(TimeSpan.Parse("1:15:20:57"));
 
             "unknown".Invoking(s => s.As<TimeSpan>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TimeSpan value from string 'unknown'.");
 
             String.Empty.Invoking(s => s.As<TimeSpan>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TimeSpan value from string ''.");
 
             "   ".Invoking(s => s.As<TimeSpan>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TimeSpan value from string '   '.");
 
             ((string)null).Invoking(s => s.As<TimeSpan>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TimeSpan value from string ''.");
         }
 
@@ -582,7 +582,7 @@ namespace Atom.Tests.Util
             "1:15:20:57".As<TimeSpan?>().Should().Be(TimeSpan.Parse("1:15:20:57"));
 
             "unknown".Invoking(s => s.As<TimeSpan?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<TimeSpan> value from string 'unknown'.");
 
             String.Empty.As<TimeSpan?>().Should().BeNull();
@@ -599,19 +599,19 @@ namespace Atom.Tests.Util
             "2000/11/21 15:20:57".As<DateTime>().Should().Be(new DateTime(2000, 11, 21, 15, 20, 57));
 
             "unknown".Invoking(s => s.As<DateTime>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse DateTime value from string 'unknown'.");
 
             String.Empty.Invoking(s => s.As<DateTime>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse DateTime value from string ''.");
 
             "   ".Invoking(s => s.As<DateTime>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse DateTime value from string '   '.");
 
             ((string)null).Invoking(s => s.As<DateTime>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse DateTime value from string ''.");
         }
 
@@ -624,7 +624,7 @@ namespace Atom.Tests.Util
             "2000/11/21 15:20:57".As<DateTime?>().Should().Be(new DateTime(2000, 11, 21, 15, 20, 57));
 
             "unknown".Invoking(s => s.As<DateTime?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<DateTime> value from string 'unknown'.");
 
             String.Empty.As<DateTime?>().Should().BeNull();
@@ -643,19 +643,19 @@ namespace Atom.Tests.Util
             "2dc0b86e3e16445a88b8c39eff611331".As<Guid>().Should().Be(id);
 
             "unknown".Invoking(s => s.As<Guid>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Guid value from string 'unknown'.");
 
             String.Empty.Invoking(s => s.As<Guid>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Guid value from string ''.");
 
             "   ".Invoking(s => s.As<Guid>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Guid value from string '   '.");
 
             ((string)null).Invoking(s => s.As<Guid>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Guid value from string ''.");
         }
 
@@ -670,7 +670,7 @@ namespace Atom.Tests.Util
             "2dc0b86e3e16445a88b8c39eff611331".As<Guid>().Should().Be(id);
 
             "unknown".Invoking(s => s.As<Guid?>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse Nullable<Guid> value from string 'unknown'.");
 
             String.Empty.As<Guid?>().Should().BeNull();
@@ -695,19 +695,19 @@ namespace Atom.Tests.Util
                 .And.Should().NotBe(TestEnum.Two);
 
             "unknown".Invoking(s => s.As<TestEnum>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TestEnum value from string 'unknown'.");
 
             String.Empty.Invoking(s => s.As<TestEnum>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TestEnum value from string ''.");
 
             "   ".Invoking(s => s.As<TestEnum>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TestEnum value from string '   '.");
 
             ((string)null).Invoking(s => s.As<TestEnum>())
-                .Should().Throw<InvalidOperationException>()
+                .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse TestEnum value from string ''.");
         }
 
