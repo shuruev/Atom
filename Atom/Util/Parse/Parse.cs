@@ -49,10 +49,10 @@ namespace Atom.Util
             }
             catch (Exception e)
             {
-                throw new ArgumentException($"Cannot parse value of type <{GetTypeName<T>()}> from string '{value}'.", e);
+                throw new ArgumentException($"Cannot parse value of type <{TypeName.GetFriendlyName<T>()}> from string '{value}'.", e);
             }
 
-            throw new InvalidOperationException($"Parsing as type <{GetTypeName<T>()}> is not supported.");
+            throw new InvalidOperationException($"Parsing as type <{TypeName.GetFriendlyName<T>()}> is not supported.");
         }
 
         /// <summary>
@@ -83,26 +83,6 @@ namespace Atom.Util
 
             var converter = TypeDescriptor.GetConverter(type);
             return (T)converter.ConvertFrom(null, CultureInfo.InvariantCulture, value);
-        }
-
-        /// <summary>
-        /// Gets type name for exception messages.
-        /// </summary>
-        private static string GetTypeName<T>()
-        {
-            var type = typeof(T);
-
-            var keyword = CheckType.GetKeyword(type);
-            if (keyword != null)
-                return keyword;
-
-            var nullable = Nullable.GetUnderlyingType(type);
-            if (nullable != null)
-            {
-                return $"{nullable.Name}?";
-            }
-
-            return type.Name;
         }
     }
 }
