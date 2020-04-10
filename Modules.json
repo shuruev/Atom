@@ -3,9 +3,9 @@
     "Category": "Util",
     "Description": "Implements Base-64 encoding with URL and filename safe alphabet.",
     "Tags": "base64, base64url, rfc4648",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "d99f8d34-07a7-13a1-b70f-0cbc83bf4267",
+    "Version": "1.0.1",
+    "ReleaseNotes": "Changed exception type from InvalidOperationException to ArgumentException in some cases.",
+    "SourceHash": "269da6ed-2c49-6837-c2c4-a03aeb7ed440",
     "DependsOn": [
       "Atom.CheckType 1.0.0"
     ]

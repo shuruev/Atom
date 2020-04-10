@@ -45,7 +45,7 @@ namespace Atom.Util
                     base64 += "=";
                     break;
                 default:
-                    throw new InvalidOperationException("Invalid Base-64 string length.");
+                    throw new ArgumentException("Invalid Base-64 string length.");
             }
 
             return Convert.FromBase64String(base64);
