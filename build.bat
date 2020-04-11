@@ -9,6 +9,7 @@ IF EXIST "nuget\*" DEL "nuget\*" /Q
 "%nuget%" pack Atom\Util\CheckType\Atom.CheckType.nuspec -OutputDirectory nuget
 "%nuget%" pack Atom\Util\Parse\Atom.Parse.nuspec -OutputDirectory nuget
 "%nuget%" pack Atom\Util\TypeName\Atom.TypeName.nuspec -OutputDirectory nuget
+"%nuget%" pack Atom\Util\XConsole\Atom.XConsole.nuspec -OutputDirectory nuget
 
 ENDLOCAL
 PAUSE
