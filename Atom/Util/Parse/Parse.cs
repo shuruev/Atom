@@ -10,6 +10,12 @@ namespace Atom.Util
     public static class Parse
     {
         /// <summary>
+        /// Set this to true if you want to allow parsing strings like "NaN", "Infinity", "-Infinity" etc.
+        /// to valid floating point (single or double) values. This is disabled by default.
+        /// </summary>
+        public static bool AllowNonNumericValues { get; set; } = false;
+
+        /// <summary>
         /// Parses string value as specified type.
         /// </summary>
         public static T As<T>(this string value)
@@ -82,7 +88,28 @@ namespace Atom.Util
             }
 
             var converter = TypeDescriptor.GetConverter(type);
-            return (T)converter.ConvertFrom(null, CultureInfo.InvariantCulture, value);
+            var result = (T)converter.ConvertFrom(null, CultureInfo.InvariantCulture, value);
+
+            // check for non-numeric values for floating types, like NaN, Infinity, etc.
+            if (!AllowNonNumericValues && IsNonNumericValue(result))
+                throw new ArgumentException($"Value '{result}' is not allowed to be parsed. Change [Parse.AllowNonNumericValues] flag if you want to use such a value.");
+
+            return result;
+        }
+
+        private static bool IsNonNumericValue(object value)
+        {
+            switch (value)
+            {
+                case float n:
+                    return Single.IsNaN(n) || Single.IsInfinity(n);
+
+                case double n:
+                    return Double.IsNaN(n) || Double.IsInfinity(n);
+
+                default:
+                    return false;
+            }
         }
     }
 }

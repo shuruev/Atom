@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.Parse</id>
-    <version>1.1.0</version>
-    <releaseNotes>Added dependencies for displaying human-readable type names in exceptions.</releaseNotes>
+    <version>1.2.0</version>
+    <releaseNotes>Prohibited parsing non-numeric strings like 'NaN', 'Infinity', etc.</releaseNotes>
     <tags>atom, util, string, parse, as, convert</tags>
     <description>Parses any string into different .NET built-in types using As&lt;T&gt; syntax.
 

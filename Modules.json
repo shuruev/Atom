@@ -19,9 +19,9 @@
     "Category": "Util",
     "Description": "Parses any string into different .NET built-in types using As<T> syntax.",
     "Tags": "string, parse, as, convert",
-    "Version": "1.1.0",
-    "ReleaseNotes": "Added dependencies for displaying human-readable type names in exceptions.",
-    "SourceHash": "75db03d1-3924-4152-203d-cedac04a2cbc",
+    "Version": "1.2.0",
+    "ReleaseNotes": "Prohibited parsing non-numeric strings like 'NaN', 'Infinity', etc.",
+    "SourceHash": "81039f53-ed37-89a9-5542-49de6e5255d0",
     "DependsOn": [
       "Atom.CheckType 1.0",
       "Atom.TypeName 1.0"

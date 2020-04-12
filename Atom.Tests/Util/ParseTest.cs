@@ -17,6 +17,8 @@ namespace Atom.Tests.Util
             Two = 2
         }
 
+        private static readonly string[] _empty = { String.Empty, "   ", "\t", "\r\n", null };
+
         [TestMethod]
         public void Cannot_Parse_Values_Of_Unknown_Type()
         {
@@ -53,17 +55,12 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <bool> from string 'yes'.");
 
-            String.Empty.Invoking(s => s.As<bool>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <bool> from string ''.");
-
-            "   ".Invoking(s => s.As<bool>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <bool> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<bool>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <bool> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<bool>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <bool> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -85,9 +82,10 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <bool?> from string 'yes'.");
 
-            String.Empty.As<bool?>().Should().BeNull();
-            "   ".As<bool?>().Should().BeNull();
-            ((string)null).As<bool?>().Should().BeNull();
+            foreach (var value in _empty)
+            {
+                value.As<bool?>().Should().BeNull();
+            }
         }
 
         [TestMethod]
@@ -96,33 +94,19 @@ namespace Atom.Tests.Util
             "25".As<byte>().Should().Be(25);
             "   25   ".As<byte>().Should().Be(25);
 
-            "-38".Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string '-38'.");
+            foreach (var value in new[] { "-38", "1000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<byte>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <byte> from string '{value}'.");
+            }
 
-            "1000".Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string '1000'.");
-
-            "1e2".Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string 'NaN'.");
-
-            String.Empty.Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string ''.");
-
-            "   ".Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<byte>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <byte> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -131,25 +115,15 @@ namespace Atom.Tests.Util
             "25".As<byte?>().Should().Be(25);
             "   25   ".As<byte?>().Should().Be(25);
 
-            "-38".Invoking(s => s.As<byte?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte?> from string '-38'.");
+            foreach (var value in new[] { "-38", "1000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<byte?>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <byte?> from string '{value}'.");
+            }
 
-            "1000".Invoking(s => s.As<byte?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte?> from string '1000'.");
-
-            "1e2".Invoking(s => s.As<byte>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<byte?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <byte?> from string 'NaN'.");
-
-            String.Empty.As<byte?>().Should().BeNull();
-            "   ".As<byte?>().Should().BeNull();
-            ((string)null).As<byte?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<byte?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -160,29 +134,19 @@ namespace Atom.Tests.Util
             "-38".As<short>().Should().Be(-38);
             "1000".As<short>().Should().Be(1000);
 
-            "100000".Invoking(s => s.As<short>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short> from string '100000'.");
+            foreach (var value in new[] { "100000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<short>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <short> from string '{value}'.");
+            }
 
-            "1e2".Invoking(s => s.As<short>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<short>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short> from string 'NaN'.");
-
-            String.Empty.Invoking(s => s.As<short>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short> from string ''.");
-
-            "   ".Invoking(s => s.As<short>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<short>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<short>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <short> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -193,21 +157,15 @@ namespace Atom.Tests.Util
             "-38".As<short?>().Should().Be(-38);
             "1000".As<short?>().Should().Be(1000);
 
-            "100000".Invoking(s => s.As<short?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short?> from string '100000'.");
+            foreach (var value in new[] { "100000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<short?>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <short?> from string '{value}'.");
+            }
 
-            "1e2".Invoking(s => s.As<short?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short?> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<short?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <short?> from string 'NaN'.");
-
-            String.Empty.As<short?>().Should().BeNull();
-            "   ".As<short?>().Should().BeNull();
-            ((string)null).As<short?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<short?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -219,29 +177,19 @@ namespace Atom.Tests.Util
             "1000".As<int>().Should().Be(1000);
             "100000".As<int>().Should().Be(100000);
 
-            "10000000000".Invoking(s => s.As<int>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int> from string '10000000000'.");
+            foreach (var value in new[] { "10000000000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<int>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <int> from string '{value}'.");
+            }
 
-            "1e2".Invoking(s => s.As<int>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<int>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int> from string 'NaN'.");
-
-            String.Empty.Invoking(s => s.As<int>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int> from string ''.");
-
-            "   ".Invoking(s => s.As<int>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<int>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<int>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <int> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -253,21 +201,15 @@ namespace Atom.Tests.Util
             "1000".As<int?>().Should().Be(1000);
             "100000".As<int?>().Should().Be(100000);
 
-            "10000000000".Invoking(s => s.As<int?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int?> from string '10000000000'.");
+            foreach (var value in new[] { "10000000000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<int?>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <int?> from string '{value}'.");
+            }
 
-            "1e2".Invoking(s => s.As<int?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int?> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<int?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <int?> from string 'NaN'.");
-
-            String.Empty.As<int?>().Should().BeNull();
-            "   ".As<int?>().Should().BeNull();
-            ((string)null).As<int?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<int?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -280,29 +222,19 @@ namespace Atom.Tests.Util
             "100000".As<long>().Should().Be(100000);
             "10000000000".As<long>().Should().Be(10000000000);
 
-            "10000000000000000000".Invoking(s => s.As<long>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long> from string '10000000000000000000'.");
+            foreach (var value in new[] { "10000000000000000000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<long>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <long> from string '{value}'.");
+            }
 
-            "1e2".Invoking(s => s.As<long>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<long>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long> from string 'NaN'.");
-
-            String.Empty.Invoking(s => s.As<long>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long> from string ''.");
-
-            "   ".Invoking(s => s.As<long>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<long>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<long>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <long> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -315,26 +247,22 @@ namespace Atom.Tests.Util
             "100000".As<long?>().Should().Be(100000);
             "10000000000".As<long?>().Should().Be(10000000000);
 
-            "10000000000000000000".Invoking(s => s.As<long?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long?> from string '10000000000000000000'.");
+            foreach (var value in new[] { "10000000000000000000", "1e2", "NaN" })
+            {
+                value.Invoking(s => s.As<long?>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <long?> from string '{value}'.");
+            }
 
-            "1e2".Invoking(s => s.As<long?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long?> from string '1e2'.");
-
-            "NaN".Invoking(s => s.As<long?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <long?> from string 'NaN'.");
-
-            String.Empty.As<long?>().Should().BeNull();
-            "   ".As<long?>().Should().BeNull();
-            ((string)null).As<long?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<long?>().Should().BeNull();
         }
 
         [TestMethod]
         public void Can_Parse_Single_Values()
         {
+            Parse.AllowNonNumericValues = false;
+
             "2.5".As<float>().Should().Be(2.5f);
             "   2.5   ".As<float>().Should().Be(2.5f);
             "-0.2".As<float>().Should().Be(-0.2f);
@@ -346,32 +274,26 @@ namespace Atom.Tests.Util
             "+0".As<float>().Should().Be(0f);
             "-0".As<float>().Should().Be(0f);
 
-            "NaN".As<float>().Should().Be(Single.NaN);
-            "-Infinity".As<float>().Should().Be(Single.NegativeInfinity);
-            "Infinity".As<float>().Should().Be(Single.PositiveInfinity);
-            "+Infinity".As<float>().Should().Be(Single.PositiveInfinity);
-            "1e39".As<float>().Should().Be(Single.PositiveInfinity);
+            foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e39", "2,5" })
+            {
+                value.Invoking(s => s.As<float>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <float> from string '{value}'.");
+            }
 
-            "2,5".Invoking(s => s.As<float>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <float> from string '2,5'.");
-
-            String.Empty.Invoking(s => s.As<float>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <float> from string ''.");
-
-            "   ".Invoking(s => s.As<float>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <float> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<float>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <float> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<float>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <float> from string '{value}'.");
+            }
         }
 
         [TestMethod]
         public void Can_Parse_Single_Nullable_Values()
         {
+            Parse.AllowNonNumericValues = false;
+
             "2.5".As<float?>().Should().Be(2.5f);
             "   2.5   ".As<float?>().Should().Be(2.5f);
             "-0.2".As<float?>().Should().Be(-0.2f);
@@ -383,24 +305,40 @@ namespace Atom.Tests.Util
             "+0".As<float?>().Should().Be(0f);
             "-0".As<float?>().Should().Be(0f);
 
+            foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e39", "2,5" })
+            {
+                value.Invoking(s => s.As<float?>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <float?> from string '{value}'.");
+            }
+
+            foreach (var value in _empty)
+                value.As<float?>().Should().BeNull();
+        }
+
+        [TestMethod]
+        public void Can_Parse_Single_Non_Numeric_Values()
+        {
+            Parse.AllowNonNumericValues = true;
+
+            "NaN".As<float>().Should().Be(Single.NaN);
+            "-Infinity".As<float>().Should().Be(Single.NegativeInfinity);
+            "Infinity".As<float>().Should().Be(Single.PositiveInfinity);
+            "+Infinity".As<float>().Should().Be(Single.PositiveInfinity);
+            "1e39".As<float>().Should().Be(Single.PositiveInfinity);
+
             "NaN".As<float?>().Should().Be(Single.NaN);
             "-Infinity".As<float?>().Should().Be(Single.NegativeInfinity);
             "Infinity".As<float?>().Should().Be(Single.PositiveInfinity);
             "+Infinity".As<float?>().Should().Be(Single.PositiveInfinity);
             "1e39".As<float?>().Should().Be(Single.PositiveInfinity);
-
-            "2,5".Invoking(s => s.As<float?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <float?> from string '2,5'.");
-
-            String.Empty.As<float?>().Should().BeNull();
-            "   ".As<float?>().Should().BeNull();
-            ((string)null).As<float?>().Should().BeNull();
         }
 
         [TestMethod]
         public void Can_Parse_Double_Values()
         {
+            Parse.AllowNonNumericValues = false;
+
             "2.5".As<double>().Should().Be(2.5d);
             "   2.5   ".As<double>().Should().Be(2.5d);
             "-0.2".As<double>().Should().Be(-0.2d);
@@ -414,32 +352,26 @@ namespace Atom.Tests.Util
             "+0".As<double>().Should().Be(0d);
             "-0".As<double>().Should().Be(0d);
 
-            "NaN".As<double>().Should().Be(Double.NaN);
-            "-Infinity".As<double>().Should().Be(Double.NegativeInfinity);
-            "Infinity".As<double>().Should().Be(Double.PositiveInfinity);
-            "+Infinity".As<double>().Should().Be(Double.PositiveInfinity);
-            "1e309".As<double>().Should().Be(Double.PositiveInfinity);
+            foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e309", "2,5" })
+            {
+                value.Invoking(s => s.As<double>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <double> from string '{value}'.");
+            }
 
-            "2,5".Invoking(s => s.As<double>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <double> from string '2,5'.");
-
-            String.Empty.Invoking(s => s.As<double>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <double> from string ''.");
-
-            "   ".Invoking(s => s.As<double>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <double> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<double>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <double> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<double>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <double> from string '{value}'.");
+            }
         }
 
         [TestMethod]
         public void Can_Parse_Double_Nullable_Values()
         {
+            Parse.AllowNonNumericValues = false;
+
             "2.5".As<double?>().Should().Be(2.5d);
             "   2.5   ".As<double?>().Should().Be(2.5d);
             "-0.2".As<double?>().Should().Be(-0.2d);
@@ -452,19 +384,33 @@ namespace Atom.Tests.Util
             "+0".As<double?>().Should().Be(0d);
             "-0".As<double?>().Should().Be(0d);
 
+            foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e309", "2,5" })
+            {
+                value.Invoking(s => s.As<double?>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <double?> from string '{value}'.");
+            }
+
+            foreach (var value in _empty)
+                value.As<double?>().Should().BeNull();
+        }
+
+        [TestMethod]
+        public void Can_Parse_Double_Non_Numeric_Values()
+        {
+            Parse.AllowNonNumericValues = true;
+
+            "NaN".As<double>().Should().Be(Double.NaN);
+            "-Infinity".As<double>().Should().Be(Double.NegativeInfinity);
+            "Infinity".As<double>().Should().Be(Double.PositiveInfinity);
+            "+Infinity".As<double>().Should().Be(Double.PositiveInfinity);
+            "1e309".As<double>().Should().Be(Double.PositiveInfinity);
+
             "NaN".As<double?>().Should().Be(Double.NaN);
             "-Infinity".As<double?>().Should().Be(Double.NegativeInfinity);
             "Infinity".As<double?>().Should().Be(Double.PositiveInfinity);
             "+Infinity".As<double?>().Should().Be(Double.PositiveInfinity);
             "1e309".As<double?>().Should().Be(Double.PositiveInfinity);
-
-            "2,5".Invoking(s => s.As<double?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <double?> from string '2,5'.");
-
-            String.Empty.As<double?>().Should().BeNull();
-            "   ".As<double?>().Should().BeNull();
-            ((string)null).As<double?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -482,33 +428,19 @@ namespace Atom.Tests.Util
             "+0".As<decimal>().Should().Be(0m);
             "-0".As<decimal>().Should().Be(0m);
 
-            "NaN".Invoking(s => s.As<decimal>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal> from string 'NaN'.");
+            foreach (var value in new[] { "NaN", "Infinity", "2,5", "100000000000000000000000000000" })
+            {
+                value.Invoking(s => s.As<decimal>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <decimal> from string '{value}'.");
+            }
 
-            "Infinity".Invoking(s => s.As<decimal>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal> from string 'Infinity'.");
-
-            "2,5".Invoking(s => s.As<decimal>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal> from string '2,5'.");
-
-            "100000000000000000000000000000".Invoking(s => s.As<decimal>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal> from string '100000000000000000000000000000'.");
-
-            String.Empty.Invoking(s => s.As<decimal>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal> from string ''.");
-
-            "   ".Invoking(s => s.As<decimal>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<decimal>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<decimal>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <decimal> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -526,25 +458,15 @@ namespace Atom.Tests.Util
             "+0".As<decimal?>().Should().Be(0m);
             "-0".As<decimal?>().Should().Be(0m);
 
-            "NaN".Invoking(s => s.As<decimal?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal?> from string 'NaN'.");
+            foreach (var value in new[] { "NaN", "Infinity", "2,5", "100000000000000000000000000000" })
+            {
+                value.Invoking(s => s.As<decimal?>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <decimal?> from string '{value}'.");
+            }
 
-            "Infinity".Invoking(s => s.As<decimal?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal?> from string 'Infinity'.");
-
-            "2,5".Invoking(s => s.As<decimal?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal?> from string '2,5'.");
-
-            "100000000000000000000000000000".Invoking(s => s.As<decimal?>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <decimal?> from string '100000000000000000000000000000'.");
-
-            String.Empty.As<decimal?>().Should().BeNull();
-            "   ".As<decimal?>().Should().BeNull();
-            ((string)null).As<decimal?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<decimal?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -560,17 +482,12 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <TimeSpan> from string 'unknown'.");
 
-            String.Empty.Invoking(s => s.As<TimeSpan>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <TimeSpan> from string ''.");
-
-            "   ".Invoking(s => s.As<TimeSpan>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <TimeSpan> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<TimeSpan>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <TimeSpan> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<TimeSpan>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <TimeSpan> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -586,9 +503,8 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <TimeSpan?> from string 'unknown'.");
 
-            String.Empty.As<TimeSpan?>().Should().BeNull();
-            "   ".As<TimeSpan?>().Should().BeNull();
-            ((string)null).As<TimeSpan?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<TimeSpan?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -603,17 +519,12 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <DateTime> from string 'unknown'.");
 
-            String.Empty.Invoking(s => s.As<DateTime>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <DateTime> from string ''.");
-
-            "   ".Invoking(s => s.As<DateTime>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <DateTime> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<DateTime>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <DateTime> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<DateTime>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <DateTime> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -628,9 +539,8 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <DateTime?> from string 'unknown'.");
 
-            String.Empty.As<DateTime?>().Should().BeNull();
-            "   ".As<DateTime?>().Should().BeNull();
-            ((string)null).As<DateTime?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<DateTime?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -647,17 +557,12 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <Guid> from string 'unknown'.");
 
-            String.Empty.Invoking(s => s.As<Guid>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <Guid> from string ''.");
-
-            "   ".Invoking(s => s.As<Guid>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <Guid> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<Guid>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <Guid> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<Guid>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <Guid> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -674,9 +579,8 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <Guid?> from string 'unknown'.");
 
-            String.Empty.As<Guid?>().Should().BeNull();
-            "   ".As<Guid?>().Should().BeNull();
-            ((string)null).As<Guid?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<Guid?>().Should().BeNull();
         }
 
         [TestMethod]
@@ -699,17 +603,12 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <TestEnum> from string 'unknown'.");
 
-            String.Empty.Invoking(s => s.As<TestEnum>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <TestEnum> from string ''.");
-
-            "   ".Invoking(s => s.As<TestEnum>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <TestEnum> from string '   '.");
-
-            ((string)null).Invoking(s => s.As<TestEnum>())
-                .Should().Throw<ArgumentException>()
-                .WithMessage("Cannot parse value of type <TestEnum> from string ''.");
+            foreach (var value in _empty)
+            {
+                value.Invoking(s => s.As<TestEnum>())
+                    .Should().Throw<ArgumentException>()
+                    .WithMessage($"Cannot parse value of type <TestEnum> from string '{value}'.");
+            }
         }
 
         [TestMethod]
@@ -732,14 +631,15 @@ namespace Atom.Tests.Util
                 .Should().Throw<ArgumentException>()
                 .WithMessage("Cannot parse value of type <TestEnum?> from string 'unknown'.");
 
-            String.Empty.As<TestEnum?>().Should().BeNull();
-            "   ".As<TestEnum?>().Should().BeNull();
-            ((string)null).As<TestEnum?>().Should().BeNull();
+            foreach (var value in _empty)
+                value.As<TestEnum?>().Should().BeNull();
         }
 
         [TestMethod]
         public void Exception_Contains_Inner_Exception()
         {
+            Parse.AllowNonNumericValues = false;
+
             " ".Invoking(s => s.As<int>())
                 .Should().ThrowExactly<ArgumentException>()
                 .WithMessage("Cannot parse value of type <int> from string ' '.")
@@ -757,6 +657,12 @@ namespace Atom.Tests.Util
                 .WithMessage("Cannot parse value of type <float> from string '0+'.")
                 .WithInnerExceptionExactly<ArgumentException>()
                 .WithMessage("0+ is not a valid value for Single. (Parameter 'value')");
+
+            "NaN".Invoking(s => s.As<double>())
+                .Should().ThrowExactly<ArgumentException>()
+                .WithMessage("Cannot parse value of type <double> from string 'NaN'.")
+                .WithInnerExceptionExactly<ArgumentException>()
+                .WithMessage("Value 'NaN' is not allowed to be parsed. Change [Parse.AllowNonNumericValues] flag if you want to use such a value.");
         }
 
         [TestMethod]
