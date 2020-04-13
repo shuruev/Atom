@@ -49,13 +49,13 @@ namespace Atom.Util
         // Messaging:
         //
 
-        public static readonly XConsole Error = new XConsole(ConsoleColor.White, ConsoleColor.DarkRed);
-        public static readonly XConsole OK = new XConsole(ConsoleColor.White, ConsoleColor.DarkGreen);
+        public static readonly XConsole Error = With(ConsoleColor.White, ConsoleColor.DarkRed);
+        public static readonly XConsole OK = With(ConsoleColor.White, ConsoleColor.DarkGreen);
         public static readonly XConsole Warning = With(ConsoleColor.Black, ConsoleColor.DarkYellow);
-        public static readonly XConsole Tag = new XConsole(ConsoleColor.Black, ConsoleColor.Gray);
-        public static readonly XConsole Note = new XConsole(ConsoleColor.Black, ConsoleColor.White);
-        public static readonly XConsole Tip = new XConsole(ConsoleColor.Black, ConsoleColor.Yellow);
-        public static readonly XConsole Label = new XConsole(ConsoleColor.Yellow, ConsoleColor.DarkCyan);
+        public static readonly XConsole Tag = With(ConsoleColor.Black, ConsoleColor.Gray);
+        public static readonly XConsole Note = With(ConsoleColor.Black, ConsoleColor.White);
+        public static readonly XConsole Tip = With(ConsoleColor.Black, ConsoleColor.Yellow);
+        public static readonly XConsole Label = With(ConsoleColor.Yellow, ConsoleColor.DarkCyan);
         public static readonly XConsole Terminal = With(ConsoleColor.White, ConsoleColor.DarkBlue);
 
         public XConsole ToError => Error;
@@ -72,13 +72,13 @@ namespace Atom.Util
         //
 
         public static readonly XConsole Graphite = With(ConsoleColor.Gray, ConsoleColor.DarkGray);
-        public static readonly XConsole Azure = new XConsole(ConsoleColor.DarkBlue, ConsoleColor.Cyan);
-        public static readonly XConsole Eggplant = new XConsole(ConsoleColor.Yellow, ConsoleColor.Magenta);
-        public static readonly XConsole Strawberry = new XConsole(ConsoleColor.Green, ConsoleColor.Red);
-        public static readonly XConsole Watermelon = new XConsole(ConsoleColor.DarkRed, ConsoleColor.Green);
-        public static readonly XConsole Squash = new XConsole(ConsoleColor.Yellow, ConsoleColor.DarkYellow);
-        public static readonly XConsole Lime = new XConsole(ConsoleColor.Yellow, ConsoleColor.Green);
-        public static readonly XConsole Tomato = new XConsole(ConsoleColor.Cyan, ConsoleColor.DarkRed);
+        public static readonly XConsole Azure = With(ConsoleColor.DarkBlue, ConsoleColor.Cyan);
+        public static readonly XConsole Eggplant = With(ConsoleColor.Yellow, ConsoleColor.Magenta);
+        public static readonly XConsole Strawberry = With(ConsoleColor.Green, ConsoleColor.Red);
+        public static readonly XConsole Watermelon = With(ConsoleColor.DarkRed, ConsoleColor.Green);
+        public static readonly XConsole Squash = With(ConsoleColor.Yellow, ConsoleColor.DarkYellow);
+        public static readonly XConsole Lime = With(ConsoleColor.Yellow, ConsoleColor.Green);
+        public static readonly XConsole Tomato = With(ConsoleColor.Cyan, ConsoleColor.DarkRed);
 
         public XConsole ToGraphite => Graphite;
         public XConsole ToAzure => Azure;

@@ -37,38 +37,49 @@ namespace Atom.Util
         /// <summary>
         /// Writes specified string message (or nothing) using specified colors.
         /// </summary>
-        public static XConsole Write(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => WriteColored(message, foreground, background);
+        public static XConsole Write(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => With(foreground, background).Write(message);
+
+        /// <summary>
+        /// Writes specified character using specified colors.
+        /// </summary>
+        public static XConsole Write(char c, ConsoleColor? foreground = null, ConsoleColor? background = null) => With(foreground, background).Write(c);
 
         /// <summary>
         /// Writes specified string message (or nothing), followed by current line terminator, using specified colors.
         /// </summary>
-        public static XConsole WriteLine(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => WriteLineColored(message, foreground, background);
+        public static XConsole WriteLine(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => With(foreground, background).WriteLine(message);
 
         /// <summary>
         /// Writes specified string message (or nothing) to the colored output.
         /// </summary>
-        public XConsole Write(string message = null) => WriteColored(message, _foreground, _background);
+        public XConsole Write(string message = null) => WriteColored(message);
+
+        /// <summary>
+        /// Writes specified character to the colored output.
+        /// </summary>
+        public XConsole Write(char c) => WriteColored(ToString(c));
 
         /// <summary>
         /// Writes specified string message (or nothing), followed by current line terminator, to the colored output.
         /// </summary>
-        public XConsole WriteLine(string message = null) => WriteLineColored(message, _foreground, _background);
+        public XConsole WriteLine(string message = null) => WriteColored(ToLine(message));
 
-        private static XConsole WriteLineColored(string message, ConsoleColor? foreground, ConsoleColor? background) => WriteColored(message + Environment.NewLine, foreground, background);
+        private static string ToString(char c) => Char.ToString(c);
+        private static string ToLine(string message) => message + Environment.NewLine;
 
-        private static XConsole WriteColored(string message, ConsoleColor? foreground, ConsoleColor? background)
+        private bool IsCurrent => _foreground == null && _background == null;
+
+        private XConsole WriteColored(string message)
         {
-            var console = With(foreground, background);
-
             // do nothing if null is passed
             if (message == null)
-                return console;
+                return this;
 
             // do not lock or save/restore colors, when not needed
-            if (foreground == null && background == null)
+            if (IsCurrent)
             {
                 Console.Write(message);
-                return console;
+                return this;
             }
 
             // split into chunks with control and non-control characters
@@ -100,30 +111,30 @@ namespace Atom.Util
                     if (Char.IsControl(chunk[0]))
                         Console.Write(chunk);
                     else
-                        WriteColoredRaw(chunk, foreground, background);
+                        WriteColoredRaw(chunk);
                 }
             }
 
-            return console;
+            return this;
         }
 
-        private static void WriteColoredRaw(char[] symbols, ConsoleColor? foreground, ConsoleColor? background)
+        private void WriteColoredRaw(char[] symbols)
         {
             var currentForeground = Console.ForegroundColor;
             var currentBackground = Console.BackgroundColor;
 
-            if (foreground != null)
-                Console.ForegroundColor = foreground.Value;
+            if (_foreground != null)
+                Console.ForegroundColor = _foreground.Value;
 
-            if (background != null)
-                Console.BackgroundColor = background.Value;
+            if (_background != null)
+                Console.BackgroundColor = _background.Value;
 
             Console.Write(symbols);
 
-            if (foreground != null)
+            if (_foreground != null)
                 Console.ForegroundColor = currentForeground;
 
-            if (background != null)
+            if (_background != null)
                 Console.BackgroundColor = currentBackground;
         }
     }
