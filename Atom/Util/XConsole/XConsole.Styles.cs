@@ -15,14 +15,13 @@ namespace Atom.Util
         public XConsole ToCurrent => Style;
 
         /// <summary>
-        /// Default color style: Gray on Black
+        /// Resets console colors to the default ones.
         /// </summary>
-        public static readonly XConsole Default = With(ConsoleColor.Gray, ConsoleColor.Black);
-
-        /// <summary>
-        /// Switches to default color style: Gray on Black
-        /// </summary>
-        public XConsole ToDefault => Default;
+        public static XConsole Reset()
+        {
+            Console.ResetColor();
+            return Style;
+        }
 
         //
         // Standard:

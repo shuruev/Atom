@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.XConsole</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <version>1.1.0</version>
+    <releaseNotes>Using Reset() instead of wrapping with hard-coded "default" gray on black colors.</releaseNotes>
     <tags>atom, util, console, colored, output</tags>
     <description>Extends standard console providing more features like colored output.
 

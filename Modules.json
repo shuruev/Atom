@@ -39,8 +39,8 @@
     "Category": "Util",
     "Description": "Extends standard console providing more features like colored output.",
     "Tags": "console, colored, output",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "c9979aa4-4c01-7eb1-bb57-e089c4846139"
+    "Version": "1.1.0",
+    "ReleaseNotes": "Using Reset() instead of wrapping with hard-coded \"default\" gray on black colors.",
+    "SourceHash": "99c3021f-e513-cbaa-159f-cc41918d007a"
   }
 }
