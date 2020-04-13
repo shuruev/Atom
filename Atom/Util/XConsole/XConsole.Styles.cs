@@ -28,11 +28,11 @@ namespace Atom.Util
         //
 
         public static readonly XConsole Red = With(ConsoleColor.DarkRed);
-        public static readonly XConsole Green = With(ConsoleColor.DarkGreen);
-        public static readonly XConsole Blue = With(ConsoleColor.DarkBlue);
+        public static readonly XConsole Green = With(ConsoleColor.Green);
+        public static readonly XConsole Blue = With(ConsoleColor.Blue);
         public static readonly XConsole Cyan = With(ConsoleColor.Cyan);
+        public static readonly XConsole Yellow = With(ConsoleColor.Yellow);
         public static readonly XConsole Gold = With(ConsoleColor.DarkYellow);
-        public static readonly XConsole Purple = With(ConsoleColor.Magenta);
         public static readonly XConsole Muted = With(ConsoleColor.DarkGray);
         public static readonly XConsole Bright = With(ConsoleColor.White);
 
@@ -40,8 +40,8 @@ namespace Atom.Util
         public XConsole ToGreen => Green;
         public XConsole ToBlue => Blue;
         public XConsole ToCyan => Cyan;
+        public XConsole ToYellow => Yellow;
         public XConsole ToGold => Gold;
-        public XConsole ToPurple => Purple;
         public XConsole ToMuted => Muted;
         public XConsole ToBright => Bright;
 
@@ -102,8 +102,8 @@ namespace Atom.Util
                 .ToGreen.Write("Green").ToCurrent.Write("    ")
                 .ToBlue.Write("Blue").ToCurrent.Write("        ")
                 .ToCyan.Write("Cyan").ToCurrent.Write("          ")
-                .ToGold.Write("Gold").ToCurrent.Write("          ")
-                .ToPurple.Write("Purple").ToCurrent.Write("    ")
+                .ToYellow.Write("Yellow").ToCurrent.Write("        ")
+                .ToGold.Write("Gold").ToCurrent.Write("      ")
                 .ToMuted.Write("Muted").ToCurrent.Write("    ")
                 .ToBright.WriteLine("Bright");
 
@@ -135,8 +135,8 @@ namespace Atom.Util
             Green.Write("Green\t\t").ToOK.Write("OK\t\t").ToAzure.WriteLine("Azure");
             Blue.Write("Blue\t\t").ToWarning.Write("Warning\t\t").ToEggplant.WriteLine("Eggplant");
             Cyan.Write("Cyan\t\t").ToTag.Write("Tag\t\t").ToStrawberry.WriteLine("Strawberry");
+            Yellow.Write("Yellow\t\t").ToTip.Write("Tip\t\t").ToSquash.WriteLine("Squash");
             Gold.Write("Gold\t\t").ToNote.Write("Note\t\t").ToWatermelon.WriteLine("Watermelon");
-            Purple.Write("Purple\t\t").ToTip.Write("Tip\t\t").ToSquash.WriteLine("Squash");
             Muted.Write("Muted\t\t").ToLabel.Write("Label\t\t").ToLime.WriteLine("Lime");
             Bright.Write("Bright\t\t").ToTerminal.Write("Terminal\t").ToTomato.WriteLine("Tomato");
 

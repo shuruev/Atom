@@ -39,8 +39,8 @@
     "Category": "Util",
     "Description": "Extends standard console providing more features like colored output.",
     "Tags": "console, colored, output",
-    "Version": "1.1.1",
-    "ReleaseNotes": "Added overloads for writing a single character.",
-    "SourceHash": "44fa5d36-e3f3-62ea-e6e7-1a4cfac7b4c9"
+    "Version": "1.1.2",
+    "ReleaseNotes": "Changed some colors.",
+    "SourceHash": "8da69003-152f-386b-9a68-d2a862b5a6d6"
   }
 }
