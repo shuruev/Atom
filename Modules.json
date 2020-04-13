@@ -39,8 +39,8 @@
     "Category": "Util",
     "Description": "Extends standard console providing more features like colored output.",
     "Tags": "console, colored, output",
-    "Version": "1.1.3",
-    "ReleaseNotes": "Using XConsole would always sync, even for default style.",
-    "SourceHash": "c171d5ef-0aea-a165-531d-42c0a133db11"
+    "Version": "1.2.0",
+    "ReleaseNotes": "Added NewLine() and NewPara() methods.",
+    "SourceHash": "9ac3cf6e-9bdd-0986-5587-68f57904ebf5"
   }
 }

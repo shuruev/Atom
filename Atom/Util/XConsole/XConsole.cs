@@ -10,7 +10,10 @@ namespace Atom.Util
     [SuppressMessage("ReSharper", "MethodOverloadWithOptionalParameter")]
     public partial class XConsole
     {
-        private static readonly object _sync = new object();
+        /// <summary>
+        /// Public object which can be used to lock during console output from multiple threads.
+        /// </summary>
+        public static readonly object Sync = new object();
 
         private readonly ConsoleColor? _foreground;
         private readonly ConsoleColor? _background;
@@ -95,7 +98,7 @@ namespace Atom.Util
                 chunks.Add(current.ToArray());
 
             // use lock to avoid color overrides from multiple thread
-            lock (_sync)
+            lock (Sync)
             {
                 foreach (var chunk in chunks)
                 {
@@ -127,6 +130,45 @@ namespace Atom.Util
 
             if (_background != null)
                 Console.BackgroundColor = currentBackground;
+        }
+
+        /// <summary>
+        /// Makes sure the current console position is at the line beginning.
+        /// If it is already, does nothing. If it is not, writes line terminator and proceeds to the new line.
+        /// </summary>
+        public static XConsole NewLine(object _ = null) => With().NewLine();
+
+        /// <summary>
+        /// Adds one blank line and starts from new line.
+        /// If current line is not terminated, it will be terminated prior to rendering the blank line.
+        /// </summary>
+        public static XConsole NewPara(object _ = null) => With().NewPara();
+
+        /// <summary>
+        /// Makes sure the current console position is at the line beginning.
+        /// If it is already, does nothing. If it is not, writes line terminator and proceeds to the new line.
+        /// </summary>
+        public XConsole NewLine()
+        {
+            if (Console.CursorLeft > 0)
+                Console.WriteLine();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds one blank line and starts from new line.
+        /// If current line is not terminated, it will be terminated prior to rendering the blank line.
+        /// </summary>
+        public XConsole NewPara()
+        {
+            lock (Sync)
+            {
+                NewLine();
+                Console.WriteLine();
+            }
+
+            return this;
         }
     }
 }

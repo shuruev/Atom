@@ -20,7 +20,7 @@ namespace Atom.Util
         public static XConsole Reset()
         {
             Console.ResetColor();
-            return Style;
+            return With();
         }
 
         //

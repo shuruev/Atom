@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.XConsole</id>
-    <version>1.1.3</version>
-    <releaseNotes>Using XConsole would always sync, even for default style.</releaseNotes>
+    <version>1.2.0</version>
+    <releaseNotes>Added NewLine() and NewPara() methods.</releaseNotes>
     <tags>atom, util, console, colored, output</tags>
     <description>Extends standard console providing more features like colored output.
 
