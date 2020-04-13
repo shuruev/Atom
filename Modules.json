@@ -27,6 +27,14 @@
       "Atom.TypeName 1.0"
     ]
   },
+  "RunProcess": {
+    "Category": "Util",
+    "Description": "Allows to run an external process getting output/error contents properly and without deadlocks.",
+    "Tags": "run, process, external",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "ae04e15f-f239-63cd-481a-c384f87c59c6"
+  },
   "TypeName": {
     "Category": "Util",
     "Description": "Can generate user-friendly .NET type name and aware of C# keywords.",
