@@ -67,20 +67,11 @@ namespace Atom.Util
         private static string ToString(char c) => Char.ToString(c);
         private static string ToLine(string message) => message + Environment.NewLine;
 
-        private bool IsCurrent => _foreground == null && _background == null;
-
         private XConsole WriteColored(string message)
         {
             // do nothing if null is passed
             if (message == null)
                 return this;
-
-            // do not lock or save/restore colors, when not needed
-            if (IsCurrent)
-            {
-                Console.Write(message);
-                return this;
-            }
 
             // split into chunks with control and non-control characters
             var chunks = new List<char[]>();
