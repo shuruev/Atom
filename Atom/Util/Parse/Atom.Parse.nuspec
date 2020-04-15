@@ -18,7 +18,7 @@ Check out GitHub for more docs and usage examples.</description>
       <files include="any/any/Parse.cs" buildAction="Compile" copyToOutput="false" />
     </contentFiles>
     <dependencies>
-      <dependency id="Atom.CheckType" version="1.0" include="contentFiles" />
+      <dependency id="Atom.CheckType" version="1.2" include="contentFiles" />
       <dependency id="Atom.TypeName" version="1.0" include="contentFiles" />
     </dependencies>
   </metadata>

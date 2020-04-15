@@ -23,7 +23,7 @@
     "ReleaseNotes": "Added missing dependency.",
     "SourceHash": "7b7a555e-8b0b-1cbe-94b5-b4d490dd3846",
     "DependsOn": [
-      "Atom.CheckType 1.0"
+      "Atom.CheckType 1.2"
     ]
   },
   "Parse": {
@@ -34,7 +34,7 @@
     "ReleaseNotes": "Prohibited parsing non-numeric strings like 'NaN', 'Infinity', etc.",
     "SourceHash": "81039f53-ed37-89a9-5542-49de6e5255d0",
     "DependsOn": [
-      "Atom.CheckType 1.0",
+      "Atom.CheckType 1.2",
       "Atom.TypeName 1.0"
     ]
   },
