@@ -3,7 +3,7 @@
   <metadata>
     <id>Atom.HashBuilder</id>
     <version>1.0.1</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Added missing dependency.</releaseNotes>
     <tags>atom, util, hash, md5, crc</tags>
     <description>Builds MD5 has for a combination of built-in .NET types.
 
@@ -17,6 +17,9 @@ Check out GitHub for more docs and usage examples.</description>
     <contentFiles>
       <files include="any/any/HashBuilder.cs" buildAction="Compile" copyToOutput="false" />
     </contentFiles>
+    <dependencies>
+      <dependency id="Atom.CheckType" version="1.0" include="contentFiles" />
+    </dependencies>
   </metadata>
   <files>
     <file src="../../../icon.png" target="images/" />
