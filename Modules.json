@@ -19,8 +19,8 @@
     "Category": "Util",
     "Description": "Builds MD5 has for a combination of built-in .NET types.",
     "Tags": "hash, md5, crc",
-    "Version": "1.0.1",
-    "ReleaseNotes": "Added missing dependency.",
+    "Version": "1.0.2",
+    "ReleaseNotes": "Published with updated dependency.",
     "SourceHash": "7b7a555e-8b0b-1cbe-94b5-b4d490dd3846",
     "DependsOn": [
       "Atom.CheckType 1.2"
@@ -30,8 +30,8 @@
     "Category": "Util",
     "Description": "Parses any string into different .NET built-in types using As<T> syntax.",
     "Tags": "string, parse, as, convert",
-    "Version": "1.2.0",
-    "ReleaseNotes": "Prohibited parsing non-numeric strings like 'NaN', 'Infinity', etc.",
+    "Version": "1.2.1",
+    "ReleaseNotes": "Published with updated dependency.",
     "SourceHash": "81039f53-ed37-89a9-5542-49de6e5255d0",
     "DependsOn": [
       "Atom.CheckType 1.2",
