@@ -15,6 +15,14 @@
     "ReleaseNotes": "GetKeyword<T>() was moved to a different module named Atom.TypeName.",
     "SourceHash": "c8db5703-1a84-468a-8a0e-f29ae5e7d5e6"
   },
+  "HashBuilder": {
+    "Category": "Util",
+    "Description": "Builds MD5 has for a combination of built-in .NET types.",
+    "Tags": "hash, md5, crc",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "7b7a555e-8b0b-1cbe-94b5-b4d490dd3846"
+  },
   "Parse": {
     "Category": "Util",
     "Description": "Parses any string into different .NET built-in types using As<T> syntax.",

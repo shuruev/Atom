@@ -7,6 +7,7 @@ IF EXIST "nuget\*" DEL "nuget\*" /Q
 
 "%nuget%" pack Atom\Util\Base64Url\Atom.Base64Url.nuspec -OutputDirectory nuget
 "%nuget%" pack Atom\Util\CheckType\Atom.CheckType.nuspec -OutputDirectory nuget
+"%nuget%" pack Atom\Util\HashBuilder\Atom.HashBuilder.nuspec -OutputDirectory nuget
 "%nuget%" pack Atom\Util\Parse\Atom.Parse.nuspec -OutputDirectory nuget
 "%nuget%" pack Atom\Util\RunProcess\Atom.RunProcess.nuspec -OutputDirectory nuget
 "%nuget%" pack Atom\Util\TypeName\Atom.TypeName.nuspec -OutputDirectory nuget
