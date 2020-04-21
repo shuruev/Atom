@@ -23,7 +23,6 @@ namespace Atom.Build
 
             Console.Write("Update build scripts... ");
             UpdateBuildBat(modules);
-            UpdatePublishBat(modules);
             Console.WriteLine("OK");
 
             Modules.Save(modules);
@@ -175,38 +174,6 @@ ENDLOCAL
 PAUSE");
 
             File.WriteAllText("../../../../build.bat", sb.ToString());
-        }
-
-        private static void UpdatePublishBat(Modules modules)
-        {
-            var sb = new StringBuilder(@"@ECHO OFF
-SETLOCAL
-
-ECHO -------------------------
-DIR nuget /B
-ECHO -------------------------
-ECHO.
-
-SET /P Check=""OK to publish all Atom packages to nuget.org? (Y/N) ""
-IF /I ""%Check%"" NEQ ""Y"" GOTO END
-
-SET nuget=%UserProfile%\.nuget\packages\nuget.commandline\5.4.0\tools\NuGet.exe
-
-");
-
-            foreach (var module in modules)
-            {
-                var push = $@"""%nuget%"" push nuget\Atom.{module.Key}.{module.Value.Version}.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate";
-                sb.AppendLine(push);
-            }
-
-            sb.AppendLine(@"
-PAUSE
-
-:END
-ENDLOCAL");
-
-            File.WriteAllText("../../../../publish.bat", sb.ToString());
         }
     }
 }
