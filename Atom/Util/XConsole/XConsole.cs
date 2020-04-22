@@ -67,6 +67,8 @@ namespace Atom.Util
     /// </summary>
     public partial class XConsoleImpl
     {
+        private static bool _lastPara;
+
         private readonly ConsoleColor? _foreground;
         private readonly ConsoleColor? _background;
 
@@ -139,6 +141,8 @@ namespace Atom.Util
                     else
                         WriteColoredRaw(chunk);
                 }
+
+                _lastPara = false;
             }
 
             return this;
@@ -170,8 +174,11 @@ namespace Atom.Util
         /// </summary>
         public XConsoleImpl NewLine()
         {
-            if (Console.CursorLeft > 0)
-                Console.WriteLine();
+            lock (XConsole.Sync)
+            {
+                if (Console.CursorLeft > 0)
+                    Console.WriteLine();
+            }
 
             return this;
         }
@@ -185,7 +192,11 @@ namespace Atom.Util
             lock (XConsole.Sync)
             {
                 NewLine();
-                Console.WriteLine();
+
+                if (!_lastPara)
+                    Console.WriteLine();
+
+                _lastPara = true;
             }
 
             return this;

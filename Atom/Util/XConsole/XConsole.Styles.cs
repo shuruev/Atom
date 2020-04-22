@@ -62,8 +62,7 @@ namespace Atom.Util
         /// </summary>
         public static void PrintDemo()
         {
-            Console.WriteLine();
-            Console.WriteLine();
+            NewPara();
 
             Write("Standard:   ")
                 .Red.Write("Red").Default.Write("         ")
@@ -95,8 +94,7 @@ namespace Atom.Util
                 .Lime.Write("Lime").Default.Write("     ")
                 .Tomato.WriteLine("Tomato");
 
-            Console.WriteLine();
-            Console.WriteLine();
+            NewPara();
 
             Console.WriteLine("Standard:\tMessaging:\tExtended:");
             Red.Write("Red\t\t").Error.Write("Error\t\t").Graphite.WriteLine("Graphite");
@@ -108,8 +106,7 @@ namespace Atom.Util
             Muted.Write("Muted\t\t").Label.Write("Label\t\t").Lime.WriteLine("Lime");
             Bright.Write("Bright\t\t").Terminal.Write("Terminal\t").Tomato.WriteLine("Tomato");
 
-            Console.WriteLine();
-            Console.WriteLine();
+            NewPara();
         }
     }
 
