@@ -1,76 +1,108 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
 
 namespace Atom.Util
 {
     /// <summary>
-    /// Colored console writer.
+    /// Extends standard console providing more features like colored output.
     /// </summary>
-    [SuppressMessage("ReSharper", "MethodOverloadWithOptionalParameter")]
-    public partial class XConsole
+    public static partial class XConsole
     {
         /// <summary>
         /// Public object which can be used to lock during console output from multiple threads.
         /// </summary>
         public static readonly object Sync = new object();
 
+        /// <summary>
+        /// Creates new console writer with specified colors.
+        /// </summary>
+        public static XConsoleImpl To(ConsoleColor? foreground = null, ConsoleColor? background = null) => new XConsoleImpl(foreground, background);
+
+        /// <summary>
+        /// Writes specified string message (or nothing) using specified colors.
+        /// </summary>
+        public static XConsoleImpl Write(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => To(foreground, background).Write(message);
+
+        /// <summary>
+        /// Writes specified character using specified colors.
+        /// </summary>
+        public static XConsoleImpl Write(char c, ConsoleColor? foreground = null, ConsoleColor? background = null) => To(foreground, background).Write(c);
+
+        /// <summary>
+        /// Writes specified string message (or nothing), followed by current line terminator, using specified colors.
+        /// </summary>
+        public static XConsoleImpl WriteLine(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => To(foreground, background).WriteLine(message);
+
+        /// <summary>
+        /// Makes sure the current console position is at the line beginning.
+        /// If it is already, does nothing. If it is not, writes line terminator and proceeds to the new line.
+        /// </summary>
+        public static XConsoleImpl NewLine() => Default.NewLine();
+
+        /// <summary>
+        /// Adds one blank line and starts from new line.
+        /// If current line is not terminated, it will be terminated prior to rendering the blank line.
+        /// </summary>
+        public static XConsoleImpl NewPara() => Default.NewPara();
+
+        /// <summary>
+        /// When debugger is attached, awaits until any key is pressed.
+        /// When debugger is not attached, or compiled in non-debug mode then does nothing.
+        /// </summary>
+        public static void PressAnyKeyWhenDebug()
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                NewPara().Write("Press any key to exit...");
+                Console.ReadKey();
+            }
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Colored console writer.
+    /// </summary>
+    public partial class XConsoleImpl
+    {
         private readonly ConsoleColor? _foreground;
         private readonly ConsoleColor? _background;
 
         /// <summary>
         /// Initializes new instance.
         /// </summary>
-        private XConsole(ConsoleColor? foreground, ConsoleColor? background)
+        public XConsoleImpl(ConsoleColor? foreground, ConsoleColor? background)
         {
             _foreground = foreground;
             _background = background;
         }
 
         /// <summary>
-        /// Creates new console writer with specified colors.
-        /// </summary>
-        public static XConsole With(ConsoleColor? foreground = null, ConsoleColor? background = null) => new XConsole(foreground, background);
-
-        /// <summary>
         /// Switches to new console writer with specified colors.
         /// </summary>
-        public XConsole To(ConsoleColor? foreground = null, ConsoleColor? background = null) => With(foreground, background);
-
-        /// <summary>
-        /// Writes specified string message (or nothing) using specified colors.
-        /// </summary>
-        public static XConsole Write(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => With(foreground, background).Write(message);
-
-        /// <summary>
-        /// Writes specified character using specified colors.
-        /// </summary>
-        public static XConsole Write(char c, ConsoleColor? foreground = null, ConsoleColor? background = null) => With(foreground, background).Write(c);
-
-        /// <summary>
-        /// Writes specified string message (or nothing), followed by current line terminator, using specified colors.
-        /// </summary>
-        public static XConsole WriteLine(string message = null, ConsoleColor? foreground = null, ConsoleColor? background = null) => With(foreground, background).WriteLine(message);
+        public XConsoleImpl To(ConsoleColor? foreground = null, ConsoleColor? background = null) => new XConsoleImpl(foreground, background);
 
         /// <summary>
         /// Writes specified string message (or nothing) to the colored output.
         /// </summary>
-        public XConsole Write(string message = null) => WriteColored(message);
+        public XConsoleImpl Write(string message = null) => WriteColored(message);
 
         /// <summary>
         /// Writes specified character to the colored output.
         /// </summary>
-        public XConsole Write(char c) => WriteColored(ToString(c));
+        public XConsoleImpl Write(char c) => WriteColored(ToString(c));
 
         /// <summary>
         /// Writes specified string message (or nothing), followed by current line terminator, to the colored output.
         /// </summary>
-        public XConsole WriteLine(string message = null) => WriteColored(ToLine(message));
+        public XConsoleImpl WriteLine(string message = null) => WriteColored(ToLine(message));
 
         private static string ToString(char c) => Char.ToString(c);
         private static string ToLine(string message) => message + Environment.NewLine;
 
-        private XConsole WriteColored(string message)
+        private XConsoleImpl WriteColored(string message)
         {
             // do nothing if null is passed
             if (message == null)
@@ -98,7 +130,7 @@ namespace Atom.Util
                 chunks.Add(current.ToArray());
 
             // use lock to avoid color overrides from multiple thread
-            lock (Sync)
+            lock (XConsole.Sync)
             {
                 foreach (var chunk in chunks)
                 {
@@ -136,19 +168,7 @@ namespace Atom.Util
         /// Makes sure the current console position is at the line beginning.
         /// If it is already, does nothing. If it is not, writes line terminator and proceeds to the new line.
         /// </summary>
-        public static XConsole NewLine(object _ = null) => With().NewLine();
-
-        /// <summary>
-        /// Adds one blank line and starts from new line.
-        /// If current line is not terminated, it will be terminated prior to rendering the blank line.
-        /// </summary>
-        public static XConsole NewPara(object _ = null) => With().NewPara();
-
-        /// <summary>
-        /// Makes sure the current console position is at the line beginning.
-        /// If it is already, does nothing. If it is not, writes line terminator and proceeds to the new line.
-        /// </summary>
-        public XConsole NewLine()
+        public XConsoleImpl NewLine()
         {
             if (Console.CursorLeft > 0)
                 Console.WriteLine();
@@ -160,9 +180,9 @@ namespace Atom.Util
         /// Adds one blank line and starts from new line.
         /// If current line is not terminated, it will be terminated prior to rendering the blank line.
         /// </summary>
-        public XConsole NewPara()
+        public XConsoleImpl NewPara()
         {
-            lock (Sync)
+            lock (XConsole.Sync)
             {
                 NewLine();
                 Console.WriteLine();

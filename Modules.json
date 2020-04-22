@@ -58,8 +58,8 @@
     "Category": "Util",
     "Description": "Extends standard console providing more features like colored output.",
     "Tags": "console, colored, output",
-    "Version": "1.2.0",
-    "ReleaseNotes": "Added NewLine() and NewPara() methods.",
-    "SourceHash": "9ac3cf6e-9bdd-0986-5587-68f57904ebf5"
+    "Version": "1.3.0",
+    "ReleaseNotes": "Reorganized into two classes, adjusted Red color and added PressAnyKeyWhenDebug() method.",
+    "SourceHash": "b311ff33-75fb-199a-2eb7-be076fa3f71a"
   }
 }

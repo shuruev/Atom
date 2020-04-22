@@ -5,89 +5,57 @@ namespace Atom.Util
     partial class XConsole
     {
         /// <summary>
-        /// Default placeholder for extending with custom styles (see examples on GitHub).
+        /// Default color style: no specifying foreground or background colors.
         /// </summary>
-        public static readonly XConsole Style = With();
-
-        /// <summary>
-        /// Switches to current color style: no specifying foreground or background colors.
-        /// </summary>
-        public XConsole ToCurrent => Style;
+        public static XConsoleImpl Default { get; } = To();
 
         /// <summary>
         /// Resets console colors to the default ones.
         /// </summary>
-        public static XConsole Reset()
+        public static XConsoleImpl Reset()
         {
             Console.ResetColor();
-            return With();
+            return Default;
         }
 
         //
         // Standard:
         //
 
-        public static readonly XConsole Red = With(ConsoleColor.DarkRed);
-        public static readonly XConsole Green = With(ConsoleColor.Green);
-        public static readonly XConsole Blue = With(ConsoleColor.Blue);
-        public static readonly XConsole Cyan = With(ConsoleColor.Cyan);
-        public static readonly XConsole Yellow = With(ConsoleColor.Yellow);
-        public static readonly XConsole Gold = With(ConsoleColor.DarkYellow);
-        public static readonly XConsole Muted = With(ConsoleColor.DarkGray);
-        public static readonly XConsole Bright = With(ConsoleColor.White);
-
-        public XConsole ToRed => Red;
-        public XConsole ToGreen => Green;
-        public XConsole ToBlue => Blue;
-        public XConsole ToCyan => Cyan;
-        public XConsole ToYellow => Yellow;
-        public XConsole ToGold => Gold;
-        public XConsole ToMuted => Muted;
-        public XConsole ToBright => Bright;
+        public static XConsoleImpl Red { get; } = To(ConsoleColor.Red);
+        public static XConsoleImpl Green { get; } = To(ConsoleColor.Green);
+        public static XConsoleImpl Blue { get; } = To(ConsoleColor.Blue);
+        public static XConsoleImpl Cyan { get; } = To(ConsoleColor.Cyan);
+        public static XConsoleImpl Yellow { get; } = To(ConsoleColor.Yellow);
+        public static XConsoleImpl Gold { get; } = To(ConsoleColor.DarkYellow);
+        public static XConsoleImpl Muted { get; } = To(ConsoleColor.DarkGray);
+        public static XConsoleImpl Bright { get; } = To(ConsoleColor.White);
 
         //
         // Messaging:
         //
 
-        public static readonly XConsole Error = With(ConsoleColor.White, ConsoleColor.DarkRed);
-        public static readonly XConsole OK = With(ConsoleColor.White, ConsoleColor.DarkGreen);
-        public static readonly XConsole Warning = With(ConsoleColor.Black, ConsoleColor.DarkYellow);
-        public static readonly XConsole Tag = With(ConsoleColor.Black, ConsoleColor.Gray);
-        public static readonly XConsole Note = With(ConsoleColor.Black, ConsoleColor.White);
-        public static readonly XConsole Tip = With(ConsoleColor.Black, ConsoleColor.Yellow);
-        public static readonly XConsole Label = With(ConsoleColor.Yellow, ConsoleColor.DarkCyan);
-        public static readonly XConsole Terminal = With(ConsoleColor.White, ConsoleColor.DarkBlue);
-
-        public XConsole ToError => Error;
-        public XConsole ToOK => OK;
-        public XConsole ToWarning => Warning;
-        public XConsole ToTag => Tag;
-        public XConsole ToNote => Note;
-        public XConsole ToTip => Tip;
-        public XConsole ToLabel => Label;
-        public XConsole ToTerminal => Terminal;
+        public static XConsoleImpl Error { get; } = To(ConsoleColor.White, ConsoleColor.DarkRed);
+        public static XConsoleImpl OK { get; } = To(ConsoleColor.White, ConsoleColor.DarkGreen);
+        public static XConsoleImpl Warning { get; } = To(ConsoleColor.Black, ConsoleColor.DarkYellow);
+        public static XConsoleImpl Tag { get; } = To(ConsoleColor.Black, ConsoleColor.Gray);
+        public static XConsoleImpl Note { get; } = To(ConsoleColor.Black, ConsoleColor.White);
+        public static XConsoleImpl Tip { get; } = To(ConsoleColor.Black, ConsoleColor.Yellow);
+        public static XConsoleImpl Label { get; } = To(ConsoleColor.Yellow, ConsoleColor.DarkCyan);
+        public static XConsoleImpl Terminal { get; } = To(ConsoleColor.White, ConsoleColor.DarkBlue);
 
         //
         // Extended:
         //
 
-        public static readonly XConsole Graphite = With(ConsoleColor.Gray, ConsoleColor.DarkGray);
-        public static readonly XConsole Azure = With(ConsoleColor.DarkBlue, ConsoleColor.Cyan);
-        public static readonly XConsole Eggplant = With(ConsoleColor.Yellow, ConsoleColor.Magenta);
-        public static readonly XConsole Strawberry = With(ConsoleColor.Green, ConsoleColor.Red);
-        public static readonly XConsole Watermelon = With(ConsoleColor.DarkRed, ConsoleColor.Green);
-        public static readonly XConsole Squash = With(ConsoleColor.Yellow, ConsoleColor.DarkYellow);
-        public static readonly XConsole Lime = With(ConsoleColor.Yellow, ConsoleColor.Green);
-        public static readonly XConsole Tomato = With(ConsoleColor.Cyan, ConsoleColor.DarkRed);
-
-        public XConsole ToGraphite => Graphite;
-        public XConsole ToAzure => Azure;
-        public XConsole ToEggplant => Eggplant;
-        public XConsole ToStrawberry => Strawberry;
-        public XConsole ToWatermelon => Watermelon;
-        public XConsole ToSquash => Squash;
-        public XConsole ToLime => Lime;
-        public XConsole ToTomato => Tomato;
+        public static XConsoleImpl Graphite { get; } = To(ConsoleColor.Gray, ConsoleColor.DarkGray);
+        public static XConsoleImpl Azure { get; } = To(ConsoleColor.DarkBlue, ConsoleColor.Cyan);
+        public static XConsoleImpl Eggplant { get; } = To(ConsoleColor.Yellow, ConsoleColor.Magenta);
+        public static XConsoleImpl Strawberry { get; } = To(ConsoleColor.Green, ConsoleColor.Red);
+        public static XConsoleImpl Watermelon { get; } = To(ConsoleColor.DarkRed, ConsoleColor.Green);
+        public static XConsoleImpl Squash { get; } = To(ConsoleColor.Yellow, ConsoleColor.DarkYellow);
+        public static XConsoleImpl Lime { get; } = To(ConsoleColor.Yellow, ConsoleColor.Green);
+        public static XConsoleImpl Tomato { get; } = To(ConsoleColor.Cyan, ConsoleColor.DarkRed);
 
         /// <summary>
         /// Prints all built-in styles for quick browsing.
@@ -98,50 +66,97 @@ namespace Atom.Util
             Console.WriteLine();
 
             Write("Standard:   ")
-                .ToRed.Write("Red").ToCurrent.Write("         ")
-                .ToGreen.Write("Green").ToCurrent.Write("    ")
-                .ToBlue.Write("Blue").ToCurrent.Write("        ")
-                .ToCyan.Write("Cyan").ToCurrent.Write("          ")
-                .ToYellow.Write("Yellow").ToCurrent.Write("        ")
-                .ToGold.Write("Gold").ToCurrent.Write("      ")
-                .ToMuted.Write("Muted").ToCurrent.Write("    ")
-                .ToBright.WriteLine("Bright");
+                .Red.Write("Red").Default.Write("         ")
+                .Green.Write("Green").Default.Write("    ")
+                .Blue.Write("Blue").Default.Write("        ")
+                .Cyan.Write("Cyan").Default.Write("          ")
+                .Yellow.Write("Yellow").Default.Write("        ")
+                .Gold.Write("Gold").Default.Write("      ")
+                .Muted.Write("Muted").Default.Write("    ")
+                .Bright.WriteLine("Bright");
 
             Write("Messaging:  ")
-                .ToError.Write("Error").ToCurrent.Write("       ")
-                .ToOK.Write("OK").ToCurrent.Write("       ")
-                .ToWarning.Write("Warning").ToCurrent.Write("     ")
-                .ToTag.Write("Tag").ToCurrent.Write("           ")
-                .ToNote.Write("Note").ToCurrent.Write("          ")
-                .ToTip.Write("Tip").ToCurrent.Write("       ")
-                .ToLabel.Write("Label").ToCurrent.Write("    ")
-                .ToTerminal.WriteLine("Terminal");
+                .Error.Write("Error").Default.Write("       ")
+                .OK.Write("OK").Default.Write("       ")
+                .Warning.Write("Warning").Default.Write("     ")
+                .Tag.Write("Tag").Default.Write("           ")
+                .Note.Write("Note").Default.Write("          ")
+                .Tip.Write("Tip").Default.Write("       ")
+                .Label.Write("Label").Default.Write("    ")
+                .Terminal.WriteLine("Terminal");
 
             Write("Extended:   ")
-                .ToGraphite.Write("Graphite").ToCurrent.Write("    ")
-                .ToAzure.Write("Azure").ToCurrent.Write("    ")
-                .ToEggplant.Write("Eggplant").ToCurrent.Write("    ")
-                .ToStrawberry.Write("Strawberry").ToCurrent.Write("    ")
-                .ToWatermelon.Write("Watermelon").ToCurrent.Write("    ")
-                .ToSquash.Write("Squash").ToCurrent.Write("    ")
-                .ToLime.Write("Lime").ToCurrent.Write("     ")
-                .ToTomato.WriteLine("Tomato");
+                .Graphite.Write("Graphite").Default.Write("    ")
+                .Azure.Write("Azure").Default.Write("    ")
+                .Eggplant.Write("Eggplant").Default.Write("    ")
+                .Strawberry.Write("Strawberry").Default.Write("    ")
+                .Watermelon.Write("Watermelon").Default.Write("    ")
+                .Squash.Write("Squash").Default.Write("    ")
+                .Lime.Write("Lime").Default.Write("     ")
+                .Tomato.WriteLine("Tomato");
 
             Console.WriteLine();
             Console.WriteLine();
 
             Console.WriteLine("Standard:\tMessaging:\tExtended:");
-            Red.Write("Red\t\t").ToError.Write("Error\t\t").ToGraphite.WriteLine("Graphite");
-            Green.Write("Green\t\t").ToOK.Write("OK\t\t").ToAzure.WriteLine("Azure");
-            Blue.Write("Blue\t\t").ToWarning.Write("Warning\t\t").ToEggplant.WriteLine("Eggplant");
-            Cyan.Write("Cyan\t\t").ToTag.Write("Tag\t\t").ToStrawberry.WriteLine("Strawberry");
-            Yellow.Write("Yellow\t\t").ToTip.Write("Tip\t\t").ToSquash.WriteLine("Squash");
-            Gold.Write("Gold\t\t").ToNote.Write("Note\t\t").ToWatermelon.WriteLine("Watermelon");
-            Muted.Write("Muted\t\t").ToLabel.Write("Label\t\t").ToLime.WriteLine("Lime");
-            Bright.Write("Bright\t\t").ToTerminal.Write("Terminal\t").ToTomato.WriteLine("Tomato");
+            Red.Write("Red\t\t").Error.Write("Error\t\t").Graphite.WriteLine("Graphite");
+            Green.Write("Green\t\t").OK.Write("OK\t\t").Azure.WriteLine("Azure");
+            Blue.Write("Blue\t\t").Warning.Write("Warning\t\t").Eggplant.WriteLine("Eggplant");
+            Cyan.Write("Cyan\t\t").Tag.Write("Tag\t\t").Strawberry.WriteLine("Strawberry");
+            Yellow.Write("Yellow\t\t").Tip.Write("Tip\t\t").Squash.WriteLine("Squash");
+            Gold.Write("Gold\t\t").Note.Write("Note\t\t").Watermelon.WriteLine("Watermelon");
+            Muted.Write("Muted\t\t").Label.Write("Label\t\t").Lime.WriteLine("Lime");
+            Bright.Write("Bright\t\t").Terminal.Write("Terminal\t").Tomato.WriteLine("Tomato");
 
             Console.WriteLine();
             Console.WriteLine();
         }
+    }
+
+    partial class XConsoleImpl
+    {
+        /// <summary>
+        /// Switches to default color style: no specifying foreground or background colors.
+        /// </summary>
+        public XConsoleImpl Default => XConsole.Default;
+
+        //
+        // Standard:
+        //
+
+        public XConsoleImpl Red => XConsole.Red;
+        public XConsoleImpl Green => XConsole.Green;
+        public XConsoleImpl Blue => XConsole.Blue;
+        public XConsoleImpl Cyan => XConsole.Cyan;
+        public XConsoleImpl Yellow => XConsole.Yellow;
+        public XConsoleImpl Gold => XConsole.Gold;
+        public XConsoleImpl Muted => XConsole.Muted;
+        public XConsoleImpl Bright => XConsole.Bright;
+
+        //
+        // Messaging:
+        //
+
+        public XConsoleImpl Error => XConsole.Error;
+        public XConsoleImpl OK => XConsole.OK;
+        public XConsoleImpl Warning => XConsole.Warning;
+        public XConsoleImpl Tag => XConsole.Tag;
+        public XConsoleImpl Note => XConsole.Note;
+        public XConsoleImpl Tip => XConsole.Tip;
+        public XConsoleImpl Label => XConsole.Label;
+        public XConsoleImpl Terminal => XConsole.Terminal;
+
+        //
+        // Extended:
+        //
+
+        public XConsoleImpl Graphite => XConsole.Graphite;
+        public XConsoleImpl Azure => XConsole.Azure;
+        public XConsoleImpl Eggplant => XConsole.Eggplant;
+        public XConsoleImpl Strawberry => XConsole.Strawberry;
+        public XConsoleImpl Watermelon => XConsole.Watermelon;
+        public XConsoleImpl Squash => XConsole.Squash;
+        public XConsoleImpl Lime => XConsole.Lime;
+        public XConsoleImpl Tomato => XConsole.Tomato;
     }
 }
