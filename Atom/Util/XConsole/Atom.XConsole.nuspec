@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.XConsole</id>
-    <version>1.3.1</version>
-    <releaseNotes>NewPara() will not add multiple blank lines in a row.</releaseNotes>
+    <version>1.3.2</version>
+    <releaseNotes>Added PressAnyKey() method.</releaseNotes>
     <tags>atom, util, console, colored, output</tags>
     <description>Extends standard console providing more features like colored output.
 

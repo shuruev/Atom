@@ -16,20 +16,28 @@ namespace Atom.Build
 
             foreach (var module in modules)
             {
-                Console.Write($"Process \"{module.Key}\"... ");
-                ProcessModule(module.Key, module.Value);
-                Console.WriteLine("OK");
+                XConsole.Write($"Process \"{module.Key}\"... ");
+                var updated = ProcessModule(module.Key, module.Value);
+
+                if (updated)
+                {
+                    XConsole.Warning.WriteLine("UPDATED");
+                }
+                else
+                {
+                    XConsole.Green.WriteLine("OK");
+                }
             }
 
-            Console.Write("Update build scripts... ");
+            XConsole.Write("Update build scripts... ");
             UpdateBuildBat(modules);
-            Console.WriteLine("OK");
+            XConsole.Green.WriteLine("OK");
 
             Modules.Save(modules);
-            Console.WriteLine("Done.");
+            XConsole.NewPara().WriteLine("Done.");
         }
 
-        private static void ProcessModule(string name, Module info)
+        private static bool ProcessModule(string name, Module info)
         {
             var modulePath = $"../../../../Atom/{info.Category}/{name}";
             var moduleFiles = Directory.GetFiles(modulePath);
@@ -41,6 +49,7 @@ namespace Atom.Build
             info.Tags = info.Tags.AsCommaList().ToCommaList();
 
             // if source files have changed then increase build number
+            var updated = false;
             if (sourceHash != info.SourceHash)
             {
                 var ver = new Version(info.Version);
@@ -48,11 +57,14 @@ namespace Atom.Build
 
                 info.Version = upd.ToString();
                 info.SourceHash = sourceHash;
+                updated = true;
             }
 
             var nuspecFile = Path.Combine(modulePath, $"Atom.{name}.nuspec");
             var nuspecXml = CreateNuspecXml(name, info, codeFiles);
             File.WriteAllText(nuspecFile, nuspecXml);
+
+            return updated;
         }
 
         private static string CreateNuspecXml(string name, Module info, IReadOnlyCollection<string> codeFiles)

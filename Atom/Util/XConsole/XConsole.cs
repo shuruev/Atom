@@ -47,17 +47,26 @@ namespace Atom.Util
         public static XConsoleImpl NewPara() => Default.NewPara();
 
         /// <summary>
-        /// When debugger is attached, awaits until any key is pressed.
-        /// When debugger is not attached, or compiled in non-debug mode then does nothing.
+        /// Writes "Press any key..." on a new paragraph, then awaits until any key is pressed.
+        /// </summary>
+        public static void PressAnyKey()
+        {
+            lock (Sync)
+            {
+                NewPara().Write("Press any key...");
+                Console.ReadKey();
+            }
+        }
+
+        /// <summary>
+        /// Writes "Press any key..." on a new paragraph, then awaits until any key is pressed.
+        /// Works only when debugger is attached, otherwise does nothing.
         /// </summary>
         public static void PressAnyKeyWhenDebug()
         {
 #if DEBUG
             if (Debugger.IsAttached)
-            {
-                NewPara().Write("Press any key to exit...");
-                Console.ReadKey();
-            }
+                PressAnyKey();
 #endif
         }
     }
