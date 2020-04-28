@@ -58,8 +58,8 @@
     "Category": "Util",
     "Description": "Extends standard console providing more features like colored output.",
     "Tags": "console, colored, output",
-    "Version": "1.3.2",
-    "ReleaseNotes": "Added PressAnyKey() method.",
-    "SourceHash": "762d5ecc-af23-a5ce-8640-c94560714fb2"
+    "Version": "1.3.3",
+    "ReleaseNotes": "PressAnyKey() will not output pressed key.",
+    "SourceHash": "d09f5dd4-f795-c245-fe97-684afe16a488"
   }
 }

@@ -54,7 +54,7 @@ namespace Atom.Util
             lock (Sync)
             {
                 NewPara().Write("Press any key...");
-                Console.ReadKey();
+                Console.ReadKey(true);
             }
         }
 
