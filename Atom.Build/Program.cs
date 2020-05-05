@@ -29,8 +29,8 @@ namespace Atom.Build
                 }
             }
 
-            XConsole.Write("Update build scripts... ");
-            UpdateBuildBat(modules);
+            XConsole.Write("Update pack scripts... ");
+            UpdatePackBat(modules);
             XConsole.Green.WriteLine("OK");
 
             Modules.Save(modules);
@@ -158,24 +158,25 @@ Check out GitHub for more docs and usage examples."));
             return doc.ToXml(XDocFormatting.Indented);
         }
 
-        private static void UpdateBuildBat(Modules modules, bool prerelease = false)
+        private static void UpdatePackBat(Modules modules, bool prerelease = false)
         {
             var sb = new StringBuilder(@"@ECHO OFF
 SETLOCAL
 
-SET nuget=%UserProfile%\.nuget\packages\nuget.commandline\5.4.0\tools\NuGet.exe
-
 IF EXIST ""nuget\*"" DEL ""nuget\*"" /Q
+
+dotnet build
+dotnet test
 
 ");
 
             foreach (var module in modules)
             {
-                var pack = $@"""%nuget%"" pack Atom\{module.Value.Category}\{module.Key}\Atom.{module.Key}.nuspec -OutputDirectory nuget";
+                var pack = $@"dotnet pack Atom\Atom.csproj /p:NuspecFile={module.Value.Category}\{module.Key}\Atom.{module.Key}.nuspec --no-build --output nuget";
                 if (prerelease)
                 {
                     var suffix = $"v{DateTime.Now:MddHHmm}";
-                    pack += $" -Suffix {suffix}";
+                    pack += $" --version-suffix {suffix}";
                 }
 
                 sb.AppendLine(pack);
@@ -185,7 +186,7 @@ IF EXIST ""nuget\*"" DEL ""nuget\*"" /Q
 ENDLOCAL
 PAUSE");
 
-            File.WriteAllText("../../../../build.bat", sb.ToString());
+            File.WriteAllText("../../../../pack.bat", sb.ToString());
         }
     }
 }
