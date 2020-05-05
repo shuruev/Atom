@@ -10,10 +10,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9BB9FAB7-BF1F-4154-90E9-85DD9F365FBD}"
 	ProjectSection(SolutionItems) = preProject
 		Atom.sln.DotSettings = Atom.sln.DotSettings
+		LICENSE = LICENSE
 		Modules.json = Modules.json
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atom.Build", "Atom.Build\Atom.Build.csproj", "{0B5E6030-1FC5-4D15-AEEE-A6900734FDA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atom.Build", "Atom.Build\Atom.Build.csproj", "{0B5E6030-1FC5-4D15-AEEE-A6900734FDA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
