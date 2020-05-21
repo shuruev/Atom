@@ -22,9 +22,9 @@
     "Category": "AWS",
     "Description": "Base class for connecting to AWS queue.",
     "Tags": "queue, client",
-    "Version": "1.0.2",
-    "ReleaseNotes": "Internal client and queue URL made protected.",
-    "SourceHash": "f8a7b159-2671-bdfe-bc8a-d68d4811f3e4",
+    "Version": "1.0.4",
+    "ReleaseNotes": "Added GetApproximateNumberOfMessagesAsync() method.",
+    "SourceHash": "182423b0-a1c2-641e-6e89-7fdee6abbcb9",
     "DependsOn": [
       "AWSSDK.SQS 3.3",
       "Atom.AWSClient 1.0",

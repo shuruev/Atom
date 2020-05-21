@@ -75,5 +75,14 @@ namespace Atom.AWS
                     })
                     .ToList()));
         }
+
+        /// <summary>
+        /// Returns the approximate number of messages available for retrieval from the queue.
+        /// </summary>
+        protected async Task<int> GetApproximateNumberOfMessagesAsync()
+        {
+            var result = await _client.GetQueueAttributesAsync(_queueUrl.Value, new List<string> { "ApproximateNumberOfMessages" });
+            return result.ApproximateNumberOfMessages;
+        }
     }
 }
