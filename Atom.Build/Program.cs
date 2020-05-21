@@ -10,8 +10,21 @@ namespace Atom.Build
 {
     public static class Program
     {
+        private static bool _prerelease = false;
+
         public static void Main()
         {
+            //_prerelease = true;
+
+            if (_prerelease)
+            {
+                XConsole
+                    .NewPara()
+                    .Warning.WriteLine("Prerelease mode is used")
+                    .Yellow.WriteLine("Don't forget to turn it off and build packages again")
+                    .NewPara();
+            }
+
             var modules = Modules.Load();
 
             foreach (var module in modules)
@@ -77,7 +90,7 @@ namespace Atom.Build
             var metadata = new XElement(doc.Name("ng", "metadata"));
 
             metadata.Add(new XElement(doc.Name("ng", "id"), $"Atom.{name}"));
-            metadata.Add(new XElement(doc.Name("ng", "version"), info.Version));
+            metadata.Add(new XElement(doc.Name("ng", "version"), _prerelease ? $"{info.Version}-v{DateTime.Now:MddHHmm}" : info.Version));
             metadata.Add(new XElement(doc.Name("ng", "releaseNotes"), info.ReleaseNotes));
 
             metadata.Add(new XElement(doc.Name("ng", "tags"), $"atom, {info.Category.ToLower()}, {info.Tags}"));
@@ -158,7 +171,7 @@ Check out GitHub for more docs and usage examples."));
             return doc.ToXml(XDocFormatting.Indented);
         }
 
-        private static void UpdatePackBat(Modules modules, bool prerelease = false)
+        private static void UpdatePackBat(Modules modules)
         {
             var sb = new StringBuilder(@"@ECHO OFF
 SETLOCAL
@@ -173,12 +186,6 @@ dotnet test
             foreach (var module in modules)
             {
                 var pack = $@"dotnet pack Atom\Atom.csproj /p:NuspecFile={module.Value.Category}\{module.Key}\Atom.{module.Key}.nuspec --no-build --output nuget";
-                if (prerelease)
-                {
-                    var suffix = $"v{DateTime.Now:MddHHmm}";
-                    pack += $" --version-suffix {suffix}";
-                }
-
                 sb.AppendLine(pack);
             }
 

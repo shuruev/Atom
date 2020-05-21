@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Atom.AWSQueue</id>
+    <version>1.0.0</version>
+    <releaseNotes>Initial release.</releaseNotes>
+    <tags>atom, aws, queue, client</tags>
+    <description>Base class for connecting to AWS queue.
+
+Add this package to your core library, so it would get the source code of this module without installing a binary dependency. Then proceed with using corresponding functionality from Atom.AWS namespace, like if it was installed using binary assembly.
+
+Check out GitHub for more docs and usage examples.</description>
+    <authors>Oleg Shuruev</authors>
+    <projectUrl>https://github.com/shuruev/Atom</projectUrl>
+    <icon>images/icon.png</icon>
+    <license type="expression">MIT</license>
+    <contentFiles>
+      <files include="any/any/AWSQueue.cs" buildAction="Compile" copyToOutput="false" />
+    </contentFiles>
+    <dependencies>
+      <dependency id="AWSSDK.SQS" version="3.3" />
+      <dependency id="Atom.AWSClient" version="1.0" include="contentFiles" />
+      <dependency id="Atom.AsyncUtil" version="1.0" include="contentFiles" />
+      <dependency id="Atom.Batch" version="1.0" include="contentFiles" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="../../../icon.png" target="images/" />
+    <file src="AWSQueue.cs" target="contentFiles/any/any/Atom/AWS/" />
+  </files>
+</package>

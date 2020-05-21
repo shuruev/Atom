@@ -1,4 +1,37 @@
 {
+  "AsyncUtil": {
+    "Category": "Util",
+    "Description": "Helper methods for async collections processing.",
+    "Tags": "async, for, foreach",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "613cff9c-f0ab-9e63-e57e-24218cbb1eba"
+  },
+  "AWSClient": {
+    "Category": "AWS",
+    "Description": "Defines unified AWSOptions class used to build various AWS clients.",
+    "Tags": "options, client, credentials, profile",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "ee0940a6-5842-704b-fa37-71819316a82c",
+    "DependsOn": [
+      "AWSSDK.Core 3.3"
+    ]
+  },
+  "AWSQueue": {
+    "Category": "AWS",
+    "Description": "Base class for connecting to AWS queue.",
+    "Tags": "queue, client",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "1a4a8855-e21e-d84f-1c67-9b3839cb64ff",
+    "DependsOn": [
+      "AWSSDK.SQS 3.3",
+      "Atom.AWSClient 1.0",
+      "Atom.AsyncUtil 1.0",
+      "Atom.Batch 1.0"
+    ]
+  },
   "Base64Url": {
     "Category": "Util",
     "Description": "Implements Base-64 encoding with URL and filename safe alphabet.",
@@ -6,6 +39,14 @@
     "Version": "1.0.2",
     "ReleaseNotes": "Removed unnecessary dependencies.",
     "SourceHash": "269da6ed-2c49-6837-c2c4-a03aeb7ed440"
+  },
+  "Batch": {
+    "Category": "Util",
+    "Description": "Extension methods for splitting collection into batches.",
+    "Tags": "batch, collection, list, enumerable",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "afbfae75-c663-5efa-7b9b-ddce683be754"
   },
   "CheckType": {
     "Category": "Util",
