@@ -38,7 +38,7 @@ namespace Atom.AWS
         /// <summary>
         /// Sends a single message with optional postpone delay.
         /// </summary>
-        protected async Task SendMessageAsync(string message, TimeSpan? delay)
+        protected async Task SendMessageAsync(string message, TimeSpan? delay = null)
         {
             var request = new SendMessageRequest(_queueUrl.Value, message);
             if (delay.HasValue)
