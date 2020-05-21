@@ -16,8 +16,8 @@ namespace Atom.AWS
         private const int MAX_SENDING_BATCH = 10;
         private const int MAX_PARALLEL_TASKS = 25;
 
-        private readonly AmazonSQSClient _client;
-        private readonly Lazy<string> _queueUrl;
+        protected readonly AmazonSQSClient _client;
+        protected readonly Lazy<string> _queueUrl;
 
         /// <summary>
         /// Initializes a new instance.

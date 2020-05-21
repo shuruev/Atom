@@ -22,9 +22,9 @@
     "Category": "AWS",
     "Description": "Base class for connecting to AWS queue.",
     "Tags": "queue, client",
-    "Version": "1.0.1",
-    "ReleaseNotes": "Postpone delay argument made optional.",
-    "SourceHash": "7524b7b7-46bd-4a47-9b9e-d983d5f4f09b",
+    "Version": "1.0.2",
+    "ReleaseNotes": "Internal client and queue URL made protected.",
+    "SourceHash": "f8a7b159-2671-bdfe-bc8a-d68d4811f3e4",
     "DependsOn": [
       "AWSSDK.SQS 3.3",
       "Atom.AWSClient 1.0",
