@@ -13,11 +13,11 @@ namespace Atom.AWS
     /// 4. Will use default settings if nothing was directly specified
     /// </summary>
     /// <remarks>
-    /// The primary use-case is to have these options stored in your config, when developing AWS-based apps.
+    /// The primary use-case is to have these settings stored in your config, when developing AWS-based apps.
     /// Then when running locally, or outside AWS these config values will be used.
     /// When running in AWS, remove this config section (or leave the values empty) so the default AWS client would be used.
     /// </remarks>
-    public class AWSOptions
+    public class AWSSettings
     {
         /// <summary>
         /// AWS access key ID.
@@ -41,25 +41,25 @@ namespace Atom.AWS
     }
 
     /// <summary>
-    /// Helper factory for creating desired AWS client based on specified options.
+    /// Helper factory for creating desired AWS client based on specified settings.
     /// </summary>
     public static class AWSClient
     {
         /// <summary>
-        /// Helps creating AWS client based on specified options.
+        /// Helps creating AWS client based on specified settings.
         /// Provide AWS constructors for each case, and have specific client initialized based on which
-        /// options components are provided.
+        /// settings components are provided.
         /// </summary>
         /// <example><![CDATA[
-        /// public abstract class BaseAwsQueue
+        /// public class MyQueue
         /// {
         ///     private readonly AmazonSQSClient _client;
         ///     private readonly Lazy<string> _queueUrl;
         ///
-        ///     protected BaseAwsQueue(AwsOptions options, string queueName)
+        ///     public MyQueue(AWSSettings settings, string queueName)
         ///     {
-        ///         _client = AwsClient.Create(
-        ///             options,
+        ///         _client = AWSClient.Create(
+        ///             settings,
         ///             (creds, reg) => new AmazonSQSClient(creds, reg),
         ///             creds => new AmazonSQSClient(creds),
         ///             reg => new AmazonSQSClient(reg),
@@ -71,7 +71,7 @@ namespace Atom.AWS
         /// }
         /// ]]></example>
         public static T Create<T>(
-            AWSOptions options,
+            AWSSettings settings,
             Func<AWSCredentials, RegionEndpoint, T> createByCredentialsAndRegion,
             Func<AWSCredentials, T> createByCredentials,
             Func<RegionEndpoint, T> createByRegion,
@@ -82,21 +82,21 @@ namespace Atom.AWS
             AWSCredentials credentials = null;
             RegionEndpoint region = null;
 
-            var hasKey = !String.IsNullOrWhiteSpace(options?.Key);
-            var hasSecret = !String.IsNullOrWhiteSpace(options?.Secret);
-            var hasRegion = !String.IsNullOrWhiteSpace(options?.Region);
-            var hasProfile = !String.IsNullOrWhiteSpace(options?.UseProfile);
+            var hasKey = !String.IsNullOrWhiteSpace(settings?.Key);
+            var hasSecret = !String.IsNullOrWhiteSpace(settings?.Secret);
+            var hasRegion = !String.IsNullOrWhiteSpace(settings?.Region);
+            var hasProfile = !String.IsNullOrWhiteSpace(settings?.UseProfile);
 
             if (hasProfile)
             {
                 file = new SharedCredentialsFile();
-                if (!file.TryGetProfile(options.UseProfile, out profile))
-                    throw new InvalidOperationException($"Cannot read AWS profile '{options.UseProfile}'");
+                if (!file.TryGetProfile(settings.UseProfile, out profile))
+                    throw new InvalidOperationException($"Cannot read AWS profile '{settings.UseProfile}'");
             }
 
             if (hasKey && hasSecret)
             {
-                credentials = new BasicAWSCredentials(options.Key, options.Secret);
+                credentials = new BasicAWSCredentials(settings.Key, settings.Secret);
             }
             else if (hasProfile)
             {
@@ -106,7 +106,7 @@ namespace Atom.AWS
 
             if (hasRegion)
             {
-                region = RegionEndpoint.GetBySystemName(options.Region);
+                region = RegionEndpoint.GetBySystemName(settings.Region);
             }
             else if (hasProfile)
             {

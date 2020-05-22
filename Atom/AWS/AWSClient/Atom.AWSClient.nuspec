@@ -2,10 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.AWSClient</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <version>1.1.0</version>
+    <releaseNotes>Renamed to AWSSettings to avoid ambiguity with native AWSOptions class from AWSSDK.</releaseNotes>
     <tags>atom, aws, options, client, credentials, profile</tags>
-    <description>Defines unified AWSOptions class used to build various AWS clients.
+    <description>Defines unified AWSSettings class used to build various AWS clients.
 
 Add this package to your core library, so it would get the source code of this module without installing a binary dependency. Then proceed with using corresponding functionality from Atom.AWS namespace, like if it was installed using binary assembly.
 

@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.AWSQueue</id>
-    <version>1.0.4</version>
-    <releaseNotes>Added GetApproximateNumberOfMessagesAsync() method.</releaseNotes>
+    <version>1.1.0</version>
+    <releaseNotes>Rebuilt with new AWSClient.</releaseNotes>
     <tags>atom, aws, queue, client</tags>
     <description>Base class for connecting to AWS queue.
 
@@ -19,7 +19,7 @@ Check out GitHub for more docs and usage examples.</description>
     </contentFiles>
     <dependencies>
       <dependency id="AWSSDK.SQS" version="3.3" />
-      <dependency id="Atom.AWSClient" version="1.0" include="contentFiles" />
+      <dependency id="Atom.AWSClient" version="1.1" include="contentFiles" />
       <dependency id="Atom.AsyncUtil" version="1.0" include="contentFiles" />
       <dependency id="Atom.Batch" version="1.0" include="contentFiles" />
     </dependencies>

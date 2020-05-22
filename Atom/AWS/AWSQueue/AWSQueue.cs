@@ -22,10 +22,10 @@ namespace Atom.AWS
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        protected AWSQueue(AWSOptions options, string queueName)
+        protected AWSQueue(AWSSettings settings, string queueName)
         {
             _client = AWSClient.Create(
-                options,
+                settings,
                 (creds, reg) => new AmazonSQSClient(creds, reg),
                 creds => new AmazonSQSClient(creds),
                 reg => new AmazonSQSClient(reg),

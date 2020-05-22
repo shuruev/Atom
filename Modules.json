@@ -9,11 +9,11 @@
   },
   "AWSClient": {
     "Category": "AWS",
-    "Description": "Defines unified AWSOptions class used to build various AWS clients.",
+    "Description": "Defines unified AWSSettings class used to build various AWS clients.",
     "Tags": "options, client, credentials, profile",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "ee0940a6-5842-704b-fa37-71819316a82c",
+    "Version": "1.1.0",
+    "ReleaseNotes": "Renamed to AWSSettings to avoid ambiguity with native AWSOptions class from AWSSDK.",
+    "SourceHash": "4b4e6a44-0091-2996-1ad4-d2e13c1c015f",
     "DependsOn": [
       "AWSSDK.Core 3.3"
     ]
@@ -22,12 +22,12 @@
     "Category": "AWS",
     "Description": "Base class for connecting to AWS queue.",
     "Tags": "queue, client",
-    "Version": "1.0.4",
-    "ReleaseNotes": "Added GetApproximateNumberOfMessagesAsync() method.",
-    "SourceHash": "182423b0-a1c2-641e-6e89-7fdee6abbcb9",
+    "Version": "1.1.0",
+    "ReleaseNotes": "Rebuilt with new AWSClient.",
+    "SourceHash": "fb794faf-ba13-cc6c-223f-db23bef826bc",
     "DependsOn": [
       "AWSSDK.SQS 3.3",
-      "Atom.AWSClient 1.0",
+      "Atom.AWSClient 1.1",
       "Atom.AsyncUtil 1.0",
       "Atom.Batch 1.0"
     ]
