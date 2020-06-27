@@ -81,8 +81,8 @@ namespace Atom.AWS
         /// </summary>
         protected async Task<int> GetApproximateNumberOfMessagesAsync()
         {
-            var result = await _client.GetQueueAttributesAsync(_queueUrl.Value, new List<string> { "ApproximateNumberOfMessages" });
-            return result.ApproximateNumberOfMessages;
+            var props = await _client.GetQueueAttributesAsync(_queueUrl.Value, new List<string> { "ApproximateNumberOfMessages" });
+            return props.ApproximateNumberOfMessages;
         }
     }
 }

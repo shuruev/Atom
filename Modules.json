@@ -11,8 +11,8 @@
     "Category": "AWS",
     "Description": "Defines unified AWSSettings class used to build various AWS clients.",
     "Tags": "options, client, credentials, profile",
-    "Version": "1.1.0",
-    "ReleaseNotes": "Renamed to AWSSettings to avoid ambiguity with native AWSOptions class from AWSSDK.",
+    "Version": "1.1.1",
+    "ReleaseNotes": "Rebuilt with newer AWS SDK.",
     "SourceHash": "4b4e6a44-0091-2996-1ad4-d2e13c1c015f",
     "DependsOn": [
       "AWSSDK.Core 3.3"
@@ -22,9 +22,9 @@
     "Category": "AWS",
     "Description": "Base class for connecting to AWS queue.",
     "Tags": "queue, client",
-    "Version": "1.1.0",
-    "ReleaseNotes": "Rebuilt with new AWSClient.",
-    "SourceHash": "fb794faf-ba13-cc6c-223f-db23bef826bc",
+    "Version": "1.1.2",
+    "ReleaseNotes": "Rebuilt with newer AWS SDK.",
+    "SourceHash": "183bbd56-a57b-802d-a8dd-841b7f222e71",
     "DependsOn": [
       "AWSSDK.SQS 3.3",
       "Atom.AWSClient 1.1",
