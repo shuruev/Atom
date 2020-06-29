@@ -32,6 +32,17 @@
       "Atom.Batch 1.0"
     ]
   },
+  "AzureQueue": {
+    "Category": "Azure",
+    "Description": "Base class for connecting to Azure queue.",
+    "Tags": "queue, client",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "0fa1343d-f554-62ab-cc10-d78aad1c060c",
+    "DependsOn": [
+      "Azure.Storage.Queues 12.3"
+    ]
+  },
   "Base64Url": {
     "Category": "Util",
     "Description": "Implements Base-64 encoding with URL and filename safe alphabet.",
