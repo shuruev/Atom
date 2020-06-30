@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.AzureQueue</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <version>1.0.1</version>
+    <releaseNotes>Added reference to AsyncUtil.</releaseNotes>
     <tags>atom, azure, queue, client</tags>
     <description>Base class for connecting to Azure queue.
 
@@ -19,6 +19,7 @@ Check out GitHub for more docs and usage examples.</description>
     </contentFiles>
     <dependencies>
       <dependency id="Azure.Storage.Queues" version="12.3" />
+      <dependency id="Atom.AsyncUtil" version="1.0" include="contentFiles" />
     </dependencies>
   </metadata>
   <files>

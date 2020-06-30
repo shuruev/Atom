@@ -36,11 +36,12 @@
     "Category": "Azure",
     "Description": "Base class for connecting to Azure queue.",
     "Tags": "queue, client",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
+    "Version": "1.0.1",
+    "ReleaseNotes": "Added reference to AsyncUtil.",
     "SourceHash": "0fa1343d-f554-62ab-cc10-d78aad1c060c",
     "DependsOn": [
-      "Azure.Storage.Queues 12.3"
+      "Azure.Storage.Queues 12.3",
+      "Atom.AsyncUtil 1.0"
     ]
   },
   "Base64Url": {
