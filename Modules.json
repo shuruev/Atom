@@ -36,10 +36,11 @@
     "Category": "Azure",
     "Description": "Base classes for connecting to Azure blob storage.",
     "Tags": "blob, client",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
+    "Version": "1.1.0",
+    "ReleaseNotes": "Added dependency to AzureClient package.",
     "SourceHash": "83488ec2-a705-3b6e-1633-c47c311cb43b",
     "DependsOn": [
+      "Atom.AzureClient 1.0",
       "Azure.Identity 1.2",
       "Azure.Storage.Blobs 12.6"
     ]
@@ -56,11 +57,12 @@
     "Category": "Azure",
     "Description": "Base class for connecting to Azure queue.",
     "Tags": "queue, client",
-    "Version": "1.1.0",
-    "ReleaseNotes": "Refactored with AzureClient library.",
+    "Version": "1.2.0",
+    "ReleaseNotes": "Added dependency to AzureClient package.",
     "SourceHash": "c893d632-8cb2-643b-7f84-243c7c25bb62",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
+      "Atom.AzureClient 1.0",
       "Azure.Identity 1.2",
       "Azure.Storage.Queues 12.4"
     ]
