@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atom.Util;
+using Azure.Identity;
 using Azure.Storage.Queues;
 
 namespace Atom.Azure
@@ -20,11 +21,15 @@ namespace Atom.Azure
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        protected AzureQueue(string connectionString, string queueName, bool createIfNotExists)
+        protected AzureQueue(AzureSettings settings, string queueName, bool createIfNotExists)
         {
             _client = new Lazy<QueueClient>(() =>
             {
-                var client = new QueueClient(connectionString, queueName);
+                var client = AzureClient.Create(
+                    settings,
+                    conn => new QueueClient(conn, queueName),
+                    acc => new QueueClient(new Uri($"https://{acc}.queue.core.windows.net/{queueName}"), new DefaultAzureCredential()),
+                    () => throw new InvalidOperationException("Cannot create Azure queue client without storage account name"));
 
                 if (createIfNotExists)
                     client.CreateIfNotExists();
@@ -45,7 +50,7 @@ namespace Atom.Azure
 
         /// <summary>
         /// Sends several messages with optional postpone delay.
-        /// Unlike native AWS client, this does not have any limitation on how many messages are being sent.
+        /// Unlike native Azure client, this does not have any limitation on how many messages are being sent.
         /// </summary>
         protected async Task SendMessagesAsync(IEnumerable<string> messages, TimeSpan? delay = null)
             => await SendMessagesAsync(messages.Select(msg => (msg, delay)));

@@ -61,6 +61,10 @@ namespace Atom.Build
             // normalize tags, if needed
             info.Tags = info.Tags.AsCommaList().ToCommaList();
 
+            // sort dependencies, if needed
+            if (info.DependsOn != null)
+                info.DependsOn = info.DependsOn.OrderBy(i => i).ToArray();
+
             // if source files have changed then increase build number
             var updated = false;
             if (sourceHash != info.SourceHash)
