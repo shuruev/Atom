@@ -9,6 +9,7 @@ dotnet test
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\AsyncUtil\Atom.AsyncUtil.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=AWS\AWSClient\Atom.AWSClient.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=AWS\AWSQueue\Atom.AWSQueue.nuspec --no-build --output nuget
+dotnet pack Atom\Atom.csproj /p:NuspecFile=Azure\AzureBlob\Atom.AzureBlob.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Azure\AzureClient\Atom.AzureClient.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Azure\AzureQueue\Atom.AzureQueue.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\Base64Url\Atom.Base64Url.nuspec --no-build --output nuget
