@@ -1,4 +1,6 @@
 ﻿using System;
+using Azure.Core;
+using Azure.Identity;
 
 namespace Atom.Azure
 {
@@ -6,8 +8,8 @@ namespace Atom.Azure
     /// Describe one of the possible ways to connect to Azure:
     /// 1. Use storage connection string
     /// 2. Use storage account name and key
-    /// 3. Use storage account and default credentials
-    /// 4. Use storage account and specific managed identity (not implemented yet)
+    /// 3. Use storage account and specific identity
+    /// 4. Use storage account and default credentials
     /// </summary>
     /// <remarks>
     /// The primary use-case is to have these settings stored in your config, when developing Azure-based apps.
@@ -30,6 +32,32 @@ namespace Atom.Azure
         /// Azure storage account key.
         /// </summary>
         public string StorageAccountKey { get; set; }
+
+        /// <summary>
+        /// Azure client identity.
+        /// </summary>
+        public AzureIdentity Identity { get; set; }
+    }
+
+    /// <summary>
+    /// Identity settings when using client secret credential.
+    /// </summary>
+    public class AzureIdentity
+    {
+        /// <summary>
+        /// Tenant ID for managed identity in Azure.
+        /// </summary>
+        public string TenantId { get; set; }
+
+        /// <summary>
+        /// Client/application ID for managed identity in Azure.
+        /// </summary>
+        public string ClientId { get; set; }
+
+        /// <summary>
+        /// Client secret for managed identity in Azure.
+        /// </summary>
+        public string ClientSecret { get; set; }
     }
 
     /// <summary>
@@ -54,7 +82,7 @@ namespace Atom.Azure
         ///             var client = AzureClient.Create(
         ///                 settings,
         ///                 conn => new QueueClient(conn, queueName),
-        ///                 acc => new QueueClient(new Uri($"https://{acc}.queue.core.windows.net/{queueName}"), new DefaultAzureCredential()),
+        ///                 (acc, cred) => new QueueClient(new Uri($"https://{acc}.queue.core.windows.net/{queueName}"), cred),
         ///                 () => throw new InvalidOperationException("Cannot create Azure queue client without storage account name"));
         ///
         ///             if (createIfNotExists)
@@ -67,21 +95,27 @@ namespace Atom.Azure
         public static T Create<T>(
             AzureSettings settings,
             Func<string, T> createByStorageConnectionString,
-            Func<string, T> createWithDefaultCredentials,
+            Func<string, TokenCredential, T> createByTokenCredential,
             Func<T> createByDefault)
         {
             var hasStorageConnectionString = !String.IsNullOrWhiteSpace(settings?.StorageConnectionString);
             var hasStorageAccountName = !String.IsNullOrWhiteSpace(settings?.StorageAccountName);
             var hasStorageAccountKey = !String.IsNullOrWhiteSpace(settings?.StorageAccountKey);
+            var hasIdentity = !String.IsNullOrWhiteSpace(settings?.Identity?.ClientId);
 
             if (hasStorageConnectionString)
                 return createByStorageConnectionString(settings.StorageConnectionString);
 
-            if (hasStorageAccountName && hasStorageAccountKey)
-                return createByStorageConnectionString($"DefaultEndpointsProtocol=https;AccountName={settings.StorageAccountName};AccountKey={settings.StorageAccountKey};EndpointSuffix=core.windows.net");
-
             if (hasStorageAccountName)
-                return createWithDefaultCredentials(settings.StorageAccountName);
+            {
+                if (hasStorageAccountKey)
+                    return createByStorageConnectionString($"DefaultEndpointsProtocol=https;AccountName={settings.StorageAccountName};AccountKey={settings.StorageAccountKey};EndpointSuffix=core.windows.net");
+
+                if (hasIdentity)
+                    return createByTokenCredential(settings.StorageAccountName, new ClientSecretCredential(settings.Identity.TenantId, settings.Identity.ClientId, settings.Identity.ClientSecret));
+
+                return createByTokenCredential(settings.StorageAccountName, new DefaultAzureCredential());
+            }
 
             return createByDefault();
         }

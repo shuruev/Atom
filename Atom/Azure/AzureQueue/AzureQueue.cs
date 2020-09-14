@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atom.Util;
-using Azure.Identity;
 using Azure.Storage.Queues;
 
 namespace Atom.Azure
@@ -28,7 +27,7 @@ namespace Atom.Azure
                 var client = AzureClient.Create(
                     settings,
                     conn => new QueueClient(conn, queueName),
-                    acc => new QueueClient(new Uri($"https://{acc}.queue.core.windows.net/{queueName}"), new DefaultAzureCredential()),
+                    (acc, cred) => new QueueClient(new Uri($"https://{acc}.queue.core.windows.net/{queueName}"), cred),
                     () => throw new InvalidOperationException("Cannot create Azure queue client without storage account name"));
 
                 if (createIfNotExists)

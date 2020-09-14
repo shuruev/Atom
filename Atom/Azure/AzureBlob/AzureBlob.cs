@@ -1,5 +1,4 @@
 ﻿using System;
-using Azure.Identity;
 using Azure.Storage.Blobs;
 
 namespace Atom.Azure
@@ -21,7 +20,7 @@ namespace Atom.Azure
                 var client = AzureClient.Create(
                     settings,
                     conn => new BlobContainerClient(conn, containerName),
-                    acc => new BlobContainerClient(new Uri($"https://{acc}.blob.core.windows.net/{containerName}"), new DefaultAzureCredential()),
+                    (acc, cred) => new BlobContainerClient(new Uri($"https://{acc}.blob.core.windows.net/{containerName}"), cred),
                     () => throw new InvalidOperationException("Cannot create Azure blob container client without storage account name"));
 
                 if (createIfNotExists)
