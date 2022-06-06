@@ -92,6 +92,14 @@
     "ReleaseNotes": "GetKeyword<T>() was moved to a different module named Atom.TypeName.",
     "SourceHash": "c8db5703-1a84-468a-8a0e-f29ae5e7d5e6"
   },
+  "CommaList": {
+    "Category": "Util",
+    "Description": "Parses comma separated text to and from list of strings.",
+    "Tags": "comma, separated, list",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "540eed67-6dab-f7ee-c39e-5c446ea23e67"
+  },
   "HashBuilder": {
     "Category": "Util",
     "Description": "Builds MD5 has for a combination of built-in .NET types.",
@@ -146,5 +154,13 @@
     "Version": "1.3.3",
     "ReleaseNotes": "PressAnyKey() will not output pressed key.",
     "SourceHash": "d09f5dd4-f795-c245-fe97-684afe16a488"
+  },
+  "XDoc": {
+    "Category": "Util",
+    "Description": "Lightweight wrapper over XDocument with easy-to-use methods for working with namespaces, element lookups, XML conversions, etc.",
+    "Tags": "xml, doc",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "c0471767-24b9-8d3f-fd93-8f0b32ddf857"
   }
 }

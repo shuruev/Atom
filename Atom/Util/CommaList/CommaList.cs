@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +7,7 @@ using System.Linq;
 namespace Atom.Util
 {
     /// <summary>
-    /// Parses comma separated string to a list of strings.
+    /// Parses comma separated text to and from list of strings.
     /// </summary>
     public static class CommaList
     {

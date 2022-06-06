@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -9,7 +9,7 @@ using System.Xml.XPath;
 namespace Atom.Util
 {
     /// <summary>
-    /// Lightweight wrapper over XDocument with easy-to-use methods for working with namespaces, element lookups, to- and from- XML conversions, etc.
+    /// Lightweight wrapper over XDocument with easy-to-use methods for working with namespaces, element lookups, XML conversions, etc.
     /// </summary>
     public class XDoc : XDocument
     {
