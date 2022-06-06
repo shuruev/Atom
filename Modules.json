@@ -115,6 +115,14 @@
       "Atom.TypeName 1.0"
     ]
   },
+  "PathUtil": {
+    "Category": "Util",
+    "Description": "Helper methods for working with I/O and local files.",
+    "Tags": "io, file, path",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "4731978b-55ad-342d-7880-aabdac3e1300"
+  },
   "RunProcess": {
     "Category": "Util",
     "Description": "Allows to run an external process getting output/error contents properly and without deadlocks.",
