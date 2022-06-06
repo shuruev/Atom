@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.AWSQueue</id>
-    <version>1.1.5</version>
-    <releaseNotes>Downgraded AWS SDK to provide better compatibility.</releaseNotes>
+    <version>1.1.6</version>
+    <releaseNotes>Adjusted AWS SDK version to provide better compatibility.</releaseNotes>
     <tags>atom, aws, queue, client</tags>
     <description>Base class for connecting to AWS queue.
 
@@ -21,7 +21,7 @@ Check out GitHub for more docs and usage examples.</description>
       <dependency id="Atom.AsyncUtil" version="1.0" include="contentFiles" />
       <dependency id="Atom.AWSClient" version="1.1" include="contentFiles" />
       <dependency id="Atom.Batch" version="1.0" include="contentFiles" />
-      <dependency id="AWSSDK.SQS" version="3.3" />
+      <dependency id="AWSSDK.SQS" version="3.3.100" />
     </dependencies>
   </metadata>
   <files>

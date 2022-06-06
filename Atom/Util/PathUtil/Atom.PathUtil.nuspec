@@ -3,7 +3,7 @@
   <metadata>
     <id>Atom.PathUtil</id>
     <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Initial release with a 'Scan' method.</releaseNotes>
     <tags>atom, util, io, file, path</tags>
     <description>Helper methods for working with I/O and local files.
 

@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.AWSClient</id>
-    <version>1.1.4</version>
-    <releaseNotes>Downgraded AWS SDK to provide better compatibility.</releaseNotes>
+    <version>1.1.5</version>
+    <releaseNotes>Adjusted AWS SDK version to provide better compatibility.</releaseNotes>
     <tags>atom, aws, options, client, credentials, profile</tags>
     <description>Defines unified AWSSettings class used to build various AWS clients.
 
@@ -18,7 +18,7 @@ Check out GitHub for more docs and usage examples.</description>
       <files include="any/any/AWSClient.cs" buildAction="Compile" copyToOutput="false" />
     </contentFiles>
     <dependencies>
-      <dependency id="AWSSDK.Core" version="3.3" />
+      <dependency id="AWSSDK.Core" version="3.3.100" />
     </dependencies>
   </metadata>
   <files>
