@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.Base64Url</id>
-    <version>1.0.2</version>
-    <releaseNotes>Removed unnecessary dependencies.</releaseNotes>
+    <version>1.0.3</version>
+    <releaseNotes>Minor optimization.</releaseNotes>
     <tags>atom, util, base64, base64url, rfc4648</tags>
     <description>Implements Base-64 encoding with URL and filename safe alphabet.
 

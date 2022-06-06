@@ -72,9 +72,9 @@
     "Category": "Util",
     "Description": "Implements Base-64 encoding with URL and filename safe alphabet.",
     "Tags": "base64, base64url, rfc4648",
-    "Version": "1.0.2",
-    "ReleaseNotes": "Removed unnecessary dependencies.",
-    "SourceHash": "269da6ed-2c49-6837-c2c4-a03aeb7ed440"
+    "Version": "1.0.3",
+    "ReleaseNotes": "Minor optimization.",
+    "SourceHash": "066d464d-3658-2288-78c7-fa0faea4cc07"
   },
   "Batch": {
     "Category": "Util",
