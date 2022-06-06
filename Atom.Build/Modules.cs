@@ -9,7 +9,7 @@ public class Modules : SortedDictionary<string, Module>
     public static Modules Load()
     {
         var json = File.ReadAllText(FILE_PATH);
-        return JsonConvert.DeserializeObject<Modules>(json);
+        return JsonConvert.DeserializeObject<Modules>(json)!;
     }
 
     public static void Save(Modules modules)

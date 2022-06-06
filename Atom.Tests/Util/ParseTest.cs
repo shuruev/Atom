@@ -1,4 +1,4 @@
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Atom.Tests.Util;
 
@@ -16,7 +16,7 @@ public class ParseStringTest
     [Test]
     public void Cannot_Parse_Values_Of_Unknown_Type()
     {
-        "xml".Invoking(s => s.As<XDocument>())
+        this.Invoking(_ => "xml".As<XDocument>())
             .Should().Throw<InvalidOperationException>()
             .WithMessage("Parsing as type <XDocument> is not supported.");
     }
@@ -45,13 +45,13 @@ public class ParseStringTest
         "FaLsE".As<bool>().Should().BeFalse();
         "   false".As<bool>().Should().BeFalse();
 
-        "yes".Invoking(s => s.As<bool>())
+        this.Invoking(_ => "yes".As<bool>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <bool> from string 'yes'.");
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<bool>())
+            this.Invoking(_ => value.As<bool>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <bool> from string '{value}'.");
         }
@@ -72,7 +72,7 @@ public class ParseStringTest
         "FaLsE".As<bool?>().Should().BeFalse();
         "   false".As<bool?>().Should().BeFalse();
 
-        "yes".Invoking(s => s.As<bool?>())
+        this.Invoking(_ => "yes".As<bool?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <bool?> from string 'yes'.");
 
@@ -90,14 +90,14 @@ public class ParseStringTest
 
         foreach (var value in new[] { "-38", "1000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<byte>())
+            this.Invoking(_ => value.As<byte>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <byte> from string '{value}'.");
         }
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<byte>())
+            this.Invoking(_ => value.As<byte>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <byte> from string '{value}'.");
         }
@@ -111,7 +111,7 @@ public class ParseStringTest
 
         foreach (var value in new[] { "-38", "1000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<byte?>())
+            this.Invoking(_ => value.As<byte?>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <byte?> from string '{value}'.");
         }
@@ -130,14 +130,14 @@ public class ParseStringTest
 
         foreach (var value in new[] { "100000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<short>())
+            this.Invoking(_ => value.As<short>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <short> from string '{value}'.");
         }
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<short>())
+            this.Invoking(_ => value.As<short>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <short> from string '{value}'.");
         }
@@ -153,7 +153,7 @@ public class ParseStringTest
 
         foreach (var value in new[] { "100000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<short?>())
+            this.Invoking(_ => value.As<short?>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <short?> from string '{value}'.");
         }
@@ -173,14 +173,14 @@ public class ParseStringTest
 
         foreach (var value in new[] { "10000000000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<int>())
+            this.Invoking(_ => value.As<int>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <int> from string '{value}'.");
         }
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<int>())
+            this.Invoking(_ => value.As<int>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <int> from string '{value}'.");
         }
@@ -197,7 +197,7 @@ public class ParseStringTest
 
         foreach (var value in new[] { "10000000000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<int?>())
+            this.Invoking(_ => value.As<int?>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <int?> from string '{value}'.");
         }
@@ -218,14 +218,14 @@ public class ParseStringTest
 
         foreach (var value in new[] { "10000000000000000000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<long>())
+            this.Invoking(_ => value.As<long>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <long> from string '{value}'.");
         }
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<long>())
+            this.Invoking(_ => value.As<long>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <long> from string '{value}'.");
         }
@@ -243,7 +243,7 @@ public class ParseStringTest
 
         foreach (var value in new[] { "10000000000000000000", "1e2", "NaN" })
         {
-            value.Invoking(s => s.As<long?>())
+            this.Invoking(_ => value.As<long?>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <long?> from string '{value}'.");
         }
@@ -270,14 +270,14 @@ public class ParseStringTest
 
         foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e39", "2,5" })
         {
-            value.Invoking(s => s.As<float>())
+            this.Invoking(_ => value.As<float>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <float> from string '{value}'.");
         }
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<float>())
+            this.Invoking(_ => value.As<float>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <float> from string '{value}'.");
         }
@@ -301,7 +301,7 @@ public class ParseStringTest
 
         foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e39", "2,5" })
         {
-            value.Invoking(s => s.As<float?>())
+            this.Invoking(_ => value.As<float?>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <float?> from string '{value}'.");
         }
@@ -348,14 +348,14 @@ public class ParseStringTest
 
         foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e309", "2,5" })
         {
-            value.Invoking(s => s.As<double>())
+            this.Invoking(_ => value.As<double>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <double> from string '{value}'.");
         }
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<double>())
+            this.Invoking(_ => value.As<double>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <double> from string '{value}'.");
         }
@@ -380,7 +380,7 @@ public class ParseStringTest
 
         foreach (var value in new[] { "NaN", "-Infinity", "Infinity", "+Infinity", "1e309", "2,5" })
         {
-            value.Invoking(s => s.As<double?>())
+            this.Invoking(_ => value.As<double?>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <double?> from string '{value}'.");
         }
@@ -424,14 +424,14 @@ public class ParseStringTest
 
         foreach (var value in new[] { "NaN", "Infinity", "2,5", "100000000000000000000000000000" })
         {
-            value.Invoking(s => s.As<decimal>())
+            this.Invoking(_ => value.As<decimal>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <decimal> from string '{value}'.");
         }
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<decimal>())
+            this.Invoking(_ => value.As<decimal>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <decimal> from string '{value}'.");
         }
@@ -454,7 +454,7 @@ public class ParseStringTest
 
         foreach (var value in new[] { "NaN", "Infinity", "2,5", "100000000000000000000000000000" })
         {
-            value.Invoking(s => s.As<decimal?>())
+            this.Invoking(_ => value.As<decimal?>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <decimal?> from string '{value}'.");
         }
@@ -472,13 +472,13 @@ public class ParseStringTest
         "39:20:57".As<TimeSpan>().Should().Be(TimeSpan.Parse("39:20:57"));
         "1:15:20:57".As<TimeSpan>().Should().Be(TimeSpan.Parse("1:15:20:57"));
 
-        "unknown".Invoking(s => s.As<TimeSpan>())
+        this.Invoking(_ => "unknown".As<TimeSpan>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <TimeSpan> from string 'unknown'.");
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<TimeSpan>())
+            this.Invoking(_ => value.As<TimeSpan>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <TimeSpan> from string '{value}'.");
         }
@@ -493,7 +493,7 @@ public class ParseStringTest
         "39:20:57".As<TimeSpan?>().Should().Be(TimeSpan.Parse("39:20:57"));
         "1:15:20:57".As<TimeSpan?>().Should().Be(TimeSpan.Parse("1:15:20:57"));
 
-        "unknown".Invoking(s => s.As<TimeSpan?>())
+        this.Invoking(_ => "unknown".As<TimeSpan?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <TimeSpan?> from string 'unknown'.");
 
@@ -509,13 +509,13 @@ public class ParseStringTest
         "2000-11-21 15:20:57".As<DateTime>().Should().Be(new DateTime(2000, 11, 21, 15, 20, 57));
         "2000/11/21 15:20:57".As<DateTime>().Should().Be(new DateTime(2000, 11, 21, 15, 20, 57));
 
-        "unknown".Invoking(s => s.As<DateTime>())
+        this.Invoking(_ => "unknown".As<DateTime>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <DateTime> from string 'unknown'.");
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<DateTime>())
+            this.Invoking(_ => value.As<DateTime>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <DateTime> from string '{value}'.");
         }
@@ -529,7 +529,7 @@ public class ParseStringTest
         "2000-11-21 15:20:57".As<DateTime?>().Should().Be(new DateTime(2000, 11, 21, 15, 20, 57));
         "2000/11/21 15:20:57".As<DateTime?>().Should().Be(new DateTime(2000, 11, 21, 15, 20, 57));
 
-        "unknown".Invoking(s => s.As<DateTime?>())
+        this.Invoking(_ => "unknown".As<DateTime?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <DateTime?> from string 'unknown'.");
 
@@ -547,13 +547,13 @@ public class ParseStringTest
         "2dc0b86e-3e16-445a-88b8-c39eff611331".As<Guid>().Should().Be(id);
         "2dc0b86e3e16445a88b8c39eff611331".As<Guid>().Should().Be(id);
 
-        "unknown".Invoking(s => s.As<Guid>())
+        this.Invoking(_ => "unknown".As<Guid>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <Guid> from string 'unknown'.");
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<Guid>())
+            this.Invoking(_ => value.As<Guid>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <Guid> from string '{value}'.");
         }
@@ -569,7 +569,7 @@ public class ParseStringTest
         "2dc0b86e-3e16-445a-88b8-c39eff611331".As<Guid>().Should().Be(id);
         "2dc0b86e3e16445a88b8c39eff611331".As<Guid>().Should().Be(id);
 
-        "unknown".Invoking(s => s.As<Guid?>())
+        this.Invoking(_ => "unknown".As<Guid?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <Guid?> from string 'unknown'.");
 
@@ -590,16 +590,16 @@ public class ParseStringTest
         "2".As<TestEnum>().Should().Be(TestEnum.Two);
 
         "3".As<TestEnum>().Should().NotBe(TestEnum.Zero)
-            .And.Should().NotBe(TestEnum.One)
-            .And.Should().NotBe(TestEnum.Two);
+            .And.NotBe(TestEnum.One)
+            .And.NotBe(TestEnum.Two);
 
-        "unknown".Invoking(s => s.As<TestEnum>())
+        this.Invoking(_ => "unknown".As<TestEnum>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <TestEnum> from string 'unknown'.");
 
         foreach (var value in _empty)
         {
-            value.Invoking(s => s.As<TestEnum>())
+            this.Invoking(_ => value.As<TestEnum>())
                 .Should().Throw<ArgumentException>()
                 .WithMessage($"Cannot parse value of type <TestEnum> from string '{value}'.");
         }
@@ -618,10 +618,10 @@ public class ParseStringTest
         "2".As<TestEnum?>().Should().Be(TestEnum.Two);
 
         "3".As<TestEnum?>().Should().NotBe(TestEnum.Zero)
-            .And.Should().NotBe(TestEnum.One)
-            .And.Should().NotBe(TestEnum.Two);
+            .And.NotBe(TestEnum.One)
+            .And.NotBe(TestEnum.Two);
 
-        "unknown".Invoking(s => s.As<TestEnum?>())
+        this.Invoking(_ => "unknown".As<TestEnum?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <TestEnum?> from string 'unknown'.");
 
@@ -634,25 +634,25 @@ public class ParseStringTest
     {
         Parse.AllowNonNumericValues = false;
 
-        " ".Invoking(s => s.As<int>())
+        this.Invoking(_ => " ".As<int>())
             .Should().ThrowExactly<ArgumentException>()
             .WithMessage("Cannot parse value of type <int> from string ' '.")
             .WithInnerExceptionExactly<ArgumentException>()
             .WithMessage("Cannot parse non-nullable value type from null or whitespace string.");
 
-        "-".Invoking(s => s.As<int>())
+        this.Invoking(_ => "-".As<int>())
             .Should().ThrowExactly<ArgumentException>()
             .WithMessage("Cannot parse value of type <int> from string '-'.")
             .WithInnerExceptionExactly<ArgumentException>()
             .WithMessage("- is not a valid value for Int32. (Parameter 'value')");
 
-        "0+".Invoking(s => s.As<float>())
+        this.Invoking(_ => "0+".As<float>())
             .Should().ThrowExactly<ArgumentException>()
             .WithMessage("Cannot parse value of type <float> from string '0+'.")
             .WithInnerExceptionExactly<ArgumentException>()
             .WithMessage("0+ is not a valid value for Single. (Parameter 'value')");
 
-        "NaN".Invoking(s => s.As<double>())
+        this.Invoking(_ => "NaN".As<double>())
             .Should().ThrowExactly<ArgumentException>()
             .WithMessage("Cannot parse value of type <double> from string 'NaN'.")
             .WithInnerExceptionExactly<ArgumentException>()
@@ -662,39 +662,39 @@ public class ParseStringTest
     [Test]
     public void Exception_Uses_Type_Keywords()
     {
-        "bad".Invoking(s => s.As<int>())
+        this.Invoking(_ => "bad".As<int>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <int> from string 'bad'.");
 
-        "bad".Invoking(s => s.As<int?>())
+        this.Invoking(_ => "bad".As<int?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <int?> from string 'bad'.");
 
-        "bad".Invoking(s => s.As<DateTime>())
+        this.Invoking(_ => "bad".As<DateTime>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <DateTime> from string 'bad'.");
 
-        "bad".Invoking(s => s.As<DateTime?>())
+        this.Invoking(_ => "bad".As<DateTime?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <DateTime?> from string 'bad'.");
 
-        "bad".Invoking(s => s.As<TestEnum>())
+        this.Invoking(_ => "bad".As<TestEnum>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <TestEnum> from string 'bad'.");
 
-        "bad".Invoking(s => s.As<TestEnum?>())
+        this.Invoking(_ => "bad".As<TestEnum?>())
             .Should().Throw<ArgumentException>()
             .WithMessage("Cannot parse value of type <TestEnum?> from string 'bad'.");
 
-        "bad".Invoking(s => s.As<object>())
+        this.Invoking(_ => "bad".As<object>())
             .Should().Throw<InvalidOperationException>()
             .WithMessage("Parsing as type <object> is not supported.");
 
-        "bad".Invoking(s => s.As<List<int>>())
+        this.Invoking(_ => "bad".As<List<int>>())
             .Should().Throw<InvalidOperationException>()
             .WithMessage("Parsing as type <List<int>> is not supported.");
 
-        "bad".Invoking(s => s.As<Dictionary<string, bool>>())
+        this.Invoking(_ => "bad".As<Dictionary<string, bool>>())
             .Should().Throw<InvalidOperationException>()
             .WithMessage("Parsing as type <Dictionary<string, bool>> is not supported.");
     }
