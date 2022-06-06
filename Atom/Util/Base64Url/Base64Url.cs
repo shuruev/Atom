@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Atom.Util
 {
@@ -18,8 +18,8 @@ namespace Atom.Util
             var base64 = Convert.ToBase64String(data);
             return base64
                 .TrimEnd('=')
-                .Replace("+", "-")
-                .Replace("/", "_");
+                .Replace('+', '-')
+                .Replace('/', '_');
         }
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace Atom.Util
                 throw new ArgumentNullException(nameof(text));
 
             var base64 = text
-                .Replace("-", "+")
-                .Replace("_", "/");
+                .Replace('-', '+')
+                .Replace('_', '/');
 
             switch (text.Length % 4)
             {

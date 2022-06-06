@@ -11,25 +11,25 @@
     "Category": "AWS",
     "Description": "Defines unified AWSSettings class used to build various AWS clients.",
     "Tags": "options, client, credentials, profile",
-    "Version": "1.1.4",
-    "ReleaseNotes": "Downgraded AWS SDK to provide better compatibility.",
+    "Version": "1.1.5",
+    "ReleaseNotes": "Adjusted AWS SDK version to provide better compatibility.",
     "SourceHash": "4b4e6a44-0091-2996-1ad4-d2e13c1c015f",
     "DependsOn": [
-      "AWSSDK.Core 3.3"
+      "AWSSDK.Core 3.3.100"
     ]
   },
   "AWSQueue": {
     "Category": "AWS",
     "Description": "Base class for connecting to AWS queue.",
     "Tags": "queue, client",
-    "Version": "1.1.5",
-    "ReleaseNotes": "Downgraded AWS SDK to provide better compatibility.",
+    "Version": "1.1.6",
+    "ReleaseNotes": "Adjusted AWS SDK version to provide better compatibility.",
     "SourceHash": "183bbd56-a57b-802d-a8dd-841b7f222e71",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
       "Atom.AWSClient 1.1",
       "Atom.Batch 1.0",
-      "AWSSDK.SQS 3.3"
+      "AWSSDK.SQS 3.3.100"
     ]
   },
   "AzureBlob": {
@@ -48,33 +48,33 @@
     "Category": "Azure",
     "Description": "Defines unified AzureSettings class used to build various Azure clients.",
     "Tags": "options, client, credentials, profile",
-    "Version": "1.1.0",
-    "ReleaseNotes": "Added connection via Azure managed identities.",
+    "Version": "1.1.1",
+    "ReleaseNotes": "Adjusted Azure SDK version to provide better compatibility.",
     "SourceHash": "73e56618-5e9b-042a-da43-f21cfc2945a1",
     "DependsOn": [
-      "Azure.Identity 1.2"
+      "Azure.Identity 1.3"
     ]
   },
   "AzureQueue": {
     "Category": "Azure",
     "Description": "Base class for connecting to Azure queue.",
     "Tags": "queue, client",
-    "Version": "1.3.0",
-    "ReleaseNotes": "Added connection via Azure managed identities.",
+    "Version": "1.3.1",
+    "ReleaseNotes": "Adjusted Azure SDK version to provide better compatibility.",
     "SourceHash": "d7f5619b-fe60-1ecf-7947-d233f806e6a9",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
       "Atom.AzureClient 1.1",
-      "Azure.Storage.Queues 12.4"
+      "Azure.Storage.Queues 12.6"
     ]
   },
   "Base64Url": {
     "Category": "Util",
     "Description": "Implements Base-64 encoding with URL and filename safe alphabet.",
     "Tags": "base64, base64url, rfc4648",
-    "Version": "1.0.2",
-    "ReleaseNotes": "Removed unnecessary dependencies.",
-    "SourceHash": "269da6ed-2c49-6837-c2c4-a03aeb7ed440"
+    "Version": "1.0.3",
+    "ReleaseNotes": "Minor optimization.",
+    "SourceHash": "066d464d-3658-2288-78c7-fa0faea4cc07"
   },
   "Batch": {
     "Category": "Util",
@@ -91,6 +91,14 @@
     "Version": "1.2.0",
     "ReleaseNotes": "GetKeyword<T>() was moved to a different module named Atom.TypeName.",
     "SourceHash": "c8db5703-1a84-468a-8a0e-f29ae5e7d5e6"
+  },
+  "CommaList": {
+    "Category": "Util",
+    "Description": "Parses comma separated text to and from list of strings.",
+    "Tags": "comma, separated, list",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "540eed67-6dab-f7ee-c39e-5c446ea23e67"
   },
   "HashBuilder": {
     "Category": "Util",
@@ -115,6 +123,14 @@
       "Atom.TypeName 1.0"
     ]
   },
+  "PathUtil": {
+    "Category": "Util",
+    "Description": "Helper methods for working with I/O and local files.",
+    "Tags": "io, file, path",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release with a 'Scan' method.",
+    "SourceHash": "3dc0fedb-b77a-141e-9775-0a6c3edfa4e1"
+  },
   "RunProcess": {
     "Category": "Util",
     "Description": "Allows to run an external process getting output/error contents properly and without deadlocks.",
@@ -138,5 +154,13 @@
     "Version": "1.3.3",
     "ReleaseNotes": "PressAnyKey() will not output pressed key.",
     "SourceHash": "d09f5dd4-f795-c245-fe97-684afe16a488"
+  },
+  "XDoc": {
+    "Category": "Util",
+    "Description": "Lightweight wrapper over XDocument with easy-to-use methods for working with namespaces, element lookups, XML conversions, etc.",
+    "Tags": "xml, doc",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "c0471767-24b9-8d3f-fd93-8f0b32ddf857"
   }
 }
