@@ -143,9 +143,9 @@
     "Category": "Util",
     "Description": "Provides methods for parsing and creating Visual Studio Solution (*.sln) files.",
     "Tags": "vs, studio, sln, solution, file",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "08fdaf52-ffe4-472f-c628-bf4cf201d269",
+    "Version": "1.0.1",
+    "ReleaseNotes": "More accurate header parsing.",
+    "SourceHash": "6a09c39d-7677-8764-278f-ae757e811daa",
     "DependsOn": [
       "Atom.VSConstants 1.0"
     ]

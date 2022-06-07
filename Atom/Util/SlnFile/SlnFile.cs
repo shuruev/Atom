@@ -102,7 +102,7 @@ namespace Atom.Util
         }
 
         private const string FormatVersionPrefix = "Microsoft Visual Studio Solution File, Format Version ";
-        private const string CurrentVisualStudioVersionPrefix = "# Visual Studio Version ";
+        private const string CurrentVisualStudioVersionPrefix = "# Visual Studio ";
         private const string FullVisualStudioVersionPrefix = "VisualStudioVersion = ";
         private const string MinimumVisualStudioVersionPrefix = "MinimumVisualStudioVersion = ";
         private const string ProjectBeginPrefix = "Project(";
