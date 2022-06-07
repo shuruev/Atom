@@ -20,7 +20,9 @@ dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\HashBuilder\Atom.HashBuilder.nus
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\Parse\Atom.Parse.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\PathUtil\Atom.PathUtil.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\RunProcess\Atom.RunProcess.nuspec --no-build --output nuget
+dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\SlnFile\Atom.SlnFile.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\TypeName\Atom.TypeName.nuspec --no-build --output nuget
+dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\VSConstants\Atom.VSConstants.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\XConsole\Atom.XConsole.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\XDoc\Atom.XDoc.nuspec --no-build --output nuget
 

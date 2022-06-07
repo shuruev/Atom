@@ -139,6 +139,17 @@
     "ReleaseNotes": "Initial release.",
     "SourceHash": "ae04e15f-f239-63cd-481a-c384f87c59c6"
   },
+  "SlnFile": {
+    "Category": "Util",
+    "Description": "Provides methods for parsing and creating Visual Studio Solution (*.sln) files.",
+    "Tags": "vs, studio, sln, solution, file",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "08fdaf52-ffe4-472f-c628-bf4cf201d269",
+    "DependsOn": [
+      "Atom.VSConstants 1.0"
+    ]
+  },
   "TypeName": {
     "Category": "Util",
     "Description": "Can generate user-friendly .NET type name and aware of C# keywords.",
@@ -146,6 +157,14 @@
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
     "SourceHash": "7e58fbac-45fb-5516-c69e-77ac36c12e56"
+  },
+  "VSConstants": {
+    "Category": "Util",
+    "Description": "Various constants commonly used for MSBuild and Visual Studio tools.",
+    "Tags": "vs, msbuild, constants, type, guids",
+    "Version": "1.0.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "e6ca9925-7b69-0a25-ffa4-c373d7c4766a"
   },
   "XConsole": {
     "Category": "Util",
