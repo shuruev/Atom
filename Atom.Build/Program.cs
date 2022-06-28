@@ -51,7 +51,13 @@ public static class Program
         var moduleFiles = Directory.GetFiles(modulePath);
 
         var codeFiles = moduleFiles.Where(f => Path.GetExtension(f) == ".cs").OrderBy(f => f).ToList();
-        var sourceHash = new HashBuilder().Add(codeFiles.Select(File.ReadAllText)).GetHash();
+        var hashBuilder = new HashBuilder();
+        foreach (var file in codeFiles)
+        {
+            hashBuilder.Add(Path.GetFileName(file));
+            hashBuilder.Add(File.ReadAllText(file));
+        }
+        var sourceHash = hashBuilder.GetHash();
 
         // normalize tags, if needed
         info.Tags = info.Tags.AsCommaList().ToCommaList();

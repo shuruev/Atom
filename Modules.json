@@ -5,7 +5,7 @@
     "Tags": "async, for, foreach",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "613cff9c-f0ab-9e63-e57e-24218cbb1eba"
+    "SourceHash": "3f110ddb-848c-0a05-76a8-c6acf0ff6558"
   },
   "AWSClient": {
     "Category": "AWS",
@@ -13,7 +13,7 @@
     "Tags": "options, client, credentials, profile",
     "Version": "1.1.5",
     "ReleaseNotes": "Adjusted AWS SDK version to provide better compatibility.",
-    "SourceHash": "4b4e6a44-0091-2996-1ad4-d2e13c1c015f",
+    "SourceHash": "f43b01de-173d-7c8c-62e3-190db1ddcd24",
     "DependsOn": [
       "AWSSDK.Core 3.3.100"
     ]
@@ -24,7 +24,7 @@
     "Tags": "queue, client",
     "Version": "1.1.6",
     "ReleaseNotes": "Adjusted AWS SDK version to provide better compatibility.",
-    "SourceHash": "183bbd56-a57b-802d-a8dd-841b7f222e71",
+    "SourceHash": "ff5847cd-9fe9-35bb-ce64-7901fb2d7d28",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
       "Atom.AWSClient 1.1",
@@ -38,7 +38,7 @@
     "Tags": "blob, client",
     "Version": "1.3.0",
     "ReleaseNotes": "Added connection via Azure managed identities.",
-    "SourceHash": "b9e16377-b746-5e71-28c4-366744ff57ef",
+    "SourceHash": "15332f3c-2fd8-0083-4d16-e0444a94b9d9",
     "DependsOn": [
       "Atom.AzureClient 1.1",
       "Azure.Storage.Blobs 12.6"
@@ -50,7 +50,7 @@
     "Tags": "options, client, credentials, profile",
     "Version": "1.1.1",
     "ReleaseNotes": "Adjusted Azure SDK version to provide better compatibility.",
-    "SourceHash": "73e56618-5e9b-042a-da43-f21cfc2945a1",
+    "SourceHash": "e57185b9-2d56-b7e4-d36e-c5c5b0daf016",
     "DependsOn": [
       "Azure.Identity 1.3"
     ]
@@ -61,7 +61,7 @@
     "Tags": "queue, client",
     "Version": "1.3.1",
     "ReleaseNotes": "Adjusted Azure SDK version to provide better compatibility.",
-    "SourceHash": "d7f5619b-fe60-1ecf-7947-d233f806e6a9",
+    "SourceHash": "c1f18938-25f3-4b35-315c-7df43d5f3f3b",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
       "Atom.AzureClient 1.1",
@@ -74,7 +74,7 @@
     "Tags": "base64, base64url, rfc4648",
     "Version": "1.0.3",
     "ReleaseNotes": "Minor optimization.",
-    "SourceHash": "066d464d-3658-2288-78c7-fa0faea4cc07"
+    "SourceHash": "519359ea-113b-5bf6-fac8-00e04d0611cd"
   },
   "Batch": {
     "Category": "Util",
@@ -82,7 +82,7 @@
     "Tags": "batch, collection, list, enumerable",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "afbfae75-c663-5efa-7b9b-ddce683be754"
+    "SourceHash": "7c03dc56-a05a-0b08-cffc-592901efe337"
   },
   "CheckType": {
     "Category": "Util",
@@ -90,7 +90,7 @@
     "Tags": "check, type, nullable, enum, enumerable",
     "Version": "1.3.0",
     "ReleaseNotes": "Added IsEnumerableOf<T>() method.",
-    "SourceHash": "f7004af3-ee31-f11e-49c5-61ebf6b0bfe6"
+    "SourceHash": "468a1c1d-3f4d-62ff-5449-edf2a5002a1a"
   },
   "CommaList": {
     "Category": "Util",
@@ -98,7 +98,7 @@
     "Tags": "comma, separated, list",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "540eed67-6dab-f7ee-c39e-5c446ea23e67"
+    "SourceHash": "4457e88d-6fdd-f6e1-f06f-5d5d862f90b3"
   },
   "HashBuilder": {
     "Category": "Util",
@@ -106,7 +106,7 @@
     "Tags": "hash, md5, crc",
     "Version": "1.0.3",
     "ReleaseNotes": "???",
-    "SourceHash": "da869cbf-092c-2bdb-5a72-3168093b4c35",
+    "SourceHash": "c29f067d-1689-b461-a0b2-1908ec22fedd",
     "DependsOn": [
       "Atom.CheckType 1.3"
     ]
@@ -115,9 +115,9 @@
     "Category": "Util",
     "Description": "Normalized relative path that does not depend on the I/O implementation or operating system.",
     "Tags": "normalized, relative, path, io, file",
-    "Version": "0.1.2",
-    "ReleaseNotes": "???",
-    "SourceHash": "fb30092b-d979-af83-7d7c-c19447164137"
+    "Version": "0.1.0",
+    "ReleaseNotes": "Initial release.",
+    "SourceHash": "13488d7f-5a50-6516-5a62-b6cc796bd7de"
   },
   "Parse": {
     "Category": "Util",
@@ -125,7 +125,7 @@
     "Tags": "string, parse, as, convert",
     "Version": "1.2.1",
     "ReleaseNotes": "Published with updated dependency.",
-    "SourceHash": "81039f53-ed37-89a9-5542-49de6e5255d0",
+    "SourceHash": "b0096b20-c544-808d-70d9-8c18a5834425",
     "DependsOn": [
       "Atom.CheckType 1.2",
       "Atom.TypeName 1.0"
@@ -137,7 +137,7 @@
     "Tags": "path, io, file",
     "Version": "1.0.2",
     "ReleaseNotes": "???",
-    "SourceHash": "9f1c769d-7163-bc33-dab3-266b11581d42"
+    "SourceHash": "cfdcf5c5-9f77-db63-4043-26d9a6bc3668"
   },
   "RunProcess": {
     "Category": "Util",
@@ -145,7 +145,7 @@
     "Tags": "run, process, external",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "ae04e15f-f239-63cd-481a-c384f87c59c6"
+    "SourceHash": "5676566f-0922-c92e-1382-cdfd9a5710fc"
   },
   "SlnFile": {
     "Category": "Util",
@@ -153,7 +153,7 @@
     "Tags": "vs, studio, sln, solution, file",
     "Version": "1.0.1",
     "ReleaseNotes": "More accurate header parsing.",
-    "SourceHash": "6a09c39d-7677-8764-278f-ae757e811daa",
+    "SourceHash": "cc0d8179-f6ff-d921-af86-658ac98cf503",
     "DependsOn": [
       "Atom.VSConstants 1.0"
     ]
@@ -164,7 +164,7 @@
     "Tags": "type, name, keyword, friendly, readable",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "7e58fbac-45fb-5516-c69e-77ac36c12e56"
+    "SourceHash": "2c400005-6718-0dbb-6436-18969ad41dfb"
   },
   "VSConstants": {
     "Category": "Util",
@@ -172,7 +172,7 @@
     "Tags": "vs, msbuild, constants, type, guids",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "e6ca9925-7b69-0a25-ffa4-c373d7c4766a"
+    "SourceHash": "965a7723-6937-f9f8-7cc2-f0532f667ecf"
   },
   "XConsole": {
     "Category": "Util",
@@ -180,7 +180,7 @@
     "Tags": "console, colored, output",
     "Version": "1.3.3",
     "ReleaseNotes": "PressAnyKey() will not output pressed key.",
-    "SourceHash": "d09f5dd4-f795-c245-fe97-684afe16a488"
+    "SourceHash": "4b4e5b13-dd73-385c-82cb-679b10aadb95"
   },
   "XDoc": {
     "Category": "Util",
@@ -188,6 +188,6 @@
     "Tags": "xml, doc",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "c0471767-24b9-8d3f-fd93-8f0b32ddf857"
+    "SourceHash": "efa7526c-1f79-3d23-1aed-713683ddc19f"
   }
 }
