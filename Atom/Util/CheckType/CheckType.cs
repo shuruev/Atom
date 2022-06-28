@@ -1,4 +1,8 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+#nullable enable
 
 namespace Atom.Util
 {
@@ -48,6 +52,34 @@ namespace Atom.Util
 
             // regular enum
             return type.IsEnum;
+        }
+
+        /// <summary>
+        /// Checks if specified type is enumerable over some specific type,
+        /// i.e. inherits <see cref="IEnumerable{T}"/>.
+        /// Also returns the underlying item type.
+        /// </summary>
+        public static bool IsEnumerableOf<T>(out Type itemType) => IsEnumerableOf(typeof(T), out itemType);
+
+        /// <summary>
+        /// Checks if specified type is enumerable over some specific type,
+        /// i.e. inherits <see cref="IEnumerable{T}"/>.
+        /// Also returns the underlying item type.
+        /// </summary>
+        public static bool IsEnumerableOf(Type type, out Type itemType)
+        {
+            var checkInterface = type.GetInterfaces().Append(type)
+                .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+
+            if (checkInterface != null)
+            {
+                itemType = checkInterface.GetGenericArguments()[0];
+                if (!itemType.IsGenericParameter)
+                    return true;
+            }
+
+            itemType = typeof(void);
+            return false;
         }
     }
 }
