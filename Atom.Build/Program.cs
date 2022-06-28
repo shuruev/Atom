@@ -51,7 +51,7 @@ public static class Program
         var moduleFiles = Directory.GetFiles(modulePath);
 
         var codeFiles = moduleFiles.Where(f => Path.GetExtension(f) == ".cs").OrderBy(f => f).ToList();
-        var sourceHash = new HashBuilder().AddRange(codeFiles.Select(File.ReadAllText)).GetHash();
+        var sourceHash = new HashBuilder().Add(codeFiles.Select(File.ReadAllText)).GetHash();
 
         // normalize tags, if needed
         info.Tags = info.Tags.AsCommaList().ToCommaList();
@@ -69,6 +69,7 @@ public static class Program
 
             info.Version = upd.ToString();
             info.SourceHash = sourceHash;
+            info.ReleaseNotes = "???";
             updated = true;
         }
 

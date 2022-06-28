@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Atom.HashBuilder</id>
-    <version>1.0.3</version>
+    <id>Atom.NormalizedPath</id>
+    <version>0.1.2</version>
     <releaseNotes>???</releaseNotes>
-    <tags>atom, util, hash, md5, crc</tags>
-    <description>Builds MD5 hash for a combination of standard .NET types.
+    <tags>atom, util, normalized, relative, path, io, file</tags>
+    <description>Normalized relative path that does not depend on the I/O implementation or operating system.
 
 Add this package to your core library, so it would get the source code of this module without installing a binary dependency. Then proceed with using corresponding functionality from Atom.Util namespace, like if it was installed using binary assembly.
 
@@ -15,14 +15,11 @@ Check out GitHub for more docs and usage examples.</description>
     <icon>images/icon.png</icon>
     <license type="expression">MIT</license>
     <contentFiles>
-      <files include="any/any/HashBuilder.cs" buildAction="Compile" copyToOutput="false" />
+      <files include="any/any/NormalizedPath.cs" buildAction="Compile" copyToOutput="false" />
     </contentFiles>
-    <dependencies>
-      <dependency id="Atom.CheckType" version="1.2" include="contentFiles" />
-    </dependencies>
   </metadata>
   <files>
     <file src="../../../icon.png" target="images/" />
-    <file src="HashBuilder.cs" target="contentFiles/any/any/Atom/Util/" />
+    <file src="NormalizedPath.cs" target="contentFiles/any/any/Atom/Util/" />
   </files>
 </package>

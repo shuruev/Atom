@@ -86,11 +86,11 @@
   },
   "CheckType": {
     "Category": "Util",
-    "Description": "Checks multiple criteria for built-in .NET types (is nullable, is enum, etc.)",
-    "Tags": "check, type, nullable, enum",
-    "Version": "1.2.0",
-    "ReleaseNotes": "GetKeyword<T>() was moved to a different module named Atom.TypeName.",
-    "SourceHash": "c8db5703-1a84-468a-8a0e-f29ae5e7d5e6"
+    "Description": "Provides various checks for built-in .NET types (is nullable, is enum, is enumerable etc.)",
+    "Tags": "check, type, nullable, enum, enumerable",
+    "Version": "1.3.0",
+    "ReleaseNotes": "Added IsEnumerableOf<T>() method.",
+    "SourceHash": "f7004af3-ee31-f11e-49c5-61ebf6b0bfe6"
   },
   "CommaList": {
     "Category": "Util",
@@ -102,14 +102,22 @@
   },
   "HashBuilder": {
     "Category": "Util",
-    "Description": "Builds MD5 has for a combination of built-in .NET types.",
+    "Description": "Builds MD5 hash for a combination of standard .NET types.",
     "Tags": "hash, md5, crc",
-    "Version": "1.0.2",
-    "ReleaseNotes": "Published with updated dependency.",
-    "SourceHash": "7b7a555e-8b0b-1cbe-94b5-b4d490dd3846",
+    "Version": "1.0.3",
+    "ReleaseNotes": "???",
+    "SourceHash": "da869cbf-092c-2bdb-5a72-3168093b4c35",
     "DependsOn": [
-      "Atom.CheckType 1.2"
+      "Atom.CheckType 1.3"
     ]
+  },
+  "NormalizedPath": {
+    "Category": "Util",
+    "Description": "Normalized relative path that does not depend on the I/O implementation or operating system.",
+    "Tags": "normalized, relative, path, io, file",
+    "Version": "0.1.2",
+    "ReleaseNotes": "???",
+    "SourceHash": "fb30092b-d979-af83-7d7c-c19447164137"
   },
   "Parse": {
     "Category": "Util",
@@ -126,10 +134,10 @@
   "PathUtil": {
     "Category": "Util",
     "Description": "Helper methods for working with I/O and local files.",
-    "Tags": "io, file, path",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release with a 'Scan' method.",
-    "SourceHash": "3dc0fedb-b77a-141e-9775-0a6c3edfa4e1"
+    "Tags": "path, io, file",
+    "Version": "1.0.2",
+    "ReleaseNotes": "???",
+    "SourceHash": "9f1c769d-7163-bc33-dab3-266b11581d42"
   },
   "RunProcess": {
     "Category": "Util",

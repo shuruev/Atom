@@ -17,6 +17,7 @@ dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\Batch\Atom.Batch.nuspec --no-bui
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\CheckType\Atom.CheckType.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\CommaList\Atom.CommaList.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\HashBuilder\Atom.HashBuilder.nuspec --no-build --output nuget
+dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\NormalizedPath\Atom.NormalizedPath.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\Parse\Atom.Parse.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\PathUtil\Atom.PathUtil.nuspec --no-build --output nuget
 dotnet pack Atom\Atom.csproj /p:NuspecFile=Util\RunProcess\Atom.RunProcess.nuspec --no-build --output nuget
