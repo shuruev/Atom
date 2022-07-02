@@ -35,7 +35,7 @@ namespace Atom.Util
         /// <code>
         /// // find files by extension (case-insensitive)
         /// matchPredicate: item =>
-        ///     String.Equals(Path.GetExtension(item.Name), ".txt", StringComparison.OrdinalIgnoreCase));
+        ///     String.Equals(Path.GetExtension(item.Name), ".txt", StringComparison.OrdinalIgnoreCase)
         /// </code>
         /// </param>
         /// <param name="scanPredicate">
@@ -46,7 +46,7 @@ namespace Atom.Util
         ///     item.Name != ".git"
         ///     && item.Name != "bin"
         ///     && item.Name != "obj"
-        ///     && item.Name != "node_modules");
+        ///     && item.Name != "node_modules"
         /// </code>
         /// Not used when <paramref name="recursive"/> is <c>false</c>.
         /// </param>
@@ -148,6 +148,6 @@ namespace Atom.Util
         /// <summary>
         /// Relative path, e.g. "/Files/MyFile.txt".
         /// </summary>
-        public string RelativePath { get; set; } = null!;
+        public NormalizedPath RelativePath { get; set; } = null!;
     }
 }

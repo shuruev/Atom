@@ -2,9 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.PathUtil</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release with a 'Scan' method.</releaseNotes>
-    <tags>atom, util, io, file, path</tags>
+    <version>1.1.0</version>
+    <releaseNotes>Uses NormalizedPath to represent relative path.</releaseNotes>
+    <tags>atom, util, path, io, file</tags>
     <description>Helper methods for working with I/O and local files.
 
 Add this package to your core library, so it would get the source code of this module without installing a binary dependency. Then proceed with using corresponding functionality from Atom.Util namespace, like if it was installed using binary assembly.
@@ -17,6 +17,9 @@ Check out GitHub for more docs and usage examples.</description>
     <contentFiles>
       <files include="any/any/PathUtil.cs" buildAction="Compile" copyToOutput="false" />
     </contentFiles>
+    <dependencies>
+      <dependency id="NormalizedPath" version="1.0" />
+    </dependencies>
   </metadata>
   <files>
     <file src="../../../icon.png" target="images/" />

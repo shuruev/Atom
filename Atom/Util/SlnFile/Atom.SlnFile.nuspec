@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.SlnFile</id>
-    <version>1.0.1</version>
-    <releaseNotes>More accurate header parsing.</releaseNotes>
+    <version>1.0.2</version>
+    <releaseNotes>Minor formatting update.</releaseNotes>
     <tags>atom, util, vs, studio, sln, solution, file</tags>
     <description>Provides methods for parsing and creating Visual Studio Solution (*.sln) files.
 
