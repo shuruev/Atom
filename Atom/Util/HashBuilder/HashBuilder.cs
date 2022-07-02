@@ -15,6 +15,7 @@ namespace Atom.Util
     public class HashBuilder
     {
         private readonly List<byte> _data = new();
+        private int _count;
 
         /// <summary>
         /// Adds a value to a collection to be hashed.
@@ -26,10 +27,16 @@ namespace Atom.Util
             var block = GetDataBlock(value);
             if (block.Length > maxDataLengthToStore)
             {
+#if NET5_0_OR_GREATER
                 block = MD5.HashData(block);
+#else
+                using var md5 = MD5.Create();
+                block = md5.ComputeHash(block);
+#endif
             }
 
             _data.AddRange(block);
+            _count += 1;
             return this;
         }
 
@@ -52,7 +59,12 @@ namespace Atom.Util
         public Guid GetHash()
         {
             var data = _data.ToArray();
+#if NET5_0_OR_GREATER
             var hash = MD5.HashData(data);
+#else
+            using var md5 = MD5.Create();
+            var hash = md5.ComputeHash(data);
+#endif
             return new Guid(hash);
         }
 
@@ -150,48 +162,64 @@ namespace Atom.Util
 
             switch (dataType)
             {
-                case DataType.Boolean: writer.Write((bool)value!); break;
-                case DataType.Byte: writer.Write((byte)value!); break;
-                case DataType.Int16: writer.Write((short)value!); break;
-                case DataType.Int32: writer.Write((int)value!); break;
-                case DataType.Int64: writer.Write((long)value!); break;
-                case DataType.Single: writer.Write((float)value!); break;
-                case DataType.Double: writer.Write((double)value!); break;
-                case DataType.Decimal: writer.Write((decimal)value!); break;
-                case DataType.String: writer.Write((string)value!); break;
-
+                case DataType.Boolean:
+                    writer.Write((bool)value!);
+                    break;
+                case DataType.Byte:
+                    writer.Write((byte)value!);
+                    break;
+                case DataType.Int16:
+                    writer.Write((short)value!);
+                    break;
+                case DataType.Int32:
+                    writer.Write((int)value!);
+                    break;
+                case DataType.Int64:
+                    writer.Write((long)value!);
+                    break;
+                case DataType.Single:
+                    writer.Write((float)value!);
+                    break;
+                case DataType.Double:
+                    writer.Write((double)value!);
+                    break;
+                case DataType.Decimal:
+                    writer.Write((decimal)value!);
+                    break;
+                case DataType.String:
+                    writer.Write((string)value!);
+                    break;
+                case DataType.Guid:
+                    var g = (Guid)value!;
+                    writer.Write(g.ToByteArray());
+                    break;
+                case DataType.DateTime:
+                    var dt = (DateTime)value!;
+                    writer.Write(dt.Ticks);
+                    break;
+                case DataType.TimeSpan:
+                    var ts = (TimeSpan)value!;
+                    writer.Write(ts.Ticks);
+                    break;
+                case DataType.DateTimeOffset:
+                    var dto = (DateTimeOffset)value!;
+                    writer.Write(dto.DateTime.Ticks);
+                    writer.Write(dto.Offset.Ticks);
+                    break;
+#if NET6_0_OR_GREATER
+                case DataType.DateOnly:
+                    var @do = (DateOnly)value!;
+                    writer.Write(@do.DayNumber);
+                    break;
+                case DataType.TimeOnly:
+                    var to = (TimeOnly)value!;
+                    writer.Write(to.Ticks);
+                    break;
+#endif
                 default:
                     throw new InvalidOperationException($"Unknown data type: {dataType}.");
             }
         }
-
-        /// <summary>
-        /// Writes value of a known type as a binary data block.
-        /// </summary>
-        /*private static byte[] WriteDataBlock(BinaryWriter writer, object? value)
-        {
-            switch (value)
-            {
-                case TimeSpan value:
-                    writer.Write(value.Ticks);
-                    break;
-
-                case DateTime value:
-                    writer.Write(value.Ticks);
-                    break;
-
-                case Guid value:
-                    writer.Write(value.ToByteArray());
-                    break;
-
-                case byte[] value:
-                    writer.Write(value);
-                    break;
-
-                default:
-                    throw new InvalidOperationException($"Hashing is not supported for type '{item.GetType().Name}'.");
-            }
-        }*/
 
         /// <summary>
         /// Gets internal enum for a known data type, or throws exception saying this data type is not supported.
@@ -211,6 +239,14 @@ namespace Atom.Util
             if (type == typeof(double)) return DataType.Double;
             if (type == typeof(decimal)) return DataType.Decimal;
             if (type == typeof(string)) return DataType.String;
+            if (type == typeof(Guid)) return DataType.Guid;
+            if (type == typeof(DateTime)) return DataType.DateTime;
+            if (type == typeof(TimeSpan)) return DataType.TimeSpan;
+            if (type == typeof(DateTimeOffset)) return DataType.DateTimeOffset;
+#if NET6_0_OR_GREATER
+            if (type == typeof(DateOnly)) return DataType.DateOnly;
+            if (type == typeof(TimeOnly)) return DataType.TimeOnly;
+#endif
 
             throw new InvalidOperationException($"Hashing is not supported for type '{type.Name}', use standard .NET types or collections.");
         }
@@ -230,6 +266,21 @@ namespace Atom.Util
             Double = 7,
             Decimal = 8,
             String = 9,
+            Guid = 10,
+            DateTime = 11,
+            TimeSpan = 12,
+            DateTimeOffset = 13,
+            DateOnly = 14,
+            TimeOnly = 15
         }
+
+        #region ToString implementation
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        public override string ToString() => $"{_count} data block(s), {_data.Count} byte(s)";
+
+        #endregion
     }
 }

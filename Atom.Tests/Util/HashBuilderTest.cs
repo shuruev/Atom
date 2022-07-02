@@ -33,6 +33,32 @@ public class HashBuilderTest
     }
 
     [Test]
+    public void Basic_Byte_Arrays()
+    {
+        var data1 = new byte[] { 1, 2, 3, 4, 5 };
+        var hash11 = new HashBuilder().Add(data1).GetHash();
+        var hash12 = new HashBuilder().AddMany(data1).GetHash();
+        var hash13 = new HashBuilder().Add(data1).Add(data1).GetHash();
+        var hash14 = new HashBuilder().AddMany(data1, data1).GetHash();
+
+        hash11.Should().Be("{60705137-f215-8b43-2322-8d5c87fd4ae8}");
+        hash12.Should().Be("{60705137-f215-8b43-2322-8d5c87fd4ae8}");
+        hash13.Should().Be("{ce6128b4-a23b-e40d-fa5e-6fe912b6b90c}");
+        hash14.Should().Be("{ce6128b4-a23b-e40d-fa5e-6fe912b6b90c}");
+
+        var data2 = new byte?[] { 1, 2, 3, 4, 5 };
+        var hash21 = new HashBuilder().Add(data2).GetHash();
+        var hash22 = new HashBuilder().AddMany(data2).GetHash();
+        var hash23 = new HashBuilder().Add(data2).Add(data2).GetHash();
+        var hash24 = new HashBuilder().AddMany(data2, data2).GetHash();
+
+        hash21.Should().Be(hash11);
+        hash22.Should().Be(hash12);
+        hash23.Should().Be(hash13);
+        hash24.Should().Be(hash14);
+    }
+
+    [Test]
     public void List_Of_Nullables()
     {
         var list1 = new List<string?>
@@ -294,6 +320,81 @@ public class HashBuilderTest
         new HashBuilder().Add(String.Empty).GetHash().Should().Be("{d685a40d-cc27-ecff-45b5-1b91fab8055a}");
         new HashBuilder().Add("🙂").GetHash().Should().Be("{c14500c1-a2f7-79f3-3da1-1e6866c09264}");
         new HashBuilder().Add("Hello").GetHash().Should().Be("{f042785e-dc59-97e6-4fa7-f78a5d64858b}");
+    }
+
+    [Test]
+    public void Data_Type_Guid()
+    {
+        new HashBuilder().Add(Guid.Empty).GetHash().Should().Be("{3b9f8da1-04fa-3f87-631f-23e1cc935adc}");
+        new HashBuilder().Add(new Guid("{e3e39c20-1400-4bf9-8307-ee5f36c61cce}")).GetHash().Should().Be("{f3fd0866-e251-408a-ce6f-167c7d01b15b}");
+        new HashBuilder().Add(new Guid("{ffffffff-ffff-ffff-ffff-ffffffffffff}")).GetHash().Should().Be("{c779e7c4-7592-e2a5-b755-b1bd41295531}");
+    }
+
+    [Test]
+    public void Data_Type_DateTime()
+    {
+        new HashBuilder().Add(DateTime.MinValue).GetHash().Should().Be("{0d77b4b1-3b42-2cc2-82e3-dbcaa26b86e5}");
+        new HashBuilder().Add(DateTime.MaxValue).GetHash().Should().Be("{c6d96a5e-e399-b8a6-f439-28327f24257b}");
+
+        var date1 = 25.May(1983);
+        date1.Kind.Should().Be(DateTimeKind.Unspecified);
+        date1.TimeOfDay.Should().Be(TimeSpan.Zero);
+        new HashBuilder().Add(date1).GetHash().Should().Be("{a760d47c-73fd-bdea-5a39-d39aad24ca7f}");
+
+        var date2 = date1.ToLocalTime();
+        date2.Kind.Should().Be(DateTimeKind.Local);
+        date2.TimeOfDay.Should().NotBe(date1.TimeOfDay);
+        new HashBuilder().Add(date2).GetHash().Should().Be("{8f243170-d7ff-3c41-358c-bc164d5a4c33}");
+
+        var date3 = DateTime.SpecifyKind(date2, DateTimeKind.Utc);
+        date3.Kind.Should().Be(DateTimeKind.Utc);
+        date3.TimeOfDay.Should().Be(date2.TimeOfDay);
+        new HashBuilder().Add(date3).GetHash().Should().Be("{8f243170-d7ff-3c41-358c-bc164d5a4c33}");
+    }
+
+    [Test]
+    public void Data_Type_TimeSpan()
+    {
+        new HashBuilder().Add(TimeSpan.MinValue).GetHash().Should().Be("{0b9339dc-0c45-a443-bd53-f504248e1029}");
+        new HashBuilder().Add(TimeSpan.Zero).GetHash().Should().Be("{d9f9fdeb-cc45-f9e4-8442-5d06fa540f5f}");
+        new HashBuilder().Add(TimeSpan.MaxValue).GetHash().Should().Be("{c07868be-127d-7f8a-b7a5-b8485d208eec}");
+    }
+
+    [Test]
+    public void Data_Type_DateTimeOffset()
+    {
+        new HashBuilder().Add(DateTimeOffset.MinValue).GetHash().Should().Be("{504247b8-9246-3de2-7d78-53cf3a77addf}");
+        new HashBuilder().Add(DateTimeOffset.MaxValue).GetHash().Should().Be("{f04fdc3d-22ad-da5d-252b-16c9a073b1c6}");
+
+        var date1 = new DateTimeOffset(25.May(1983), TimeSpan.Zero);
+        date1.TimeOfDay.Should().Be(TimeSpan.Zero);
+        new HashBuilder().Add(date1).GetHash().Should().Be("{f2135d49-30be-48b7-892e-b1325417c130}");
+
+        var date2 = date1.ToLocalTime();
+        date2.TimeOfDay.Should().NotBe(date1.TimeOfDay);
+        new HashBuilder().Add(date2).GetHash().Should().Be("{0d0b8811-50e0-27a7-93b9-2bb9115a2280}");
+
+        var date3 = date1.ToUniversalTime();
+        date3.TimeOfDay.Should().Be(date1.TimeOfDay);
+        new HashBuilder().Add(date3).GetHash().Should().Be("{f2135d49-30be-48b7-892e-b1325417c130}");
+    }
+
+    [Test]
+    public void Data_Type_DateOnly()
+    {
+        new HashBuilder().Add(DateOnly.MinValue).GetHash().Should().Be("{a6ea7fdf-5697-afc6-c3e3-53e7a0ee139a}");
+        new HashBuilder().Add(DateOnly.MaxValue).GetHash().Should().Be("{713fab53-4611-cc10-d5b1-a5fcd9204b30}");
+
+        var date = new DateOnly(1983, 5, 25);
+        new HashBuilder().Add(date).GetHash().Should().Be("{47a85899-1d94-1bc3-a367-097b9216cf64}");
+    }
+
+    [Test]
+    public void Data_Type_TimeOnly()
+    {
+        new HashBuilder().Add(TimeOnly.MinValue).GetHash().Should().Be("{abe11b52-2c1b-08cd-8b0e-dec4c52469bb}");
+        new HashBuilder().Add(TimeOnly.Parse("12:34")).GetHash().Should().Be("{05f5112f-2bac-73ea-0072-8ce0c890650a}");
+        new HashBuilder().Add(TimeOnly.MaxValue).GetHash().Should().Be("{e9eb33dc-dcb0-5d8b-a73f-290d02feb498}");
     }
 
     [Test]

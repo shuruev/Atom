@@ -249,12 +249,12 @@ namespace Atom.Util
                 throw new ArgumentNullException(nameof(header.MinimumVisualStudioVersion));
 
             return new()
-        {
-            $"Microsoft Visual Studio Solution File, Format Version {header.FormatVersion}",
-            $"# {header.CurrentVisualStudioVersion}",
-            $"VisualStudioVersion = {header.FullVisualStudioVersion}",
-            $"MinimumVisualStudioVersion = {header.MinimumVisualStudioVersion}"
-        };
+            {
+                $"Microsoft Visual Studio Solution File, Format Version {header.FormatVersion}",
+                $"# {header.CurrentVisualStudioVersion}",
+                $"VisualStudioVersion = {header.FullVisualStudioVersion}",
+                $"MinimumVisualStudioVersion = {header.MinimumVisualStudioVersion}"
+            };
         }
 
         private static List<string> RenderProject(SlnFileProject project)

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Using Include="FluentAssertions" />
+    <Using Include="FluentAssertions.Extensions" />
     <Using Include="NUnit.Framework" />
     <Using Include="Atom.AWS" />
     <Using Include="Atom.Azure" />
