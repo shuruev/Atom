@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.PathUtil</id>
-    <version>1.1.0</version>
-    <releaseNotes>Uses NormalizedPath to represent relative path.</releaseNotes>
+    <version>1.1.1</version>
+    <releaseNotes>Fix dependency package name.</releaseNotes>
     <tags>atom, util, path, io, file</tags>
     <description>Helper methods for working with I/O and local files.
 
@@ -18,7 +18,7 @@ Check out GitHub for more docs and usage examples.</description>
       <files include="any/any/PathUtil.cs" buildAction="Compile" copyToOutput="false" />
     </contentFiles>
     <dependencies>
-      <dependency id="NormalizedPath" version="1.0" />
+      <dependency id="Atom.NormalizedPath" version="1.0" include="contentFiles" />
     </dependencies>
   </metadata>
   <files>
