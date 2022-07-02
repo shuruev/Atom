@@ -148,6 +148,6 @@ namespace Atom.Util
         /// <summary>
         /// Relative path, e.g. "/Files/MyFile.txt".
         /// </summary>
-        public string RelativePath { get; set; } = null!;
+        public NormalizedPath RelativePath { get; set; } = null!;
     }
 }

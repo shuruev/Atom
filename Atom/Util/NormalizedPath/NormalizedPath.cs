@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 #nullable enable
@@ -7,124 +6,186 @@ using System.IO;
 namespace Atom.Util
 {
     /// <summary>
-    /// Helper methods for working with I/O and local files.
+    /// Normalized path representation.
+    /// Uses single slash character (<c>"/"</c>) for separating path segments and at the beginning of the path.
+    /// Path having slash character at the end represents a directory, otherwise it's a file.
     /// </summary>
-    public static class NormalizedPath
+    public class NormalizedPath : IEquatable<NormalizedPath>, IComparable<NormalizedPath>
     {
         /// <summary>
-        /// Makes sure that specified path was absolute (i.e. non-relative),
-        /// and throws <see cref="InvalidOperationException"/> otherwise.
+        /// Empty relative path that corresponds to the "root".
         /// </summary>
-        public static void EnsureAbsolute(string path)
+        public static NormalizedPath Root { get; } = new("/");
+
+        /// <summary>
+        /// Returns path as a string, e.g. <c>"/MyDirectory/MyFile.txt"</c> or <c>"/MyDirectory/"</c>.
+        /// </summary>
+        public string RawPath { get; }
+
+        /// <summary>
+        /// Initializes a new instance.
+        /// </summary>
+        public NormalizedPath(string path)
         {
-            if (!Path.IsPathFullyQualified(path))
-                throw new InvalidOperationException($"Path should be absolute: {path}");
+#if NET6_0_OR_GREATER
+            ArgumentNullException.ThrowIfNull(path);
+#else
+            if (path == null)
+                throw new ArgumentNullException(nameof(path));
+#endif
+
+            const string hint = " Normalized path uses single slash character ('/') for separating path segments and at the beginning of the path."
+                + " Path having slash character at the end represents a directory, otherwise it's a file.";
+
+            if (!path.StartsWith("/", StringComparison.Ordinal))
+                throw new ArgumentException($"Path '{path}' is expected to start with '/'." + hint, nameof(path));
+
+            void CheckInvalidCharacter(string invalid)
+            {
+                if (path.Contains(invalid))
+                    throw new ArgumentException($"Path '{path}' is not expected to contain '{invalid}'." + hint, nameof(path));
+            }
+
+            foreach (var invalid in new[] { "//", "\\", ":", "*", "?", "\"", "<", ">", "|" })
+                CheckInvalidCharacter(invalid);
+
+            RawPath = path;
         }
 
         /// <summary>
-        /// Scans specified path with various parameters. Can search for files and/or directories,
-        /// and use custom predicate functions for whether an item (file or directory) should be returned,
-        /// as well as whether the search should continue recursively.
+        /// Returns underlying path without trailing slashes, e.g. <c>"MyDirectory/MyFile.txt"</c> or <c>"MyDirectory"</c>.
         /// </summary>
-        /// <param name="pathToScan">Base path to scan. All result items will get their relative paths based on this location.</param>
-        /// <param name="recursive">Whether scan should continue recursively, or be limited to the specified directory only</param>
-        /// <param name="includeFiles">Whether files should be included as result items</param>
-        /// <param name="includeDirectories">Whether directories should be included as result items</param>
-        /// <param name="matchPredicate">
-        /// A function determining whether an item (file or directory) should be included into result or ignored, e.g.
-        /// <code>
-        /// // find files by extension (case-insensitive)
-        /// matchPredicate: item =>
-        ///     String.Equals(Path.GetExtension(item.Name), ".txt", StringComparison.OrdinalIgnoreCase)
-        /// </code>
-        /// </param>
-        /// <param name="scanPredicate">
-        /// A function determining whether the search should continue for this directory, e.g.
-        /// <code>
-        /// // do not search in certain folders
-        /// scanPredicate: item =>
-        ///     item.Name != ".git"
-        ///     && item.Name != "bin"
-        ///     && item.Name != "obj"
-        ///     && item.Name != "node_modules"
-        /// </code>
-        /// Not used when <paramref name="recursive"/> is <c>false</c>.
-        /// </param>
-        /// <returns>A list of items (files and directories) that were found</returns>
-        public static List<PathItem> Scan(
-            string pathToScan,
-            bool recursive = true,
-            bool includeFiles = true,
-            bool includeDirectories = true,
-            Func<PathItem, bool>? matchPredicate = null,
-            Func<PathItem, bool>? scanPredicate = null)
+        public string InnerPath => RawPath.Trim('/');
+
+        /// <summary>
+        /// Returns <c>true</c> when underlying path is "root", i.e. <c>"/"</c>.
+        /// </summary>
+        public bool IsRoot => String.Equals(RawPath, "/", StringComparison.Ordinal);
+
+        /// <summary>
+        /// Returns <c>true</c> when underlying path points to a directory root, e.g. <c>"/MyDirectory/"</c>.
+        /// </summary>
+        public bool IsDirectory => RawPath.EndsWith("/", StringComparison.Ordinal);
+
+        /// <summary>
+        /// Creates an instance of a "root" path.
+        /// </summary>
+        public static NormalizedPath New() => Root;
+
+        /// <summary>
+        /// Creates an instance of a normalized path.
+        /// </summary>
+        public static NormalizedPath New(string path) => new(path);
+
+        /// <summary>
+        /// Gets parent path, e.g. for <c>"/MyDirectory/MyFile.txt"</c> it will return <c>"/MyDirectory/"</c>.
+        /// For <c>"/MyDirectory/"</c> it will return <c>"/"</c> (<see cref="Root"/>).
+        /// For root path <c>"/"</c> it will return the same value.
+        /// </summary>
+        public NormalizedPath GetParent()
         {
-            EnsureAbsolute(pathToScan);
-            var result = new List<PathItem>();
-            ScanPath("/", pathToScan, result, recursive, includeFiles, includeDirectories, matchPredicate, scanPredicate);
-            return result;
+            if (IsRoot)
+                return this;
+
+            var parent = Path.GetDirectoryName(InnerPath);
+            if (String.IsNullOrEmpty(parent))
+                return Root;
+
+            return new NormalizedPath("/" + parent.Replace('\\', '/') + "/");
         }
 
-        private static void ScanPath(
-            string relativePath,
-            string currentPath,
-            List<PathItem> result,
-            bool recursive,
-            bool includeFiles,
-            bool includeDirectories,
-            Func<PathItem, bool>? matchPredicate,
-            Func<PathItem, bool>? scanPredicate)
+        /// <summary>
+        /// Appends directory name to an existing path (can also be a sub-path of multiple directories).
+        /// Will throw if the current path already denotes a file, and not a directory.
+        /// </summary>
+        public NormalizedPath AppendDirectory(string directoryName)
         {
-            if (includeFiles)
-            {
-                foreach (var file in Directory.GetFiles(currentPath, "*", SearchOption.TopDirectoryOnly))
-                {
-                    var fileName = Path.GetFileName(file);
-                    var fileItem = new PathItem
-                    {
-                        Name = fileName,
-                        IsDirectory = false,
-                        AbsolutePath = file,
-                        RelativePath = $"{relativePath}{fileName}"
-                    };
-
-                    if (matchPredicate == null || matchPredicate.Invoke(fileItem))
-                    {
-                        result.Add(fileItem);
-                    }
-                }
-            }
-
-            if (includeDirectories || recursive)
-            {
-                foreach (var dir in Directory.GetDirectories(currentPath, "*", SearchOption.TopDirectoryOnly))
-                {
-                    var dirName = Path.GetFileName(dir);
-                    var dirItem = new PathItem
-                    {
-                        Name = dirName,
-                        IsDirectory = true,
-                        AbsolutePath = dir,
-                        RelativePath = $"{relativePath}{dirName}/"
-                    };
-
-                    if (includeDirectories)
-                    {
-                        if (matchPredicate == null || matchPredicate.Invoke(dirItem))
-                        {
-                            result.Add(dirItem);
-                        }
-                    }
-
-                    if (recursive)
-                    {
-                        if (scanPredicate == null || scanPredicate.Invoke(dirItem))
-                        {
-                            ScanPath(dirItem.RelativePath, dir, result, recursive, includeFiles, includeDirectories, matchPredicate, scanPredicate);
-                        }
-                    }
-                }
-            }
+            EnsureIsDirectory();
+            var pathToAdd = directoryName.Trim('/');
+            return new NormalizedPath(RawPath + pathToAdd + '/');
         }
+
+        /// <summary>
+        /// Appends file name to an existing path (can also be a sub-path of a file within some directory).
+        /// Will throw if the current path already denotes a file, and not a directory.
+        /// </summary>
+        public NormalizedPath AppendFile(string fileName)
+        {
+            EnsureIsDirectory();
+            if (!fileName.EndsWith("/", StringComparison.Ordinal))
+                throw new ArgumentException($"The provided value '{fileName}' more looks like a directory rather than file name.", nameof(fileName));
+            var pathToAdd = fileName.Trim('/');
+            return new NormalizedPath(RawPath + pathToAdd);
+        }
+
+        /// <summary>
+        /// Throws if the current path is not a directory.
+        /// </summary>
+        private void EnsureIsDirectory()
+        {
+            if (!IsDirectory)
+                throw new InvalidOperationException($"This method can only be used for paths that represent a directory, but the '{RawPath}' does not.");
+        }
+
+        #region Implicit conversion
+
+        public static implicit operator NormalizedPath(string path) => new(path);
+        public static implicit operator string(NormalizedPath path) => path.RawPath;
+
+        #endregion
+
+        #region ToString implementation
+
+        public override string ToString() => RawPath;
+
+        #endregion
+
+        #region IEquatable implementation
+
+        public bool Equals(NormalizedPath? other)
+        {
+            if (ReferenceEquals(null, other))
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return RawPath == other.RawPath;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            if (obj.GetType() != typeof(NormalizedPath))
+                return false;
+
+            return Equals((NormalizedPath)obj);
+        }
+
+        public override int GetHashCode() => RawPath.GetHashCode();
+        public static bool operator ==(NormalizedPath? left, NormalizedPath? right) => Equals(left, right);
+        public static bool operator !=(NormalizedPath? left, NormalizedPath? right) => !Equals(left, right);
+
+        #endregion
+
+        #region IComparable implementation
+
+        public int CompareTo(NormalizedPath? other)
+        {
+            if (ReferenceEquals(this, other))
+                return 0;
+
+            if (ReferenceEquals(null, other))
+                return 1;
+
+            return String.Compare(RawPath, other.RawPath, StringComparison.Ordinal);
+        }
+
+        #endregion
     }
 }
