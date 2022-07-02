@@ -117,7 +117,7 @@
     "Tags": "normalized, relative, path, io, file",
     "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
-    "SourceHash": "0a8d7fb4-8420-effc-a116-9c61c41a2e65"
+    "SourceHash": "cbf486bb-4b1d-b5f6-6297-ec067ade36a9"
   },
   "Parse": {
     "Category": "Util",

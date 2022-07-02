@@ -40,14 +40,14 @@ namespace Atom.Util
             if (!path.StartsWith("/", StringComparison.Ordinal))
                 throw new ArgumentException($"Path '{path}' is expected to start with '/'." + hint, nameof(path));
 
-            void CheckInvalidCharacter(string invalid)
+            void CheckInvalidCharacters(string invalid)
             {
                 if (path.Contains(invalid))
                     throw new ArgumentException($"Path '{path}' is not expected to contain '{invalid}'." + hint, nameof(path));
             }
 
             foreach (var invalid in new[] { "//", "\\", ":", "*", "?", "\"", "<", ">", "|" })
-                CheckInvalidCharacter(invalid);
+                CheckInvalidCharacters(invalid);
 
             RawPath = path;
         }
@@ -112,8 +112,9 @@ namespace Atom.Util
         public NormalizedPath AppendFile(string fileName)
         {
             EnsureIsDirectory();
-            if (!fileName.EndsWith("/", StringComparison.Ordinal))
+            if (fileName.EndsWith("/", StringComparison.Ordinal))
                 throw new ArgumentException($"The provided value '{fileName}' more looks like a directory rather than file name.", nameof(fileName));
+
             var pathToAdd = fileName.Trim('/');
             return new NormalizedPath(RawPath + pathToAdd);
         }
