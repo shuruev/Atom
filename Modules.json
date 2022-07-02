@@ -135,11 +135,11 @@
     "Category": "Util",
     "Description": "Helper methods for working with I/O and local files.",
     "Tags": "path, io, file",
-    "Version": "1.1.0",
-    "ReleaseNotes": "Uses NormalizedPath to represent relative path.",
+    "Version": "1.1.1",
+    "ReleaseNotes": "Fix dependency package name.",
     "SourceHash": "68607ab5-e33e-a925-ed96-dde5ae960531",
     "DependsOn": [
-      "NormalizedPath 1.0"
+      "Atom.NormalizedPath 1.0"
     ]
   },
   "RunProcess": {
