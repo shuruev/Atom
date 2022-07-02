@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.HashBuilder</id>
-    <version>1.0.3</version>
-    <releaseNotes>???</releaseNotes>
+    <version>1.1.0</version>
+    <releaseNotes>New hashing algorithm that considers data types, nullability and avoids collisions.</releaseNotes>
     <tags>atom, util, hash, md5, crc</tags>
     <description>Builds MD5 hash for a combination of standard .NET types.
 

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.NormalizedPath</id>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <releaseNotes>Initial release.</releaseNotes>
     <tags>atom, util, normalized, relative, path, io, file</tags>
     <description>Normalized relative path that does not depend on the I/O implementation or operating system.

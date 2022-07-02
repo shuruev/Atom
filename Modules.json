@@ -104,9 +104,9 @@
     "Category": "Util",
     "Description": "Builds MD5 hash for a combination of standard .NET types.",
     "Tags": "hash, md5, crc",
-    "Version": "1.0.3",
-    "ReleaseNotes": "???",
-    "SourceHash": "c29f067d-1689-b461-a0b2-1908ec22fedd",
+    "Version": "1.1.0",
+    "ReleaseNotes": "New hashing algorithm that considers data types, nullability and avoids collisions.",
+    "SourceHash": "331b73ee-0fc6-a3dc-c535-af2109b56794",
     "DependsOn": [
       "Atom.CheckType 1.3"
     ]
@@ -115,7 +115,7 @@
     "Category": "Util",
     "Description": "Normalized relative path that does not depend on the I/O implementation or operating system.",
     "Tags": "normalized, relative, path, io, file",
-    "Version": "0.1.0",
+    "Version": "1.0.0",
     "ReleaseNotes": "Initial release.",
     "SourceHash": "13488d7f-5a50-6516-5a62-b6cc796bd7de"
   },
@@ -135,9 +135,12 @@
     "Category": "Util",
     "Description": "Helper methods for working with I/O and local files.",
     "Tags": "path, io, file",
-    "Version": "1.0.2",
-    "ReleaseNotes": "???",
-    "SourceHash": "cfdcf5c5-9f77-db63-4043-26d9a6bc3668"
+    "Version": "1.1.0",
+    "ReleaseNotes": "Uses NormalizedPath to represent relative path.",
+    "SourceHash": "cfdcf5c5-9f77-db63-4043-26d9a6bc3668",
+    "DependsOn": [
+      "NormalizedPath 1.0"
+    ]
   },
   "RunProcess": {
     "Category": "Util",
@@ -151,9 +154,9 @@
     "Category": "Util",
     "Description": "Provides methods for parsing and creating Visual Studio Solution (*.sln) files.",
     "Tags": "vs, studio, sln, solution, file",
-    "Version": "1.0.1",
-    "ReleaseNotes": "More accurate header parsing.",
-    "SourceHash": "cc0d8179-f6ff-d921-af86-658ac98cf503",
+    "Version": "1.0.2",
+    "ReleaseNotes": "Minor formatting update.",
+    "SourceHash": "825cc580-fe92-7478-35cb-83c02455a174",
     "DependsOn": [
       "Atom.VSConstants 1.0"
     ]
