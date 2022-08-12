@@ -36,36 +36,36 @@
     "Category": "Azure",
     "Description": "Base classes for connecting to Azure blob storage.",
     "Tags": "blob, client",
-    "Version": "1.3.0",
-    "ReleaseNotes": "Added connection via Azure managed identities.",
+    "Version": "1.3.1",
+    "ReleaseNotes": "Updated Azure package version.",
     "SourceHash": "15332f3c-2fd8-0083-4d16-e0444a94b9d9",
     "DependsOn": [
       "Atom.AzureClient 1.1",
-      "Azure.Storage.Blobs 12.6"
+      "Azure.Storage.Blobs 12.13"
     ]
   },
   "AzureClient": {
     "Category": "Azure",
     "Description": "Defines unified AzureSettings class used to build various Azure clients.",
     "Tags": "options, client, credentials, profile",
-    "Version": "1.1.1",
-    "ReleaseNotes": "Adjusted Azure SDK version to provide better compatibility.",
+    "Version": "1.1.2",
+    "ReleaseNotes": "Updated Azure package version.",
     "SourceHash": "e57185b9-2d56-b7e4-d36e-c5c5b0daf016",
     "DependsOn": [
-      "Azure.Identity 1.3"
+      "Azure.Identity 1.6"
     ]
   },
   "AzureQueue": {
     "Category": "Azure",
     "Description": "Base class for connecting to Azure queue.",
     "Tags": "queue, client",
-    "Version": "1.3.1",
-    "ReleaseNotes": "Adjusted Azure SDK version to provide better compatibility.",
+    "Version": "1.3.2",
+    "ReleaseNotes": "Updated Azure package version.",
     "SourceHash": "c1f18938-25f3-4b35-315c-7df43d5f3f3b",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
       "Atom.AzureClient 1.1",
-      "Azure.Storage.Queues 12.6"
+      "Azure.Storage.Queues 12.11"
     ]
   },
   "Base64Url": {
