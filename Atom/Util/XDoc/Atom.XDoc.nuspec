@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.XDoc</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <version>1.0.1</version>
+    <releaseNotes>Added support for custom line break characters.</releaseNotes>
     <tags>atom, util, xml, doc</tags>
     <description>Lightweight wrapper over XDocument with easy-to-use methods for working with namespaces, element lookups, XML conversions, etc.
 

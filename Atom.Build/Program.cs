@@ -174,7 +174,7 @@ Check out GitHub for more docs and usage examples."));
 
         doc.Add(package);
 
-        return doc.ToXml(XDocFormatting.Indented);
+        return doc.ToXml(XDocFormatting.Indented, "\n");
     }
 
     private static void UpdatePackBat(Modules modules)
@@ -199,6 +199,6 @@ dotnet test
 ENDLOCAL
 PAUSE");
 
-        File.WriteAllText("../../../../pack.bat", sb.ToString());
+        File.WriteAllText("../../../../pack.bat", sb.ToString().Replace("\r\n", "\n"));
     }
 }

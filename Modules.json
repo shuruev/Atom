@@ -3,17 +3,17 @@
     "Category": "Util",
     "Description": "Helper methods for async collections processing.",
     "Tags": "async, for, foreach",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "3f110ddb-848c-0a05-76a8-c6acf0ff6558"
+    "Version": "1.0.1",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "b3e12416-81d0-d467-b0b4-135692ab3af0"
   },
   "AWSClient": {
     "Category": "AWS",
     "Description": "Defines unified AWSSettings class used to build various AWS clients.",
     "Tags": "options, client, credentials, profile",
-    "Version": "1.1.5",
-    "ReleaseNotes": "Adjusted AWS SDK version to provide better compatibility.",
-    "SourceHash": "f43b01de-173d-7c8c-62e3-190db1ddcd24",
+    "Version": "1.1.6",
+    "ReleaseNotes": "Updated AWS SDK version.",
+    "SourceHash": "bc8e8502-f246-90f9-204b-2e1f74d90a8c",
     "DependsOn": [
       "AWSSDK.Core 3.3.100"
     ]
@@ -22,9 +22,9 @@
     "Category": "AWS",
     "Description": "Base class for connecting to AWS queue.",
     "Tags": "queue, client",
-    "Version": "1.1.6",
-    "ReleaseNotes": "Adjusted AWS SDK version to provide better compatibility.",
-    "SourceHash": "ff5847cd-9fe9-35bb-ce64-7901fb2d7d28",
+    "Version": "1.1.7",
+    "ReleaseNotes": "Updated AWS SDK version.",
+    "SourceHash": "f54ffdd5-53f5-b1a4-7e03-98b86b2a12b9",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
       "Atom.AWSClient 1.1",
@@ -36,9 +36,9 @@
     "Category": "Azure",
     "Description": "Base classes for connecting to Azure blob storage.",
     "Tags": "blob, client",
-    "Version": "1.3.1",
+    "Version": "1.3.2",
     "ReleaseNotes": "Updated Azure package version.",
-    "SourceHash": "15332f3c-2fd8-0083-4d16-e0444a94b9d9",
+    "SourceHash": "f2a987f7-d77b-9b69-4825-1a4e0af19f5a",
     "DependsOn": [
       "Atom.AzureClient 1.1",
       "Azure.Storage.Blobs 12.13"
@@ -48,9 +48,9 @@
     "Category": "Azure",
     "Description": "Defines unified AzureSettings class used to build various Azure clients.",
     "Tags": "options, client, credentials, profile",
-    "Version": "1.1.2",
+    "Version": "1.1.3",
     "ReleaseNotes": "Updated Azure package version.",
-    "SourceHash": "e57185b9-2d56-b7e4-d36e-c5c5b0daf016",
+    "SourceHash": "35ef64b2-2d68-70bc-4846-39d6a774dfce",
     "DependsOn": [
       "Azure.Identity 1.6"
     ]
@@ -59,9 +59,9 @@
     "Category": "Azure",
     "Description": "Base class for connecting to Azure queue.",
     "Tags": "queue, client",
-    "Version": "1.3.2",
+    "Version": "1.3.3",
     "ReleaseNotes": "Updated Azure package version.",
-    "SourceHash": "c1f18938-25f3-4b35-315c-7df43d5f3f3b",
+    "SourceHash": "ddd2abcb-c55a-af67-fd0d-ffbaf52a2371",
     "DependsOn": [
       "Atom.AsyncUtil 1.0",
       "Atom.AzureClient 1.1",
@@ -72,17 +72,17 @@
     "Category": "Util",
     "Description": "Implements Base-64 encoding with URL and filename safe alphabet.",
     "Tags": "base64, base64url, rfc4648",
-    "Version": "1.0.3",
-    "ReleaseNotes": "Minor optimization.",
-    "SourceHash": "519359ea-113b-5bf6-fac8-00e04d0611cd"
+    "Version": "1.0.4",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "bd650d8f-59b6-2145-4c37-5e393e210053"
   },
   "Batch": {
     "Category": "Util",
     "Description": "Extension methods for splitting collection into batches.",
     "Tags": "batch, collection, list, enumerable",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "7c03dc56-a05a-0b08-cffc-592901efe337"
+    "Version": "1.0.1",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "dcb6766a-afd3-468e-dd47-5a408ab39711"
   },
   "CheckType": {
     "Category": "Util",
@@ -96,9 +96,9 @@
     "Category": "Util",
     "Description": "Parses comma separated text to and from list of strings.",
     "Tags": "comma, separated, list",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "4457e88d-6fdd-f6e1-f06f-5d5d862f90b3"
+    "Version": "1.0.1",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "a5930265-e3bd-681a-b228-ca9641bccbcd"
   },
   "HashBuilder": {
     "Category": "Util",
@@ -123,9 +123,9 @@
     "Category": "Util",
     "Description": "Parses any string into different .NET built-in types using As<T> syntax.",
     "Tags": "string, parse, as, convert",
-    "Version": "1.2.1",
-    "ReleaseNotes": "Published with updated dependency.",
-    "SourceHash": "b0096b20-c544-808d-70d9-8c18a5834425",
+    "Version": "1.2.2",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "0931338c-8152-6b85-4587-b45f9bdd925f",
     "DependsOn": [
       "Atom.CheckType 1.2",
       "Atom.TypeName 1.0"
@@ -146,9 +146,9 @@
     "Category": "Util",
     "Description": "Allows to run an external process getting output/error contents properly and without deadlocks.",
     "Tags": "run, process, external",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "5676566f-0922-c92e-1382-cdfd9a5710fc"
+    "Version": "1.0.1",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "5b8c9c03-5ab2-88aa-7839-f7f18db73484"
   },
   "SlnFile": {
     "Category": "Util",
@@ -165,9 +165,9 @@
     "Category": "Util",
     "Description": "Can generate user-friendly .NET type name and aware of C# keywords.",
     "Tags": "type, name, keyword, friendly, readable",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "2c400005-6718-0dbb-6436-18969ad41dfb"
+    "Version": "1.0.1",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "3928dba0-5a92-5f40-af28-a32127322df4"
   },
   "VSConstants": {
     "Category": "Util",
@@ -181,16 +181,16 @@
     "Category": "Util",
     "Description": "Extends standard console providing more features like colored output.",
     "Tags": "console, colored, output",
-    "Version": "1.3.3",
-    "ReleaseNotes": "PressAnyKey() will not output pressed key.",
-    "SourceHash": "4b4e5b13-dd73-385c-82cb-679b10aadb95"
+    "Version": "1.3.4",
+    "ReleaseNotes": "Upgraded .NET version.",
+    "SourceHash": "67e2780f-9c99-802e-a08f-0ea77a0647e7"
   },
   "XDoc": {
     "Category": "Util",
     "Description": "Lightweight wrapper over XDocument with easy-to-use methods for working with namespaces, element lookups, XML conversions, etc.",
     "Tags": "xml, doc",
-    "Version": "1.0.0",
-    "ReleaseNotes": "Initial release.",
-    "SourceHash": "efa7526c-1f79-3d23-1aed-713683ddc19f"
+    "Version": "1.0.1",
+    "ReleaseNotes": "Added support for custom line break characters.",
+    "SourceHash": "dc5c2415-0db9-fb7d-2246-099b8a6895ae"
   }
 }

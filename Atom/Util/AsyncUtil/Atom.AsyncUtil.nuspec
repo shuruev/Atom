@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Atom.AsyncUtil</id>
-    <version>1.0.0</version>
-    <releaseNotes>Initial release.</releaseNotes>
+    <version>1.0.1</version>
+    <releaseNotes>Upgraded .NET version.</releaseNotes>
     <tags>atom, util, async, for, foreach</tags>
     <description>Helper methods for async collections processing.
 

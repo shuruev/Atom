@@ -65,7 +65,9 @@ namespace Atom.Util
         /// <summary>
         /// Converts XML document to its string representation.
         /// </summary>
-        public string ToXml(XDocFormatting formatting = XDocFormatting.None)
+        public string ToXml(
+            XDocFormatting formatting = XDocFormatting.None,
+            string useNewLineChars = null)
         {
             // preserving original encoding if was specified, or use UTF-8 by default
             var encoding = GetEncoding();
@@ -88,15 +90,18 @@ namespace Atom.Util
                 settings.Indent = true;
             }
 
-            using (var ms = new MemoryStream())
+            if (useNewLineChars != null)
             {
-                using (var xw = XmlWriter.Create(ms, settings))
-                {
-                    doc.WriteTo(xw);
-                }
-
-                return encoding.GetString(ms.ToArray());
+                settings.NewLineChars = useNewLineChars;
             }
+
+            using var ms = new MemoryStream();
+            using (var xw = XmlWriter.Create(ms, settings))
+            {
+                doc.WriteTo(xw);
+            }
+
+            return encoding.GetString(ms.ToArray());
         }
 
         /// <summary>

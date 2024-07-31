@@ -20,7 +20,7 @@ public class Modules : SortedDictionary<string, Module>
             NullValueHandling = NullValueHandling.Ignore
         });
 
-        File.WriteAllText(FILE_PATH, json);
+        File.WriteAllText(FILE_PATH, json.Replace("\r\n", "\n"));
     }
 }
 
