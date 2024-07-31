@@ -5,11 +5,11 @@ namespace Atom.Tests.Util;
 
 public class CheckTypeTest
 {
-    private enum TestEnum { }
+    private enum TestEnum;
 
-    private class ListOfInt : List<int> { }
+    private class ListOfInt : List<int>;
 
-    private class ListOfSomething<T> : List<T> { }
+    private class ListOfSomething<T> : List<T>;
 
     private class ListOfUnknown : IEnumerable
     {
