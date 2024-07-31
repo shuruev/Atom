@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 
 // ReSharper disable ClassNeverInstantiated.Local
 namespace Atom.Tests.Util;

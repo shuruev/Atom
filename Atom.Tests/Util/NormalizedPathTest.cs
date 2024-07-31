@@ -1,4 +1,4 @@
-﻿namespace Atom.Tests.Util;
+namespace Atom.Tests.Util;
 
 public class NormalizedPathTest
 {
